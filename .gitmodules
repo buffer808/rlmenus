@@ -1,0 +1,3 @@
+[submodule "app/Plugin/Export"]
+	path = app/Plugin/Export
+	url = git@github.com:joshuapaling/CakePHP-Export-CSV-Plugin.git

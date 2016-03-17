@@ -1,0 +1,39 @@
+CREATE TABLE `orders` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`breakfast_id` INT NOT NULL,
+	`lunch_id` INT NOT NULL,
+	`snack_id` INT NOT NULL,
+	`dinner_id` INT NOT NULL,
+	`created` DATETIME NOT NULL,
+	`modified` DATETIME NOT NULL ); 
+
+CREATE TABLE `menus` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`title` VARCHAR(255) NOT NULL,
+	`description` TEXT NOT NULL,
+	`created` DATETIME NOT NULL,
+	`modified` DATETIME NOT NULL ); 
+
+CREATE TABLE `breakfasts` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`menu_id` INT NOT NULL,
+	`created` DATETIME NOT NULL,
+	`modified` DATETIME NOT NULL ); 
+
+CREATE TABLE `lunches` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`menu_id` INT NOT NULL,
+	`created` DATETIME NOT NULL,
+	`modified` DATETIME NOT NULL ); 
+	
+CREATE TABLE `snacks` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`menu_id` INT NOT NULL,
+	`created` DATETIME NOT NULL,
+	`modified` DATETIME NOT NULL ); 
+
+CREATE TABLE `dinners` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`menu_id` INT NOT NULL,
+	`created` DATETIME NOT NULL,
+	`modified` DATETIME NOT NULL );
