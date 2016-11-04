@@ -1,0 +1,33 @@
+.skin-black .main-header .logo{
+    background-color: rgba(21, 21, 21, 0.55);
+}
+
+.skin-black .main-header .navbar {
+    background-color: #151515;
+}
+
+.skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
+    background-color: #151515;
+}
+
+.skin-black .sidebar-menu>li:hover>a, .skin-black .sidebar-menu>li.active>a{
+    background: #252525;
+    border-left-color: #333333;
+}
+
+.skin-black .sidebar a, .main-header .sidebar-toggle{
+    color: #cecece;
+}
+
+.main-header .sidebar-toggle,
+.skin-black .main-header .logo{
+    border: 0 !important;
+}
+.skin-black .main-header .logo:hover{
+    background: rgba(21, 21, 21, 0.55);;
+}
+
+div#datatable_filter.dataTables_filter,
+div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
+    text-align: right;
+}

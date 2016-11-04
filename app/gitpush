@@ -1,0 +1,8 @@
+#!/bin/sh
+
+mysqldump -uroot -pcgeek rlmenus > data.dump
+
+git add .
+git commit
+
+git push -u origin master
