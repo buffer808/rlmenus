@@ -37,6 +37,11 @@ class UsersController extends AppController {
  */
  
 	public function view($id = null) {
+
+	    if(!in_array($this->myRole, array('admin','companyadmin','canteenadmin'))){
+            $this->layout = 'homepage';
+        }
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -72,8 +77,10 @@ class UsersController extends AppController {
 			$roles = array('admin' => 'Super Admin' , 'canteenadmin' => 'Canteen Admin','companyadmin' => 'Company Admin');
 		elseif($this->Auth->user('role') == 'canteenadmin')
 			$roles = array('canteenadmin' => 'Canteen Admin');
-		else
-			$roles = array('canteenadmin' => 'Canteen Admin','companyadmin' => 'Company Admin');
+		elseif($this->Auth->user('role') == 'companyadmin')
+			$roles = array('companyadmin' => 'Company Admin');
+        else
+            $roles = array('customer' => 'Customer');
 		
 		$this->set('roles',$roles);
 	}
@@ -106,6 +113,9 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
+        if(!in_array($this->myRole, array('admin','companyadmin','canteenadmin'))){
+            $this->layout = 'homepage';
+        }
 	}
 
 /**
@@ -130,11 +140,14 @@ class UsersController extends AppController {
 	}
 
 	public function login() {
-
+        $this->layout = 'adminlte-login';
 	    if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
-//                $this->Session->setFlash(__('Looged in successfuly'), 'flash-success' );
-	            return $this->redirect($this->Auth->redirectUrl());
+                if( !in_array($this->Auth->user('role'), array('Guest', 'customer')) ) {
+                    return $this->redirect($this->Auth->redirectUrl());
+                } else {
+                    return $this->redirect('/');
+                }
 	        }
 	        $this->Session->setFlash(__('Invalid username or password, try again'), 'flash-error');
 	    }

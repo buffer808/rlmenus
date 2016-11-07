@@ -3,17 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo $title_for_layout; ?></title>
+    <title>Redlanch Food Delivery | Login</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <?php
     echo $this->Html->meta('icon');
-
-    /*echo $this->Html->meta('favicon.ico',
-        $site_url.'favicon.ico',
-        array('type' => 'icon'));*/
-
     echo $this->fetch('css');
     echo $this->fetch('script');
     ?>
@@ -39,7 +34,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="<?php echo $site_url; ?>"><img src="<?php echo $site_url; ?>img/logo-rlfd.png" alt="Redlanch Cafeteria"></a>
+        <a href="<?php echo $site_url; ?>"><img src="<?php echo $site_url; ?>img/rlfd-logo-bg.png" alt="Redlanch Cafeteria"></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

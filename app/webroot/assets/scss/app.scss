@@ -1,0 +1,208 @@
+@import "fonts";
+@import "bootstrap";
+
+@mixin box($box) {
+	height: $box;
+	width: $box;
+}
+
+@mixin b-rad($rad) {
+	-webkit-border-radius: $rad;
+	border-radius: $rad;
+}
+
+$white: #fff;
+
+html, body {
+	min-height:100%;
+	margin:0;
+}
+
+body {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ce3234+0,eb7316+100 */
+	background: #ce3234;
+	background: -moz-linear-gradient(-45deg,  #ce3234 0%, #eb7316 100%);
+	background: -webkit-linear-gradient(-45deg,  #ce3234 0%,#eb7316 100%);
+	background: linear-gradient(135deg,  #ce3234 0%,#eb7316 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ce3234', endColorstr='#eb7316',GradientType=1 );
+}
+
+
+strong, b, em, i, cite {
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+strong, b {
+	font-family: "Lato-Bold", $font-family-sans-serif;
+}
+
+em, i, cite {
+	font-family: "Lato-Italic", $font-family-sans-serif;
+}
+
+
+
+.borderless {
+	border: 0 none;
+}
+
+.no-pad {
+	padding: 0;
+}
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+.header {
+	color: $white;
+	font-family: "Lato-Light", $font-family-sans-serif;
+
+	.h2 {
+		margin: 0 0 30px;
+	}
+
+	span {
+		font-family: $font-family-sans-serif;
+	}
+}
+
+
+
+.navbar-brand > img {
+	padding: 6px 15px 0 0;
+	max-width: 160px;
+}
+
+
+.panel.borderless {
+
+	.panel-title {
+		line-height: 1;
+	}
+
+	.meal {
+		font-size: 30px;
+	}
+
+	.time {
+		font-size: 24px;
+		font-family: "Lato-Light", $font-family-sans-serif;
+
+		span {
+			font-family: $font-family-sans-serif;
+		}
+	}
+
+	.panel-heading {
+		@extend .borderless;
+		padding: 20px;
+	}
+}
+
+
+.item {
+	position: relative;
+	max-height: 370px;
+	overflow: hidden;
+
+	.title, .btn, .price {
+		position: absolute;
+		bottom: 20px;
+		z-index: 5;
+	}
+
+	.title {
+		left: 20px;
+		color: $white;
+		font-size: 30px;
+		font-family: "Lato-Light", $font-family-sans-serif;
+		width: calc(100% - 120px);
+		margin-bottom: 15px;
+	}
+
+	.btn {
+		right: 20px;
+		padding: 0;
+		font-size: 24px;
+	}
+
+	.price {
+		@include box(80px);
+		@include b-rad(50%);
+		background: $brand-primary;
+		bottom: auto;
+		top: 20px;
+		right: 20px;
+		color: $white;
+		line-height: 80px;
+		font-size: 48px;
+	}
+}
+
+
+.overlay {
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+	position: absolute;
+	top: 0;
+	left: 0;
+	@include box(100%);
+	z-index: 0;
+}
+
+.btn-round {
+	@include box(60px);
+	@include b-rad(50%);
+	line-height: 60px;
+}
+
+
+.spacer {
+	padding: 10px 0;
+
+	&.spacer-30 {
+		padding: 30px 0;
+	}
+}
+
+
+
+
+.modal-content {
+	@include b-rad(0);
+}
+
+
+#cart {
+
+	.glyphicon {
+		margin-right: 15px;
+	}
+}
+
+
+.navbar {
+	border-top: 0 none;
+	border-left: 0 none;
+	border-right: 0 none;
+}
+
+
+
+@media (min-width: 992px) {
+	.col-md-4 {
+		width: 33.333333%;
+	}
+}

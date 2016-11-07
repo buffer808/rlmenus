@@ -54,20 +54,25 @@ class AppController extends Controller {
     public $myRole = 'Guest';
     public $myUsername = null;
     public $myTitle = 'None';
-	
+    public $myID = 'None';
+
 	public function beforeFilter(){
 		parent::beforeFilter();
 
         $this->set('site_url', 'http://'.$_SERVER['SERVER_NAME'].'/');
 
 		$this->myRole = $this->Auth->user('role') == null? 'Guest' : $this->Auth->user('role');
-		$this->set('myRole' ,$this->myRole);
+		$this->set('myRole', $this->myRole);
 		
 		$this->myUsername = $this->Auth->user('username') == null? 'Guest' : $this->Auth->user('username');
-		$this->set('myUsername' ,$this->myUsername);
+		$this->set('myUsername', $this->myUsername);
 		
 		$this->myTitle = $this->Auth->user('text') == null? 'None' : $this->Auth->user('text');
-		$this->set('myTitle' ,$this->myTitle);
+		$this->set('myTitle', $this->myTitle);
+
+        $this->myID = $this->Auth->user('id') == null ? 'None' : $this->Auth->user('id');
+		$this->set('myID', $this->myID);
+
 
         /**
          * layout
@@ -76,10 +81,10 @@ class AppController extends Controller {
         if($this->myUsername!='Guest'){
             $this->layout = 'adminlte';
         }else{
-            $this->layout = 'adminlte-login';
+            $this->layout = 'homepage';
         }
 
-		$this->Auth->allow('add','view','logout','login');
+		$this->Auth->allow('logout','login', 'homepage', 'add');
 		
 		$this->set('currentController',$this->params['controller']);
 		$this->set('currentAction',$this->params['action']);
@@ -103,4 +108,37 @@ class AppController extends Controller {
 
 
 	}
+
+    /**
+     * @param $img  : uploaded image
+     * @return bool : if no image was uploaded
+     */
+    public function upMealPic($img){
+        if (!empty($img['name'])) {
+            $file = $img;
+
+            $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+            $arr_ext = array('jpg', 'jpeg', 'gif','png');
+
+            if (in_array($ext, $arr_ext)) {
+                move_uploaded_file($file['tmp_name'], WWW_ROOT . '/img/menus/' . $file['name']);
+                return '/img/menus/' . $file['name'];
+            }
+        }
+        return false;
+    }
+
+
+    public function editMealPic($new_img, $old_img){
+        if (!empty($new_img['name'])) {
+
+            if(!empty($old_img)){
+                unlink(WWW_ROOT.$old_img);
+            }
+
+            return $this->upMealPic($new_img);
+
+        }
+        return false;
+    }
 }

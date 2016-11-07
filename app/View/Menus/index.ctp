@@ -35,20 +35,21 @@
                         <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th></th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Price
 
-                                <th><?php echo $this->Paginator->sort('title'); ?></th>
-                                <th><?php echo $this->Paginator->sort('description'); ?></th>
-                                <th><?php echo $this->Paginator->sort('price'); ?></th>
-
-                                <th><?php echo $this->Paginator->sort('created'); ?></th>
-                                <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                                <th>Created
+                                <th>Modified
                                 <th class="actions"></th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($menus as $menu): ?>
                                 <tr>
-
+                                    <td><img src="<?php echo ($menu['Menu']['image']) ? h($menu['Menu']['image']) : 'http://placehold.it/100x100?text=image'; ?>"
+                                             width="100" height="100" alt="<?php echo h($menu['Menu']['title']); ?>"></td>
                                     <td><?php echo h($menu['Menu']['title']); ?>&nbsp;</td>
                                     <td><?php echo nl2br($menu['Menu']['description']); ?>&nbsp;</td>
                                     <td><?php echo __($menu['Menu']['price'] == 0 ? 'Not set' : $menu['Menu']['price'] . ' PHP'); ?>

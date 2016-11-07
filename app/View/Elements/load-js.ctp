@@ -35,6 +35,10 @@
 
 <script>
     (function ($) {
-        $("#datatable").DataTable();
+        $("#datatable").DataTable({
+            "paging": true,
+            "ordering": true,
+            "info": true
+        });
     })(jQuery)
 </script>

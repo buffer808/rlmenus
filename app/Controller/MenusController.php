@@ -22,8 +22,9 @@ class MenusController extends AppController {
  */
 	public function index() {
 		$this->Menu->recursive = 0;
-		$this->Paginator->settings = array('conditions'=>array('Menu.status'=>1));
-		$this->set('menus', $this->Paginator->paginate());
+//		$this->Paginator->settings = array('conditions'=>array('Menu.status'=>1));
+//		$this->set('menus', $this->Paginator->paginate());
+		$this->set('menus', $this->Menu->find('all',array('condition', array('Menu.status'=>1))));
 	}
 	
 	public function deleteAllMenus(){
@@ -87,9 +88,12 @@ class MenusController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Menu->create();
+
+            // check meal image
+            $this->request->data['Menu']['image'] = $this->upMealPic($this->request->data['Menu']['image']);
 			if ($this->Menu->save($this->request->data)) {
 				$this->Session->setFlash(__('The menu has been saved.'), 'default', array('class' => 'alert alert-success'));
-				return $this->redirect(array('action' => 'today'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The menu could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 			}
@@ -108,6 +112,9 @@ class MenusController extends AppController {
 			throw new NotFoundException(__('Invalid menu'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+            // check meal image
+            $old_img = $this->Menu->find('first', array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id)));
+            $this->request->data['Menu']['image'] = $this->editMealPic($this->request->data['Menu']['image'], $old_img['Menu']['image']);
 			if ($this->Menu->save($this->request->data)) {
 				$this->Session->setFlash(__('The menu has been saved.'), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
@@ -117,6 +124,7 @@ class MenusController extends AppController {
 		} else {
 			$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
 			$this->request->data = $this->Menu->find('first', $options);
+            $this->set('meal_img', $this->request->data['Menu']['image']);
 		}
 	}
 

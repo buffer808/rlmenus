@@ -27,6 +27,11 @@
         <div class="col-md-9 col-md-pull-3">
             <div class="box">
                 <div class="box-body">
+
+                    <div class="thumbnail">
+                        <img src="<?php echo h($menu['Menu']['image']); ?>" alt="<?php echo h($menu['Menu']['title']); ?>">
+                    </div>
+
                     <table cellpadding="0" cellspacing="0" class="table table-striped">
                         <tbody>
 
@@ -34,35 +39,30 @@
                             <th><?php echo __('Title'); ?></th>
                             <td>
                                 <?php echo h($menu['Menu']['title']); ?>
-                                &nbsp;
                             </td>
                         </tr>
                         <tr>
                             <th><?php echo __('Description'); ?></th>
                             <td>
                                 <?php echo nl2br($menu['Menu']['description']); ?>
-                                &nbsp;
                             </td>
                         </tr>
                         <tr>
                             <th><?php echo __('Price'); ?></th>
                             <td>
                                 <?php echo __($menu['Menu']['price'] == 0 ? 'Not set' : $menu['Menu']['price'] . ' PHP'); ?>
-                                &nbsp;
                             </td>
                         </tr>
                         <tr>
                             <th><?php echo __('Created'); ?></th>
                             <td>
                                 <?php echo h($menu['Menu']['created']); ?>
-                                &nbsp;
                             </td>
                         </tr>
                         <tr>
                             <th><?php echo __('Modified'); ?></th>
                             <td>
                                 <?php echo h($menu['Menu']['modified']); ?>
-                                &nbsp;
                             </td>
                         </tr>
                         </tbody>

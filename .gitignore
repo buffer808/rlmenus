@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+rlmenus.iws
+*.zip
+*.sql
+data
+sql
+.idea/*
+app/tmp/*
+.gitignore
