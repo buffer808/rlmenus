@@ -34,7 +34,8 @@
                             <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;Export By Date'), array('action' => 'exportbydate'), array('escape' => false)); ?></li>
                             <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;Export By Date Range'), array('action' => 'exportbydaterange'), array('escape' => false)); ?></li>
                             <?php if ($myRole !== 'companyadmin'): ?>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp;Delete All'), array('controller' => 'orders', 'action' => 'deleteAll'), array('escape' => false)); ?> </li><?php endif; ?>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp;Delete All'), array('controller' => 'orders', 'action' => 'deleteAll'), array('escape' => false)); ?> </li>
+                            <?php endif; ?>
                         </ul>
                     </div><!-- end body -->
                 </div><!-- end panel -->
@@ -48,15 +49,23 @@
                     <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th><?php echo $this->Paginator->sort('text', 'Company'); ?></th>
+                            <?php /*<th><?php echo $this->Paginator->sort('text', 'Company'); ?></th>
                             <th><?php echo $this->Paginator->sort('employee'); ?></th>
                             <th><?php echo $this->Paginator->sort('breakfast_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('lunch_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('snack_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('dinner_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('midnight_snack_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('created'); ?></th>
+                            <th><?php echo $this->Paginator->sort('created'); ?></th> */ ?>
 
+                            <th>Company</th>
+                            <th>Employee</th>
+                            <th>Breakfast</th>
+                            <th>Lunch</th>
+                            <th>Snack</th>
+                            <th>Dinner</th>
+                            <th>Midnight Snack</th>
+                            <th>Created</th>
                             <th class="actions"></th>
                         </tr>
                         </thead>

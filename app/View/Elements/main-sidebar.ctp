@@ -19,6 +19,10 @@
             <!--            <li class="header">MAIN NAVIGATION</li>-->
             <li>&nbsp;</li>
 
+            <li <?= $currentController == "dashboards" ? "class='active'" : "" ?>>
+                <?= $this->Html->link(__('<i class="fa fa-dashboard"></i> <span>Dashboard</span>'), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false)) ?>
+            </li>
+
             <?php if($myRole != 'customer'){ ?>
 
                 <?php if ($myRole == 'admin'): ?>
@@ -30,6 +34,9 @@
                 <?php if ($myRole != 'companyadmin'): ?>
                     <li <?= $currentController == "menus" && $currentAction != 'today' ? "class='active'" : "" ?>>
                         <?= $this->Html->link(__('<i class="fa fa-list-ul"></i> <span>Menus</span>'), array('controller' => 'menus', 'action' => 'index'), array('escape' => false)) ?></a>
+                    </li>
+                    <li <?= $currentController == "addons" && $currentAction != 'today' ? "class='active'" : "" ?>>
+                        <?= $this->Html->link(__('<i class="fa fa-list-alt"></i> <span>Add-on Menu</span>'), array('controller' => 'addons', 'action' => 'index'), array('escape' => false)) ?></a>
                     </li>
                 <?php endif ?>
 

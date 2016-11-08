@@ -18,6 +18,9 @@
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
                             <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New User'), array('action' => 'add'), array('escape' => false)); ?></li>
+                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View All'), array('action' => 'index'), array('escape' => false)); ?></li>
+                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Admins Only'), array('action' => 'index',1), array('escape' => false)); ?></li>
+                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Customers Only'), array('action' => 'index',2), array('escape' => false)); ?></li>
                         </ul>
                     </div><!-- end body -->
                 </div><!-- end panel -->
@@ -34,18 +37,25 @@
                     <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th><?php echo $this->Paginator->sort('username'); ?></th>
+                            <?php /* <th><?php echo $this->Paginator->sort('username'); ?></th>
                             <th><?php echo $this->Paginator->sort('role'); ?></th>
                             <th><?php echo $this->Paginator->sort('text', 'Title'); ?></th>
 
                             <th><?php echo $this->Paginator->sort('created'); ?></th>
                             <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                            <th class="actions"></th> */ ?>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Title</th>
+
+                            <th>Created</th>
+                            <th>Modified</th>
                             <th class="actions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($users as $user): ?>
-                            <tr>
+                            <tr <?= ($user['User']['role'] == 'customer' && !isset($c_only)) ? 'class="warning"' : '' ?>>
                                 <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['role']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['text']); ?>&nbsp;</td>

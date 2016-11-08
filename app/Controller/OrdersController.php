@@ -87,26 +87,29 @@ class OrdersController extends AppController {
  	}
 	public function index() {
 		$settings =  array(
-		        'limit' => 20,
+//		        'limit' => 20,
 		        'order' => array('Order.created' => 'desc')
 	    );
 		
-		if($this->Auth->user('role') === 'companyadmin'){
+		if(in_array($this->Auth->user('role'), array('companyadmin','customer'))){
 			$settings['conditions'] = array( 'Order.user_id' => $this->Auth->user('id'));
-			
 		}
+
 		if(isset($settings['conditions'])){
 			$settings['conditions']['Order.status'] = 1;
 		}else{
 			$settings['conditions'] = array( 'Order.status' =>1);
 		}
-		$this->Paginator->settings = $settings;
-		
+
+//		$this->Paginator->settings = $settings;
 		$this->Order->recursive = 2;
-		$o = $this->Paginator->paginate();
+//		$o = $this->Paginator->paginate();
+
+        if($this->myRole == 'customer')
+            $this->layout = 'homepage';
 		
-		
-		$this->set('orders', $o);
+//		$this->set('orders', $o);
+		$this->set('orders', $this->Order->find('all',$settings));
 	}
 
 
@@ -258,7 +261,6 @@ class OrdersController extends AppController {
 	public function view($id = null) {
 		if (!$this->Order->exists($id)) {
 			throw new NotFoundException(__('Invalid order'));
-		
 		}
 		$options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
 		$this->set('order', $this->Order->find('first', $options));
