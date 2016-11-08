@@ -48,12 +48,14 @@
                         <span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>0</span>
                     </a>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown user">
                     <?php if ($myRole == "Guest") { ?>
-                        <a href="<?= $this->webroot ?>login" class="btn btn-danger">Login</a>
+                        <p class="navbar-text no-margin">
+                            <a href="<?= $this->webroot ?>login" class="btn btn-primary btn-sm navbar-btn text-uppercase">Login</a>
+                        </p>
                     <?php } else { ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"><?= $myTitle ?> <span class="caret"></span></a>
+                           aria-expanded="false"><?= $myTitle ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?= $this->webroot ?>users/view/<?= $myID ?>">Profile</a></li>
                             <li><a href="#">Orders</a></li>
