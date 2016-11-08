@@ -1837,10 +1837,10 @@ select[multiple], select[size] { height: auto; }
 input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus { outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px; }
 
 /* line 83, ../scss/bootstrap/_forms.scss */
-output { display: block; padding-top: 7px; font-size: 14px; line-height: 1.42857; color: #555555; }
+output { display: block; padding-top: 7px; font-size: 14px; line-height: 1.42857; color: #151515; }
 
 /* line 114, ../scss/bootstrap/_forms.scss */
-.form-control { display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857; color: #555555; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
+.form-control { display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857; color: #151515; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
 /* line 57, ../scss/bootstrap/mixins/_forms.scss */
 .form-control:focus { border-color: #66afe9; outline: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
 /* line 103, ../scss/bootstrap/mixins/_vendor-prefixes.scss */
@@ -2381,7 +2381,7 @@ tbody.collapse.in { display: table-row-group; }
 .input-group-addon, .input-group-btn { width: 1%; white-space: nowrap; vertical-align: middle; }
 
 /* line 77, ../scss/bootstrap/_input-groups.scss */
-.input-group-addon { padding: 6px 12px; font-size: 14px; font-weight: normal; line-height: 1; color: #555555; text-align: center; background-color: #eeeeee; border: 1px solid #ccc; border-radius: 0; }
+.input-group-addon { padding: 6px 12px; font-size: 14px; font-weight: normal; line-height: 1; color: #151515; text-align: center; background-color: #eeeeee; border: 1px solid #ccc; border-radius: 0; }
 /* line 89, ../scss/bootstrap/_input-groups.scss */
 .input-group-addon.input-sm, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .input-group-addon.btn { padding: 5px 10px; font-size: 12px; border-radius: 0; }
 /* line 94, ../scss/bootstrap/_input-groups.scss */
