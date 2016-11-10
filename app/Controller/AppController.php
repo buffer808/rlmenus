@@ -73,6 +73,10 @@ class AppController extends Controller {
         $this->myID = $this->Auth->user('id') == null ? 'None' : $this->Auth->user('id');
 		$this->set('myID', $this->myID);
 
+        $this->set('counter', '0');
+        if ($this->Session->read('Counter')) {
+            $counter = $this->Session->read('Counter');
+        }
 
         /**
          * layout

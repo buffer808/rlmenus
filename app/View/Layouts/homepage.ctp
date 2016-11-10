@@ -1,12 +1,3 @@
-<?php
-
-$counter = 0;
-
-if ($this->Session->read('Counter')) {
-      $counter = $this->Session->read('Counter');
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
