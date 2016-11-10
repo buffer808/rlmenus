@@ -74,16 +74,27 @@ class PagesController extends AppController {
 		}
 	}
 
-    /**
-     * @return array
-     */
-    public function homepage()
-    {
-//        if($this->myRole!='Guest'){
-//            $this->redirect(array('controller'=>'menus','action' => 'today'));
-//        }else{
-            $this->set('myUsername', $this->myUsername);
-            $this->layout = 'homepage';
-//        }
-    }
+	/**
+	 * @return array
+	 */
+	public function homepage() {
+		if($this->myRole!='Guest'){
+			$this->redirect(array('controller'=>'menus','action' => 'today'));
+		}else{
+			$this->set('myUsername', $this->myUsername);
+			$this->layout = 'homepage';
+		}
+	}
+
+
+	public function cart() {
+		$this->layout = 'homepage';
+		$cart = array();
+
+		if ($this->Session->check('Cart')) {
+				$cart = $this->Session->read('Cart');
+		}
+
+		$this->set(compact('cart'));
+	}
 }
