@@ -17,6 +17,8 @@
 		echo $this->fetch('script');
 		?>
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/font-awesome.min.css">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/app.css">
 
@@ -40,32 +42,42 @@
 						</a>
 				</div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-								<li id="cart">
-										<a href="#">
-												<span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>0</span>
-										</a>
-								</li>
-								<li class="dropdown user">
-										<?php if ($myRole == "Guest") { ?>
-												<p class="navbar-text no-margin">
-														<a href="<?= $this->webroot ?>login" class="btn btn-primary btn-sm navbar-btn text-uppercase">Login</a>
-												</p>
-										<?php } else { ?>
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-													 aria-expanded="false"><?= $myTitle ?> <b class="caret"></b></a>
-												<ul class="dropdown-menu">
-														<li><a href="<?= $this->webroot ?>users/view/<?= $myID ?>">Profile</a></li>
-														<li><a href="#">Orders</a></li>
-														<li><a href="<?= $this->webroot ?>logout">Sign Out</a></li>
-												</ul>
-										<?php } ?>
-								</li>
-						</ul>
-				</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li id="cart">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>0</span>
+                    </a>
+                </li>
+
+                <?php if ($myRole == "Guest") { ?>
+                    <li id="user">
+                        <button type="button" class="btn btn-primary btn-sm navbar-btn text-uppercase"
+                                onclick="window.location.href='<?= $this->webroot ?>login';">login
+                        </button>
+                    </li>
+                <?php } else { ?>
+                    <li id="user" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><?= $myTitle ?> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?= $this->webroot ?>dashboard"><span class="fa fa-dashboard"></span>&nbsp;&nbsp;Dashboard</a></li>
+                            <li><a href="<?= $this->webroot ?>users/view/<?= $myID ?>"><span class="fa fa-user"></span>&nbsp;&nbsp;&nbsp;Profile</a></li>
+                            <li><a href="<?= $this->webroot . (($myRole != 'customer') ? 'orders' : '#') ?>"><span class="fa fa-pencil-square-o"></span>&nbsp;&nbsp;Orders</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-primary btn-sm navbar-btn text-uppercase"
+                                onclick="window.location.href='<?= $this->webroot ?>logout';">logout
+                        </button>
+                    </li>
+                <?php } ?>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
 
 

@@ -106,7 +106,7 @@ class AppController extends Controller {
 		}
 		date_default_timezone_set('Asia/Manila');
 
-
+        $this->set('min_side', (isset($this->request['url']['min'])) ? $this->request['url']['min'] : '');
 	}
 
     /**

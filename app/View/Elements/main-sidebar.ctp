@@ -35,8 +35,8 @@
                     <li <?= $currentController == "menus" && $currentAction != 'today' ? "class='active'" : "" ?>>
                         <?= $this->Html->link(__('<i class="fa fa-list-ul"></i> <span>Menus</span>'), array('controller' => 'menus', 'action' => 'index'), array('escape' => false)) ?></a>
                     </li>
-                    <li <?= $currentController == "addons" && $currentAction != 'today' ? "class='active'" : "" ?>>
-                        <?= $this->Html->link(__('<i class="fa fa-list-alt"></i> <span>Add-on Menu</span>'), array('controller' => 'addons', 'action' => 'index'), array('escape' => false)) ?></a>
+                    <li <?= $currentController == "add_ons" && $currentAction != 'today' ? "class='active'" : "" ?>>
+                        <?= $this->Html->link(__('<i class="fa fa-list-alt"></i> <span>Add-on Menu</span>'), array('controller' => 'add_ons', 'action' => 'index'), array('escape' => false)) ?></a>
                     </li>
                 <?php endif ?>
 

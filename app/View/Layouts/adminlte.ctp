@@ -39,7 +39,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-black <?php //sidebar-collapse0 ?> sidebar-mini">
+<body class="hold-transition skin-black <?= ($min_side==1) ? 'sidebar-collapse' : '' ?> sidebar-mini">
 <div class="wrapper">
 
     <?php echo $this->Element('main-header'); ?>

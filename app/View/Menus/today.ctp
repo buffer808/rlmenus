@@ -10,28 +10,17 @@
         <?php if ($myRole == 'admin' || $myRole == 'canteenadmin') : ?>
 
             <div class="col-md-3 col-md-push-9">
-                <div class="actions">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Add Actions</div>
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked">
 
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Breakfast'), array('controller' => 'breakfasts', 'action' => 'add'), array('escape' => false)); ?> </li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Breakfast Add-on'), array('controller' => 'addons', 'action' => 'add', 'Breakfast'), array('escape' => false)); ?> </li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Lunch'), array('controller' => 'lunches', 'action' => 'add'), array('escape' => false)); ?> </li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Snack'), array('controller' => 'snacks', 'action' => 'add'), array('escape' => false)); ?> </li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Dinner'), array('controller' => 'dinners', 'action' => 'add'), array('escape' => false)); ?> </li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Midnight Snack'), array('controller' => 'midnight_snacks', 'action' => 'add'), array('escape' => false)); ?> </li>
-
-                            </ul>
-                        </div><!-- end body -->
-                    </div><!-- end panel -->
-                </div><!-- end actions -->
-
-                <div class="actions">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Delete Actions</div>
-                        <div class="panel-body">
+                <div class="nav-tabs-custom">
+                    <!-- Tabs within a box -->
+                    <ul class="nav nav-tabs pull-right ui-sortable-handle">
+                        <li class=""><a href="#delete-action" data-toggle="tab" aria-expanded="true">Remove</a></li>
+                        <li class="active"><a href="#add-action" data-toggle="tab" aria-expanded="false">Add</a></li>
+                        <li class="pull-left header"><i class="fa fa-gear"></i>Actions</li>
+                    </ul>
+                    <div class="tab-content no-padding">
+                        <!-- Morris chart - Sales -->
+                        <div class="tab-pane" id="delete-action" style="position: relative;">
                             <ul class="nav nav-pills nav-stacked">
 
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Breakfast'), array('controller' => 'breakfasts', 'action' => 'index'), array('escape' => false)); ?> </li>
@@ -43,9 +32,39 @@
                                 <li><?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove All'), array('controller' => 'menus', 'action' => 'deleteAllMenus'), array('escape' => false), __('Are you sure you want to delete all on this list?')); ?> </li>
 
                             </ul>
-                        </div>                        <!-- end body -->
-                    </div><!-- end panel -->
-                </div><!-- end actions -->
+                        </div>
+                        <div class="tab-pane active" id="add-action" style="position: relative;">
+
+                            <ul class="nav nav-pills nav-stacked">
+
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Breakfast'), array('controller' => 'breakfasts', 'action' => 'add'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Breakfast Add-on'), array('controller' => 'add_ons', 'action' => 'add', 'Breakfast'), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Lunch'), array('controller' => 'lunches', 'action' => 'add'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Lunch Add-on'), array('controller' => 'add_ons', 'action' => 'add', 'Lunch'), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Snack'), array('controller' => 'snacks', 'action' => 'add'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Snack Add-on'), array('controller' => 'add_ons', 'action' => 'add', 'Snack'), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Dinner'), array('controller' => 'dinners', 'action' => 'add'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Dinner Add-on'), array('controller' => 'add_ons', 'action' => 'add', 'Dinner'), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Midnight Snack'), array('controller' => 'midnight_snacks', 'action' => 'add'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Midnight Snack Add-on'), array('controller' => 'add_ons', 'action' => 'add', 'MidnightSnack'), array('escape' => false)); ?> </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
             </div><!-- end col md 3 -->
 
         <?php endif; ?>

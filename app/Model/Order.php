@@ -107,6 +107,13 @@ class Order extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+//		'AddOn' => array(
+//			'className' => 'AddOn',
+//			'foreignKey' => 'addon_id',
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => ''
+//		)
 	);
 }

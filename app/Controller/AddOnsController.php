@@ -138,6 +138,7 @@ class AddOnsController extends AppController
 
                 default:
                     $this->AddOn->create();
+                    $this->request->data['AddOn']['image'] = $this->upMealPic($this->request->data['AddOn']['image']);
                     $this->_add($this->AddOn, $this->request->data);
                     break;
             }
