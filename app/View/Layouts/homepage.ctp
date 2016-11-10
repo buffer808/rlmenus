@@ -59,8 +59,12 @@
 												<ul class="dropdown-menu">
 														<li><a href="<?= $this->webroot ?>users/view/<?= $myID ?>">Profile</a></li>
 														<li><a href="#">Orders</a></li>
-														<li><a href="<?= $this->webroot ?>logout">Sign Out</a></li>
 												</ul>
+									</li>
+									<li class="user">
+										<p class="navbar-text no-margin">
+											<a href="<?= $this->webroot ?>logout" class="btn btn-primary btn-sm navbar-btn logout text-uppercase">Sign Out</a>
+										</p>
 										<?php } ?>
 								</li>
 						</ul>
