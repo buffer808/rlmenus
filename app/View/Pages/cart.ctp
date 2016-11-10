@@ -11,7 +11,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
-				<table class="table table-striped table-hover mb-0">
+				<table class="table table-striped mb-0">
 					<thead>
 						<tr class="strong text-uppercase">
 							<th width="40%" class="text-left">Orders</th>
@@ -37,7 +37,7 @@
 						</tr>
 						<tr class="text-center">
 							<td class="text-left" colspan="4">
-								<p><span class="text-muted small text-uppercase">Add-On:</span></p>
+								<span class="text-muted small text-uppercase">Add-On:</span>
 							</td>
 						</tr>
 						<tr class="text-center">
