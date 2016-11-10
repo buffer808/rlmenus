@@ -11,18 +11,18 @@
 
     <div class="row">
         <div class="col-md-3 col-md-push-9">
-            <?php if($myRole!='customer') { ?>
-            <div class="actions">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Actions</div>
-                    <div class="panel-body">
-                        <ul class="nav nav-pills nav-stacked">
+            <?php if ($myRole != 'customer') { ?>
+                <div class="actions">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Actions</div>
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked">
                                 <li><?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete'), array('action' => 'delete', $this->Form->value('User.id')), array('escape' => false), __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Users'), array('action' => 'index'), array('escape' => false)); ?></li>
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php } ?>
         </div><!-- end col md 3 -->
         <div class="col-md-9 col-md-pull-3">
@@ -40,10 +40,10 @@
                         <?php echo $this->Form->input('password', array('class' => 'form-control', 'placeholder' => 'Password')); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'disabled'=> 'disabled')); ?>
+                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'disabled' => 'disabled')); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('text', array('class' => 'form-control', 'placeholder' => 'Name')); ?>
+                        <?php echo $this->Form->input('text', array('class' => 'form-control', 'placeholder' => 'Name', 'label' => 'Display Name')); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>

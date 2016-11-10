@@ -1,9 +1,9 @@
-<div class="users form">
+<div class="menus form">
 
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1><?php echo __('Add User'); ?></h1>
+                <h1><?php echo __('Add Add-on'); ?></h1>
             </div>
         </div>
     </div>
@@ -16,7 +16,9 @@
                     <div class="panel-heading">Actions</div>
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
-                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Users'), array('action' => 'index'), array('escape' => false)); ?></li>
+
+                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Menus'), array('action' => 'index'), array('escape' => false)); ?></li>
+
                         </ul>
                     </div>
                 </div>
@@ -25,20 +27,21 @@
         <div class="col-md-9 col-md-pull-3">
             <div class="box">
                 <div class="box-body">
-                    <?php echo $this->Form->create('User', array('role' => 'form')); ?>
+                    <?php echo $this->Form->create('AddOn', array('role' => 'form', 'enctype'=>'multipart/form-data')); ?>
 
                     <div class="form-group">
-                        <?php echo $this->Form->input('username', array('class' => 'form-control', 'placeholder' => 'Username')); ?>
+                        <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('password', array('class' => 'form-control', 'placeholder' => 'Password')); ?>
+                        <?php echo $this->Form->input('description', array('class' => 'form-control', 'placeholder' => 'Description')); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'options' => $roles)); ?>
+                        <?php echo $this->Form->input('price', array('class' => 'form-control', 'placeholder' => 'Price')); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('text', array('class' => 'form-control', 'placeholder' => 'Title', 'label' => 'Display Name')); ?>
+                        <?php echo $this->Form->input('image', array('class' => 'form-control', 'type'=>'file')); ?>
                     </div>
+
                     <div class="form-group">
                         <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>
                     </div>

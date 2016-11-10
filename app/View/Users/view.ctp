@@ -48,7 +48,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Title'); ?></th>
+                            <th><?php echo __('Display Name'); ?></th>
                             <td>
                                 <?php echo h($user['User']['text']); ?>
                                 &nbsp;

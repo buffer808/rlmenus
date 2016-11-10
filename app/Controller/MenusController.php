@@ -24,7 +24,7 @@ class MenusController extends AppController {
 		$this->Menu->recursive = 0;
 //		$this->Paginator->settings = array('conditions'=>array('Menu.status'=>1));
 //		$this->set('menus', $this->Paginator->paginate());
-		$this->set('menus', $this->Menu->find('all',array('condition', array('Menu.status'=>1))));
+		$this->set('menus', $this->Menu->find('all',array('conditions'=>array('Menu.status'=>1))));
 	}
 	
 	public function deleteAllMenus(){
@@ -41,28 +41,27 @@ class MenusController extends AppController {
 	public function today(){
 		$this->loadModel('Breakfast');
 		$breakfasts = $this->Breakfast->find('all',array('conditions'=>array('Breakfast.status' => 1)));
-		
+
 		$this->loadModel('Lunch');
-		
 		$lunches = $this->Lunch->find('all',array('conditions'=>array('Lunch.status' => 1)));
 
 		$this->loadModel('Snack');
-		$snacks = $this->Snack->find('all',array('conditions'=>array('Snack.status' => 1)));
+		$snacks = $this->Snack->find('all', array('conditions'=>array('Snack.status' => 1)));
 		
 		$this->loadModel('Dinner');
-		$dinners = $this->Dinner->find('all',array('conditions'=>array('Dinner.status' => 1)));
+		$dinners = $this->Dinner->find('all', array('conditions'=>array('Dinner.status' => 1)));
 		
 		$this->loadModel('MidnightSnack');
 		$midnightSnacks = $this->MidnightSnack->find('all',array('conditions'=>array('MidnightSnack.status' => 1)));
-		
-		
+
 		$this->set('meals',array(
 			'Breakfast' => array('breakfasts' , $breakfasts),
 			'Lunch' => array('lunches', $lunches),
 			'Snack' => array('snacks',$snacks),
 			'Dinner' => array('dinners',$dinners),
-			'MidnightSnack' => array('midnightSnacks',$midnightSnacks)
+			'MidnightSnack' => array('midnightSnacks',$midnightSnacks),
 		));
+
 	}
 
 /**

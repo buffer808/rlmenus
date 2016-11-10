@@ -32,7 +32,7 @@
 <!-- AdminLTE for demo purposes -->
 <!--<script src="--><?php //echo $this->webroot; ?><!--/dist/js/demo.js"></script>-->
  */ ?>
-
+<?php if(in_array($currentController, array('users', 'menus', 'orders', 'settings'))){ ?>
 <script>
     (function ($) {
         $("#datatable").DataTable({
@@ -42,3 +42,4 @@
         });
     })(jQuery)
 </script>
+<?php } ?>
