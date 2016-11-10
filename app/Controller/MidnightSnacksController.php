@@ -56,7 +56,7 @@ class MidnightSnacksController extends AppController {
 				$this->Session->setFlash(__('The midnight snack could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 			}
 		}
-		$menus = $this->MidnightSnack->Menu->find('list');
+		$menus = $this->MidnightSnack->Menu->find('list',array('conditions'=>array('Menu.status'=>1)));
 		$this->set(compact('menus'));
 	}
 
