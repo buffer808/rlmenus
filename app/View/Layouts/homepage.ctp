@@ -1,3 +1,12 @@
+<?php
+
+$counter = 0;
+
+if ($this->Session->read('Counter')) {
+      $counter = $this->Session->read('Counter');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +55,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li id="cart">
-                    <a href="#">
+                    <!-- <a href="#">
                         <span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>0</span>
-                    </a>
+                    </a> -->
+
+                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>'. $counter . '</span>', array('action'=> 'cart'), array('escape' => false)); ?>
                 </li>
 
                 <?php if ($myRole == "Guest") { ?>
