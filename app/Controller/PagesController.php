@@ -84,6 +84,17 @@ class PagesController extends AppController {
         $this->set('myUsername', $this->myUsername);
         $this->layout = 'homepage';
 //      }
+
+        $this->loadModel('Breakfast');
+        $breakfasts = $this->Breakfast->find('all',array('conditions'=>array('Breakfast.status' => 1)));
+
+        $this->loadModel('Snack');
+        $snacks = $this->Snack->find('all', array('conditions'=>array('Snack.status' => 1)));
+
+        $this->set('meals',array(
+            'Breakfast' => array('breakfasts' , $breakfasts),
+            'Snack' => array('snacks',$snacks),
+        ));
     }
 
 
