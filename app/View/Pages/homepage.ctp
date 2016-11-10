@@ -10,10 +10,6 @@
 	</div>-->
 
 	<?php foreach ($meals as $meal => $menu): ?>
-<!--		<pre>-->
-<!--	--><?php
-//	print_r($meals); exit;
-//	?><!--</pre>-->
 	<div id="breakfast" class="panel panel-default borderless">
 		<div class="panel-heading">
 			<p class="panel-title pull-left meal"><b><?= $meal ?></b></p>
@@ -24,7 +20,6 @@
 		<div class="panel-body no-pad">
 			<div class="row no-gutters">
 			<?php foreach ($menu[1] as $m): ?>
-
 				<div class="col-md-4">
 					<div class="item">
 						<img src="<?= $m['Menu']['image'] ? $site_url.h($m['Menu']['image']) : 'http://placehold.it/570x400?text=image'; ?>" alt="<?php echo __($m['Menu']['title']); ?>">
@@ -91,6 +86,9 @@
 			</div>
 		</div>
 	</div><!-- #breakfast -->
+
+
+
 
 
 

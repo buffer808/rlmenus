@@ -86,10 +86,10 @@ class PagesController extends AppController {
 //      }
 
         $this->loadModel('Breakfast');
-        $breakfasts = $this->Breakfast->find('all',array('conditions'=>array('Breakfast.status' => 1)));
+        $breakfasts = $this->Breakfast->find('all',array('conditions'=>array('Breakfast.status' => 1, 'Breakfast.add_on' => 0)));
 
         $this->loadModel('Snack');
-        $snacks = $this->Snack->find('all', array('conditions'=>array('Snack.status' => 1)));
+        $snacks = $this->Snack->find('all', array('conditions'=>array('Snack.status' => 1, 'Snack.add_on' => 0)));
 
         $this->set('meals',array(
             'Breakfast' => array('breakfasts' , $breakfasts),
