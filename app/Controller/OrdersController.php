@@ -180,6 +180,8 @@ class OrdersController extends AppController {
 
 	
 	public function _exportCsv($data){
+	    $this->loadModel('AddOn');
+
 	    $result = array();
 	    
 	    $totalAll = 0;
@@ -188,14 +190,23 @@ class OrdersController extends AppController {
         $addOns = array();
 
 	    foreach($data as $d){
+            $addon_id = array();
+            $addons = array();
+            if (isset($d['Order']['addon_id'])) {
+                $addon_id = unserialize($d['Order']['addon_id']);
+            }
+
 	    	$tmp = array('Employee' => $d['Order']['employee'],'Company' => $d['User']['text']);
+	    	$aotmp = array('Employee' => '','Company' => '');
 	    	$total = 0;
+            $addon_total = 0;
+
 	    	foreach(array("Breakfast","Lunch","Snack","Dinner","MidnightSnack") as $meal){
 		    	if(isset($d[$meal]['menu_id'])){
 		    		$menu = $this->Order->$meal->Menu->findById($d[$meal]['menu_id']);
 		    		$tmp[$meal] = $menu['Menu']['title'];
 		    		$total += $menu['Menu']['price'];
-		    		
+
 		    		if(isset($totalMeals[$menu['Menu']['title']])){
 		    			$totalMeals[$menu['Menu']['title']] += 1;
 		    		}else{
@@ -204,27 +215,54 @@ class OrdersController extends AppController {
 		    	}else{
 		    		$tmp[$meal] = "";
 		    	}
-		    	
-	    	}
-	    	$tmp['Total'] = $total ." PHP";
+
+		    	if(array_key_exists(strtolower($meal), $addon_id)){
+		    	    $c = 0;
+                    $aotmp[$meal] = '';
+		    	    foreach ($addon_id[strtolower($meal)] as $k => $v){
+                        $addOn = $this->AddOn->findById($k);
+                        $aotmp[$meal] = $aotmp[$meal] . (($c == 1) ? ', ' : '') . $addOn['AddOn']['title'];
+                        $addon_total += $addOn['AddOn']['price'];
+
+                        if(isset($totalMeals[$addOn['AddOn']['title']])){
+                            $totalMeals[$addOn['AddOn']['title']] += 1;
+                        }else{
+                            $totalMeals[$addOn['AddOn']['title']] = 1;
+                        }
+                        $c = 1;
+                    }
+                }
+            }
+
+            $tmp['Total'] = $total ." PHP";
 			$tmp['Ordered'] = $d['Order']['created'];
 			$tmp['Signature'] = "";
 			$totalAll += $total;
 	    	$result[] = $tmp;
+
+            if(isset($d['Order']['addon_id'])){
+                $aotmp['Total'] = $addon_total ." PHP";
+                $aotmp['Ordered'] = '';
+                $aotmp['Signature'] = "";
+                $totalAll += $addon_total;
+                $result[] = $aotmp;
+            }
 	    }
 
         $result[] =array();
 
         $result[] =array();
 
-//        echo "<pre>".print_r(array($data, $result), true)."</pre>"; exit;
 
         //Just to match the column, we needed to use the column names of the existing titles
-	    foreach($totalMeals as $title => $numOrders){
-	    	$result[] =array('Employee' => $title .":",'Company'=> $numOrders);
-	    }
-	    $result[] = array('Employee' => 'Total:','Company' => $totalAll,'Breakfast' => 'PHP');
-	    $this->Export->exportCsv($result);		
+        foreach($totalMeals as $title => $numOrders){
+            $result[] =array('Employee' => $title .":",'Company'=> $numOrders);
+        }
+        $result[] = array('Employee' => 'Total:','Company' => $totalAll,'Breakfast' => 'PHP');
+
+//        echo "<pre>".print_r(array($result), true)."</pre>"; exit;
+
+        $this->Export->exportCsv($result);
 	}
 
 	public function _listCompanies(){

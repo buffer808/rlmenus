@@ -20,12 +20,11 @@ class LunchesController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Lunch->recursive = 0;
-		$this->Paginator->settings = array(
-			'conditions' => array('Lunch.status' => 1)
-		);
-		$this->set('lunches', $this->Paginator->paginate());
+	public function index($addon = 0) {
+		$this->set('lunches', $this->Lunch->find('all',array(
+            'conditions' => array('Lunch.status' => 1, 'Lunch.add_on' => $addon)
+        )));
+        $this->set('is_addon', $addon);
 	}
 
 /**

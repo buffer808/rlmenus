@@ -84,7 +84,7 @@ class AppController extends Controller {
             $this->layout = 'homepage';
         }
 
-		$this->Auth->allow('logout','login', 'homepage', 'add');
+		$this->Auth->allow('logout','login', 'homepage', 'add', 'cart');
 		
 		$this->set('currentController',$this->params['controller']);
 		$this->set('currentAction',$this->params['action']);

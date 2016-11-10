@@ -20,12 +20,11 @@ class DinnersController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Dinner->recursive = 0;
-		$this->Paginator->settings = array(
-			'conditions' => array('Dinner.status' => 1)
-		);		
-		$this->set('dinners', $this->Paginator->paginate());
+	public function index($addon = 0) {
+		$this->set('dinners', $this->Dinner->find('all', array(
+            'conditions' => array('Dinner.status' => 1, 'Dinner.add_on' => $addon)
+        )));
+        $this->set('is_addon', $addon);
 	}
 
 /**

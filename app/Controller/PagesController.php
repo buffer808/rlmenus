@@ -83,6 +83,7 @@ class PagesController extends AppController {
 //            $this->redirect(array('controller'=>'menus','action' => 'today'));
 //        }else{
             $this->set('myUsername', $this->myUsername);
+
             $this->layout = 'homepage';
 //        }
     }

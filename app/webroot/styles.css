@@ -31,3 +31,7 @@ div#datatable_filter.dataTables_filter,
 div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     text-align: right;
 }
+
+.dataTables_scrollHead table{
+    margin-bottom: 0 !important;
+}

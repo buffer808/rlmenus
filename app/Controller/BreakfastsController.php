@@ -20,12 +20,11 @@ class BreakfastsController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Breakfast->recursive = 0;
-		$this->Paginator->settings = array(
-			'conditions' => array('Breakfast.status' => 1)
-		);
-		$this->set('breakfasts', $this->Paginator->paginate());
+	public function index($addon = 0) {
+        $this->set('breakfasts', $this->Breakfast->find('all',array(
+            'conditions' => array('Breakfast.status' => 1, 'Breakfast.add_on'=>$addon)
+        )));
+        $this->set('is_addon', $addon);
 	}
 
 /**
