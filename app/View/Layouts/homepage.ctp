@@ -177,6 +177,7 @@
 <script src="<?= $this->webroot; ?>assets/js/jquery.min.js"></script>
 <!-- Bootstrap JavaScript -->
 <script src="<?= $this->webroot; ?>assets/js/bootstrap.js"></script>
-
+<!-- Add to Cart -->
+<script src="<?= $this->webroot; ?>js/add-to-cart.js"></script>
 </body>
 </html>
