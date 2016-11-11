@@ -1,4 +1,4 @@
-<div class="orders index">
+<div id="orders" class="orders index">
 
     <div class="row">
         <div class="col-md-12">
@@ -46,7 +46,7 @@
         <div class="col-md-9 col-md-pull-3">
             <div class="box">
                 <div class="box-body">
-                    <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
+                    <table id="datatable" cellpadding="0" cellspacing="0" class="table nowrap table-bordered table-hover" style="width: 1024px;">
                         <thead>
                         <tr>
                             <?php /*<th><?php echo $this->Paginator->sort('text', 'Company'); ?></th>

@@ -64,7 +64,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"><?= $myTitle ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?= $this->webroot ?>dashboard"><span class="fa fa-dashboard"></span>&nbsp;&nbsp;Dashboard</a></li>
+							<?php if ($myRole != "customer"): ?>
+								<li><a href="<?= $this->webroot ?>dashboard"><span class="fa fa-dashboard"></span>&nbsp;&nbsp;Dashboard</a></li>
+							<?php endif; ?>
                             <li><a href="<?= $this->webroot ?>users/view/<?= $myID ?>"><span class="fa fa-user"></span>&nbsp;&nbsp;&nbsp;Profile</a></li>
                             <li><a href="<?= $this->webroot . (($myRole != 'customer') ? 'orders' : '#') ?>"><span class="fa fa-pencil-square-o"></span>&nbsp;&nbsp;Orders</a>
                             </li>

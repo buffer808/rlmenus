@@ -20,10 +20,11 @@ class MidnightSnacksController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->MidnightSnack->recursive = 0;
-		$this->Paginator->settings = array('conditions' => array('MidnightSnack.status'=>1));
-		$this->set('midnightSnacks', $this->Paginator->paginate());
+	public function index($addon = 0) {
+		$this->set('midnightSnacks', $this->MidnightSnack->find('all', array(
+		    'conditions' => array('MidnightSnack.status'=>1, 'MidnightSnack.add_on'=> $addon)
+        )));
+        $this->set('is_addon', $addon);
 	}
 
 /**

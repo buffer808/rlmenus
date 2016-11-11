@@ -24,12 +24,34 @@
                             <ul class="nav nav-pills nav-stacked">
 
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Breakfast'), array('controller' => 'breakfasts', 'action' => 'index'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Breakfast Add-on'), array('controller' => 'breakfasts', 'action' => 'index', 1), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Lunch'), array('controller' => 'lunches', 'action' => 'index'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Lunch Add-on'), array('controller' => 'lunches', 'action' => 'index', 1), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Snack'), array('controller' => 'snacks', 'action' => 'index'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Snack Add-on'), array('controller' => 'snacks', 'action' => 'index', 1), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Dinner'), array('controller' => 'dinners', 'action' => 'index'), array('escape' => false)); ?> </li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Dinner Add-on'), array('controller' => 'dinners', 'action' => 'index', 1), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Midnight Snack'), array('controller' => 'midnight_snacks', 'action' => 'index'), array('escape' => false)); ?> </li>
-                                <?php /* <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove All'), array('controller' => 'menus', 'action' => 'deleteAllMenus'), array('escape' => false)); ?> </li> */ ?>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove Midnight Snack Add-on'), array('controller' => 'midnight_snacks', 'action' => 'index', 1), array('escape' => false)); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
                                 <li><?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Remove All'), array('controller' => 'menus', 'action' => 'deleteAllMenus'), array('escape' => false), __('Are you sure you want to delete all on this list?')); ?> </li>
+                                <li>
+                                    <hr/>
+                                </li>
 
                             </ul>
                         </div>
@@ -59,7 +81,9 @@
                                 </li>
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Midnight Snack'), array('controller' => 'midnight_snacks', 'action' => 'add'), array('escape' => false)); ?> </li>
                                 <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp&nbsp;Add Midnight Snack Add-on'), array('controller' => 'add_ons', 'action' => 'add', 'MidnightSnack'), array('escape' => false)); ?> </li>
-
+                                <li>
+                                    <hr/>
+                                </li>
                             </ul>
 
                         </div>
@@ -79,7 +103,7 @@
 
                                 <tr class="active">
 
-                                    <th><h3><?php echo __($title); ?>
+                                    <th colspan="2"><h3><?php echo __($title); ?>
                                             &nbsp;<?php echo ' (' . $settings[$title] . ')'; ?></h3></th>
                                     <th></th>
 
@@ -91,7 +115,12 @@
                                         continue;
                                     } ?>
                                     <tr>
-                                        <th class="col-md-8">
+                                        <td class="col-md-2">
+                                            <img class="img-responsive"
+                                                 src="<?= ($menu_img = $m['Menu']['image']) ? $menu_img : 'http://placehold.it/100x100?text=image' ?>"
+                                                 alt="meal">
+                                        </td>
+                                        <th class="col-md-7">
                                             <?php if ($m['Menu']['price'] == 0): ?>
                                                 <?php echo __($m['Menu']['title']); ?> &nbsp;&nbsp;
                                             <?php else: ?>
@@ -99,34 +128,41 @@
                                                 &nbsp;&nbsp;(Price: <?php echo __($m['Menu']['price'] . ' PHP'); ?>)
                                             <?php endif; ?>
                                         </th>
-                                        <td class="col-md-4">
+                                        <td class="col-md-3">
                                             <?php echo nl2br($m['Menu']['description']); ?>
                                         </td>
 
                                     </tr>
                                 <?php endforeach ?>
 
-                                <tr class="active">
-                                    <th><h4>Meal add-on/s</h4></th>
-                                    <td></td>
-                                </tr>
-
-                                <?php foreach ($_addon as $a) { ?>
-                                    <tr>
-                                        <th class="col-md-8">
-                                            <?php if ($a['price'] == 0): ?>
-                                                <?php echo __($a['title']); ?> &nbsp;&nbsp;
-                                            <?php else: ?>
-                                                <?php echo __($a['title']); ?>
-                                                &nbsp;&nbsp;(Price: <?php echo __($a['price'] . ' PHP'); ?>)
-                                            <?php endif; ?>
-                                        </th>
-                                        <td class="col-md-4">
-                                            <?php echo nl2br($a['description']); ?>
-                                        </td>
-
+                                <?php if ($_addon): ?>
+                                    <tr class="active">
+                                        <th colspan="2"><h4>Meal add-on/s</h4></th>
+                                        <th></th>
                                     </tr>
-                                <?php } ?>
+
+                                    <?php foreach ($_addon as $a) { ?>
+                                        <tr>
+                                            <td class="col-md-2">
+                                                <img class="img-responsive"
+                                                     src="<?= ($menu_img = $a['image']) ? $menu_img : 'http://placehold.it/100x100?text=image' ?>"
+                                                     alt="meal">
+                                            </td>
+                                            <th class="col-md-7">
+                                                <?php if ($a['price'] == 0): ?>
+                                                    <?php echo __($a['title']); ?> &nbsp;&nbsp;
+                                                <?php else: ?>
+                                                    <?php echo __($a['title']); ?>
+                                                    &nbsp;&nbsp;(Price: <?php echo __($a['price'] . ' PHP'); ?>)
+                                                <?php endif; ?>
+                                            </th>
+                                            <td class="col-md-4">
+                                                <?php echo nl2br($a['description']); ?>
+                                            </td>
+
+                                        </tr>
+                                    <?php } ?>
+                                <?php endif; ?>
                                 </tbody>
                             </table>
                         <?php endif ?>

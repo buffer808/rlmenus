@@ -20,12 +20,11 @@ class SnacksController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Snack->recursive = 0;
-		$this->Paginator->settings = array(
-			'conditions' => array('Snack.status' => 1)
-		);
-		$this->set('snacks', $this->Paginator->paginate());
+	public function index($addon = 0) {
+		$this->set('snacks', $this->Snack->find('all',array(
+            'conditions' => array('Snack.status' => 1, 'Snack.add_on' => $addon )
+        )));
+        $this->set('is_addon', $addon);
 	}
 
 /**
