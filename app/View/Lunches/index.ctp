@@ -18,11 +18,10 @@
                     <table cellpadding="0" cellspacing="0" class="table table-striped">
                         <thead>
                         <tr>
-
-                            <th>Menu</th>
-                            <th>Created</th>
-                            <th>Modified</th>
-                            <th class="actions"></th>
+                            <th width="40%">Menu</th>
+                            <th width="25%">Created</th>
+                            <th width="25%">Modified</th>
+                            <th width="10%" class="actions"></th>
                         </tr>
                         </thead>
                         <tbody>
