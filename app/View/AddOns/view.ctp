@@ -36,31 +36,31 @@
                         <tbody>
 
                         <tr>
-                            <th><?php echo __('Title'); ?></th>
+                            <td><b><?php echo __('Title'); ?></b></td>
                             <td>
                                 <?php echo h($addon['AddOn']['title']); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Description'); ?></th>
+                            <td><b><?php echo __('Description'); ?></b></td>
                             <td>
                                 <?php echo nl2br($addon['AddOn']['description']); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Price'); ?></th>
+                            <td><b><?php echo __('Price'); ?></b></td>
                             <td>
                                 <?php echo __($addon['AddOn']['price'] == 0 ? 'Not set' : $addon['AddOn']['price'] . ' PHP'); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Created'); ?></th>
+                            <td><b><?php echo __('Created'); ?></b></td>
                             <td>
                                 <?php echo h($addon['AddOn']['created']); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Modified'); ?></th>
+                            <td><b><?php echo __('Modified'); ?></b></td>
                             <td>
                                 <?php echo h($addon['AddOn']['modified']); ?>
                             </td>
