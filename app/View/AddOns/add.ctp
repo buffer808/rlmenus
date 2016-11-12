@@ -50,7 +50,7 @@
                     <?php echo $this->Form->create('AddOn', array('role' => 'form', 'enctype'=>'multipart/form-data')); ?>
 
                     <div class="form-group">
-                        <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
+                        <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title', 'autofocus'=>'autofocus')); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('description', array('class' => 'form-control', 'placeholder' => 'Description')); ?>
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary')); ?>
                     </div>
 
                     <?php echo $this->Form->end() ?>
