@@ -16,20 +16,18 @@
                 <div class="box-body">
                     <?php echo $this->Form->create('Order', array('role' => 'form')); ?>
                         <?php if ($myRole != 'companyadmin'): ?>
-                            <div class="form-date">
+                            <div class="form-date form-group">
                                 <?php echo $this->Form->input('company', array('type' => 'select', 'class' => 'form-control')); ?>
                             </div>
-                            <br/>
                         <?php endif; ?>
-                        <div class="form-date">
-                            <?php echo $this->Form->input('from', array('type' => 'date', 'class' => 'form-control')); ?>
+                        <div class="form-date form-group">
+                            <?php echo $this->Form->input('from', array('type' => 'date', 'class' => 'form-control', 'separator' => '<span class="sep">-</span>')); ?>
                         </div>
-                        <div class="form-date">
-                            <?php echo $this->Form->input('to', array('type' => 'date', 'class' => 'form-control')); ?>
+                        <div class="form-date form-group">
+                            <?php echo $this->Form->input('to', array('type' => 'date', 'class' => 'form-control', 'separator' => '<span class="sep">-</span>')); ?>
                         </div>
-                        <br/>
                         <div class="form-group">
-                            <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>
+                            <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary')); ?>
                         </div>
                     <?php echo $this->Form->end() ?>
                 </div>
