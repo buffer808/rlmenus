@@ -36,31 +36,31 @@
                         <tbody>
 
                         <tr>
-                            <th><?php echo __('Title'); ?></th>
+                            <td><b><?php echo __('Title'); ?></b></td>
                             <td>
                                 <?php echo h($menu['Menu']['title']); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Description'); ?></th>
+                            <td><b><?php echo __('Description'); ?></b></td>
                             <td>
                                 <?php echo nl2br($menu['Menu']['description']); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Price'); ?></th>
+                            <td><b><?php echo __('Price'); ?></b></td>
                             <td>
                                 <?php echo __($menu['Menu']['price'] == 0 ? 'Not set' : $menu['Menu']['price'] . ' PHP'); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Created'); ?></th>
+                            <td><b><?php echo __('Created'); ?></b></td>
                             <td>
                                 <?php echo h($menu['Menu']['created']); ?>
                             </td>
                         </tr>
                         <tr>
-                            <th><?php echo __('Modified'); ?></th>
+                            <td><b><?php echo __('Modified'); ?></b></td>
                             <td>
                                 <?php echo h($menu['Menu']['modified']); ?>
                             </td>
