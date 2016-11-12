@@ -44,13 +44,13 @@
                             <th><?php echo $this->Paginator->sort('created'); ?></th>
                             <th><?php echo $this->Paginator->sort('modified'); ?></th>
                             <th class="actions"></th> */ ?>
-                            <th>Username</th>
-                            <th>Role</th>
-                            <th>Title</th>
+                            <th width="20%">Username</th>
+                            <th width="20%">Role</th>
+                            <th width="20%">Title</th>
 
-                            <th>Created</th>
-                            <th>Modified</th>
-                            <th class="actions"></th>
+                            <th width="15%">Created</th>
+                            <th width="15%">Modified</th>
+                            <th width="10%" class="actions"></th>
                         </tr>
                         </thead>
                         <tbody>
