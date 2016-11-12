@@ -23,11 +23,11 @@
                             <br/>
                         <?php endif; ?>
                         <div class="form-date">
-                            <?php echo $this->Form->input('date', array('type' => 'date', 'class' => 'form-control')); ?>
+                            <?php echo $this->Form->input('date', array('type' => 'date', 'class' => 'form-control', 'separator' => '<span class="sep">-</span>')); ?>
                         </div>
                         <br/>
                         <div class="form-group">
-                            <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>
+                            <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary')); ?>
                         </div>
 
                     <?php echo $this->Form->end() ?>
