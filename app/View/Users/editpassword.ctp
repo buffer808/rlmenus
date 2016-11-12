@@ -17,7 +17,7 @@
                     <?php echo $this->Form->create('User', array('role' => 'form')); ?>
 
                         <div class="form-group">
-                            <?php echo $this->Form->input('password', array('class' => 'form-control', 'placeholder' => 'Password', 'required' => true)); ?>
+                            <?php echo $this->Form->input('password', array('class' => 'form-control', 'placeholder' => 'Password', 'required' => true, 'autofocus'=>'autofocus')); ?>
                         </div>
 
                         <div class="form-group">

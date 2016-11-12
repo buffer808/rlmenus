@@ -11,7 +11,7 @@
 			<?php echo $this->Form->create('User', array('role' => 'form')); ?>
 
 
-				<?php echo $this->Form->input('username', array('div' => array('class' => 'form-group access has-feedback'), 'label' => array('text' => 'Username', 'class' => 'sr-only'), 'class' => 'form-control', 'placeholder' => 'Username', 'after' => '<span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>'));?>
+				<?php echo $this->Form->input('username', array('div' => array('class' => 'form-group access has-feedback'), 'label' => array('text' => 'Username', 'class' => 'sr-only'), 'class' => 'form-control', 'placeholder' => 'Username', 'after' => '<span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>', 'autofocus'=>'autofocus'));?>
 
 				<?php echo $this->Form->input('password', array('div' => array('class' => 'form-group access has-feedback'), 'label' => array('text' => 'Password', 'class' => 'sr-only'), 'class' => 'form-control', 'placeholder' => 'Password', 'after' => '<span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>'));?>
 				

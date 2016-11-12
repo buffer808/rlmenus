@@ -33,7 +33,7 @@
                         <div class="col-md-6">
                             <?php echo $this->Form->create('Order', array('role' => 'form')); ?>
                             <div class="form-group">
-                                <?php echo $this->Form->input('employee', array('class' => 'form-control', 'placeholder' => 'Employee')); ?>
+                                <?php echo $this->Form->input('employee', array('class' => 'form-control', 'placeholder' => 'Employee', 'autofocus'=>'autofocus')); ?>
                             </div>
                             <?php if ($myRole != 'companyadmin'): ?>
                                 <div class="form-group">

@@ -30,7 +30,7 @@
                     <?php echo $this->Form->create('Menu', array('role' => 'form', 'enctype'=>'multipart/form-data')); ?>
 
                     <div class="form-group">
-                        <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
+                        <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title', 'autofocus'=>'autofocus')); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('description', array('class' => 'form-control', 'placeholder' => 'Description')); ?>
