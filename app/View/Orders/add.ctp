@@ -70,7 +70,7 @@
                                     <?php echo $this->Form->input('Order.addon_id.breakfast', array(
                                         'label' => 'Breakfast',
                                         'multiple' => true,
-                                        'class' => 'form-control col-md-8',
+                                        'class' => 'form-control',
                                         'options' => $addons['Breakfast'])); ?>
                                 </div>
                             <?php endif; ?>
