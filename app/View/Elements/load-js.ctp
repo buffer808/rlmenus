@@ -40,7 +40,7 @@
             "ordering": true,
             "info": true,
             <?php if($currentController == "orders"): ?>
-                "scrollX": true,
+                "sscrollX": true,
                 "columnDefs": [
                     { "width": "15%", "targets": 2 },
                     { "width": "15%", "targets": 3 },
