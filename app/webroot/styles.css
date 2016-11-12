@@ -36,3 +36,30 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
 	-webkit-border-radius: 0;
 	border-radius: 0;
 }
+
+.input.date select {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 480px) {
+    .input.date .sep {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .input.date label {
+        display: block;
+    }
+
+    .input.date select {
+        width: 32%;
+        display: inline-block;
+    }
+
+    .input.date .sep {
+        width: 2%;
+        display: inline-block;
+        text-align: center;
+    }
+}
