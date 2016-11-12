@@ -35,14 +35,14 @@
                         <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th></th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Price
+                                <th width="10%">Thumbnail</th>
+                                <th width="15%">Title</th>
+                                <th width="20%">Description</th>
+                                <th width="10%">Price
 
-                                <th>Created
-                                <th>Modified
-                                <th class="actions"></th>
+                                <th width="15%">Created</th>
+                                <th width="15%">Modified</th>
+                                <th width="10%" class="actions"></th>
                             </tr>
                             </thead>
                             <tbody>
