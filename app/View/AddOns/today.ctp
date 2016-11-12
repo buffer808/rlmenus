@@ -58,9 +58,9 @@
 
                                 <tr>
 
-                                    <th><h3><?php echo __($title); ?>
+                                    <th width="60%"><h3><?php echo __($title); ?>
                                             &nbsp;<?php echo ' (' . $settings[$title] . ')'; ?></h3></th>
-                                    <th></th>
+                                    <th width="40%"></th>
 
                                 </tr>
 
