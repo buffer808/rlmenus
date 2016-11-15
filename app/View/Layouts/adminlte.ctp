@@ -31,6 +31,11 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= $site_url ?>dist/css/skins/_all-skins.min.css">
 
+    <?php if( $currentController == 'feedbacks') : ?>
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <?php endif; ?>
+
     <link rel="stylesheet" href="<?= $site_url ?>styles.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

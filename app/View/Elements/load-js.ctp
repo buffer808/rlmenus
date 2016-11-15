@@ -24,6 +24,12 @@
 <script src="<?= $site_url ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
 
+<?php if( $currentController == 'feedbacks') : ?>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<?php endif; ?>
+
+
 <?php /*
 <!-- ChartJS 1.0.1 -->
 <!--<script src="--><?php //echo $this->webroot; ?><!--/plugins/chartjs/Chart.min.js"></script>-->
@@ -54,3 +60,13 @@
     })(jQuery)
 </script>
 <?php } ?>
+
+
+<?php if( $currentController == 'feedbacks') : ?>
+<script>
+    (function ($) {
+        $(".textarea").wysihtml5();
+        console.log('999');
+    })(jQuery);
+</script>
+<?php endif; ?>
