@@ -30,6 +30,8 @@
 	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 	Router::connect('/dashboard', array('controller' => 'dashboards', 'action' => 'index'));
 	Router::connect('/cart', array('controller' => 'pages', 'action' => 'cart'));
+
+//	Router::connect('/meal_view/{$id}', array('controller' => 'pages', 'action' => 'meal_view'));
 //	Router::connect('/addons', array('controller' => 'AddOns', 'action' => 'index'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.

@@ -86,10 +86,10 @@ class PagesController extends AppController {
 //      }
 
         $this->loadModel('Breakfast');
-        $breakfasts = $this->Breakfast->find('all',array('conditions'=>array('Breakfast.status' => 1, 'Breakfast.add_on' => 0)));
+        $breakfasts = $this->Breakfast->find('all',array('conditions'=>array('Breakfast.status' => 1)));
 
         $this->loadModel('Snack');
-        $snacks = $this->Snack->find('all', array('conditions'=>array('Snack.status' => 1, 'Snack.add_on' => 0)));
+        $snacks = $this->Snack->find('all', array('conditions'=>array('Snack.status' => 1)));
 
         $this->set('meals',array(
             'Breakfast' => array('breakfasts' , $breakfasts),
@@ -108,4 +108,5 @@ class PagesController extends AppController {
 
 		$this->set(compact('cart'));
 	}
+
 }

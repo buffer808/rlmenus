@@ -2,7 +2,6 @@
 	<div id="<?= strtolower($meal) ?>" class="panel panel-default borderless">
 		<div class="panel-heading">
 			<p class="panel-title pull-left meal"><b><?= $meal ?></b></p>
-			<!--            <p class="panel-title pull-right time"><span>08:00 AM</span> to <span>10:30</span> AM</p>-->
 			<div class="clearfix"></div>
 		</div>
 
@@ -20,7 +19,7 @@
 							<button  class="btnViewMeal btn btn-warning btn-round" data-toggle="modal" data-target="#modal-order">
 								<i class="glyphicon glyphicon-shopping-cart"></i>
 								<span class="hidden _item" data-menu-id="<?= $m['Menu']['id'] ?>"></span>
-								<!--							<span class="hidden _item" data-meal="--><?//= strtolower($meal) ?><!--"></span>-->
+                                <span class="hidden _meal" data-meal="<?= $meal ?>"></span>
 							</button>
 							<span class="price text-center"><?php echo __($m['Menu']['price']); ?></span>
 							<div class="overlay"></div>

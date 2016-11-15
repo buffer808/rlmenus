@@ -59,6 +59,7 @@
 
             <?php if ($myUsername != 'Guest'): ?>
                 <li> <?= $this->Html->link(__('<i class="fa fa-asterisk"></i> <span>Edit Password</span>'), array('controller' => 'users', 'action' => 'editpassword'), array('escape' => false)); ?></li>
+                <li> <?= $this->Html->link(__('<i class="fa fa-flag"></i> <span>Feedbacks</span>'), array('controller' => 'feedbacks', 'action' => 'index'), array('escape' => false)); ?></li>
                 <li> <?= $this->Html->link(__("<i class='fa fa-sign-out'></i> <span>Logout {$myTitle}</span>"), array('controller' => 'users', 'action' => 'logout'), array('escape' => false)); ?></li>
             <?php endif ?>
 

@@ -73,13 +73,30 @@ class AddOnsController extends AppController
      * @param string $id
      * @return void
      */
-    public function view($id = null)
-    {
-        if (!$this->AddOn->exists($id)) {
-            throw new NotFoundException(__('Invalid menu'));
+    public function view($api = null, $id = null) {
+        if($api == 'api'){
+            $meal = $id;
+
+            $this->loadModel($meal);
+
+            $qry = $this->$meal->find('all', array(
+                'conditions' => array($meal.'.status' => 1, $meal.'.add_on' => 1)
+            ));
+//            $qry0 = $this->$meal->find('all', array(
+//                'conditions' => array($meal.'.status' => 1, $meal.'.add_on' => 1)
+//            ));
+
+//            echo "<pre>".print_r($qry0, true)."</pre>";
+            echo json_encode($qry);
+            exit;
+        }else{
+            $id = $api;
+            if (!$this->AddOn->exists($id)) {
+                throw new NotFoundException(__('Invalid menu'));
+            }
+            $options = array('conditions' => array('AddOn.' . $this->AddOn->primaryKey => $id));
+            $this->set('addon', $this->AddOn->find('first', $options));
         }
-        $options = array('conditions' => array('AddOn.' . $this->AddOn->primaryKey => $id));
-        $this->set('addon', $this->AddOn->find('first', $options));
     }
 
     private function _add($_model, $data){

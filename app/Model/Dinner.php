@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * Dinner Model
  *
- * @property Menu $Menu
+ * @property Menu $Dinner
  * @property Order $Order
  */
 class Dinner extends AppModel {
