@@ -47,7 +47,9 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     padding: 8px 0;
     margin: 0 0 4px;
 }
-
+.user-block .username, .user-block .description, .user-block .comment{
+    margin-left: 0;
+}
 /* BOX COMMENTS */
 .box-comments .box-comment .box-comment {
     /*border-top: 1px solid #eee;*/
@@ -64,6 +66,36 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     margin: 8px 0 0;
 }
 
+.box-comments .comment-text{
+    margin-left: 0;
+}
+
+.resolved{
+    color: green;
+}
+
+.box-comment:hover .usr-d-post{
+    display: none !important;
+}
+.box-comment:hover .usr-action{
+    display: block !important;
+}
+
+.rating-input.input-sm {
+    font-size: 26px;
+    color: #ffe000;
+    margin-top: -10px;
+}
+.rating-input.input-lg {
+    font-size: 34px;
+    color: #ffe000;
+}
+.rating-input.input-lg i, .rating-input.input-sm i{
+    margin-left: 5px;
+}
+.rating-input.input-md{
+
+}
 
 /*  BOOTSTRAP WYSIWIG */
 .wysihtml5-toolbar .btn-group > .btn,
@@ -72,4 +104,22 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
+}
+
+/* Orders page */
+table#datatable {
+    border: none;
+}
+#datatable_wrapper > div:nth-child(2){
+    margin-right: 0;
+    margin-left: 0;
+}
+#datatable_wrapper > div:nth-child(2) > div {
+    overflow-x: scroll;
+    padding: 0;
+    border: 1px solid rgb(244, 244, 244);
+}
+
+div#datatable_wrapper {
+    overflow: hidden;
 }

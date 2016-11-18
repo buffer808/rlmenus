@@ -8,7 +8,6 @@
         </div><!-- end col md 12 -->
     </div><!-- end row -->
 
-    <!--    <pre> --><? //= print_r($orders, true) ?><!-- </pre>-->
     <div class="row">
         <div class="col-md-3 col-md-push-9">
             <?php if ($myRole != 'canteenadmin'): ?>
@@ -49,15 +48,6 @@
                     <table id="datatable" cellpadding="0" cellspacing="0" class="table nowrap table-bordered table-hover" style="width: 1024px;">
                         <thead>
                         <tr>
-                            <?php /*<th><?php echo $this->Paginator->sort('text', 'Company'); ?></th>
-                            <th><?php echo $this->Paginator->sort('employee'); ?></th>
-                            <th><?php echo $this->Paginator->sort('breakfast_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('lunch_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('snack_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('dinner_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('midnight_snack_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('created'); ?></th> */ ?>
-
                             <th>Company</th>
                             <th>Employee</th>
                             <th>Breakfast</th>

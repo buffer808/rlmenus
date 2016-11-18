@@ -18,18 +18,11 @@
 
                     <div class="form-group">
                         <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
-                    </div>
 
-                    <div class="form-group">
-                        <?php echo $this->Form->input('employee', array('class' => 'form-control', 'placeholder' => 'Employee')); ?>
                     </div>
 
                     <div class="form-group">
                         <?php echo $this->Form->textarea('content', array('class' => 'textarea form-control', 'placeholder' => 'Feedback')); ?>
-                    </div>
-
-                    <div class="form-group">
-                        <?php echo $this->Form->input('rating', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
                     </div>
 
                     <div class="form-group text-right">

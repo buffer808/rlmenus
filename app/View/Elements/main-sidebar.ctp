@@ -23,7 +23,7 @@
                 <?= $this->Html->link(__('<i class="fa fa-dashboard"></i> <span>Dashboard</span>'), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false)) ?>
             </li>
 
-            <?php if($myRole != 'customer'){ ?>
+            <?php if ($myRole != 'customer') { ?>
 
                 <?php if ($myRole == 'admin'): ?>
                     <li <?= $currentController == "users" ? "class='active'" : "" ?>>
@@ -58,8 +58,25 @@
             <?php } ?>
 
             <?php if ($myUsername != 'Guest'): ?>
-                <li> <?= $this->Html->link(__('<i class="fa fa-asterisk"></i> <span>Edit Password</span>'), array('controller' => 'users', 'action' => 'editpassword'), array('escape' => false)); ?></li>
-                <li> <?= $this->Html->link(__('<i class="fa fa-flag"></i> <span>Feedbacks</span>'), array('controller' => 'feedbacks', 'action' => 'index'), array('escape' => false)); ?></li>
+                <li>
+                    <?php $flag_new_feed = ($new_feed) ? '<small class="label pull-right bg-yellow">' . $new_feed . '</small>' : '';
+                    $flag_not_solved = ($not_solved) ? '<small class="label pull-right bg-red">' . $not_solved . '</small>' : ''; ?>
+
+                    <?= $this->Html->link(
+                        __('<i class="fa fa-flag"></i> <span>Feedbacks</span> <span class="pull-right-container">' . $flag_new_feed . $flag_not_solved .'</span>'),
+                        array('controller' => 'feedbacks', 'action' => 'index'),
+                        array('escape' => false)); ?>
+
+                </li>
+                <li>
+                    <?= $this->Html->link(
+                        __('<i class="fa fa-asterisk"></i> <span>Edit Password</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-red hidden">0</small>
+                    </span>'),
+                        array('controller' => 'users', 'action' => 'editpassword'),
+                        array('escape' => false)); ?>
+                </li>
                 <li> <?= $this->Html->link(__("<i class='fa fa-sign-out'></i> <span>Logout {$myTitle}</span>"), array('controller' => 'users', 'action' => 'logout'), array('escape' => false)); ?></li>
             <?php endif ?>
 

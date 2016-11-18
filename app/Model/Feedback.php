@@ -8,7 +8,7 @@ App::uses('AppModel', 'Model');
  */
 class Feedback extends AppModel
 {
-
+    public $useTable = 'feedbacks';
     public $validate = array(
         'user_id' => array(
             'numeric' => array(

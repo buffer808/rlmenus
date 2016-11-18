@@ -110,7 +110,15 @@ class AppController extends Controller {
 		}
 		date_default_timezone_set('Asia/Manila');
 
-        $this->set('min_side', (isset($this->request['url']['min'])) ? $this->request['url']['min'] : '');
+        if($this->myRole == 'admin'){
+            App::import('Controller', 'Feedbacks');
+            $Feedbacks = new FeedbacksController();
+            $this->set('new_feed', $Feedbacks->count_new());
+            $this->set('not_solved', $Feedbacks->count_not_solved());
+        }else{
+            $this->set('new_feed', 0);
+            $this->set('not_solved', 0);
+        }
 	}
 
     /**
@@ -145,4 +153,6 @@ class AppController extends Controller {
         }
         return false;
     }
+
+
 }

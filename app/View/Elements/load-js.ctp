@@ -14,7 +14,7 @@
 <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 */ ?>
 
-<?php if(in_array($currentController, array('users', 'menus', 'orders', 'settings'))){ ?>
+<?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings'))) { ?>
     <!-- DataTables -->
     <script src="<?= $site_url ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= $site_url ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
@@ -24,11 +24,22 @@
 <script src="<?= $site_url ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
 
-<?php if( $currentController == 'feedbacks') : ?>
+<?php if (in_array($currentController, array('feedbacks', 'threads'))) : ?>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <?php endif; ?>
 
+<?php if ($currentController == 'feedbacks') : ?>
+    <!-- Bootstrap Rating -->
+    <script src="<?= $site_url ?>js/bootstrap-rating-input.min.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $('.feedback.index .rating').rating({
+                'readonly': true
+            });
+        })(jQuery);
+    </script>
+<?php endif; ?>
 
 <?php /*
 <!-- ChartJS 1.0.1 -->
@@ -38,35 +49,34 @@
 <!-- AdminLTE for demo purposes -->
 <!--<script src="--><?php //echo $this->webroot; ?><!--/dist/js/demo.js"></script>-->
  */ ?>
-<?php if(in_array($currentController, array('users', 'menus', 'orders', 'settings'))){ ?>
-<script>
-    (function ($) {
-        $("#datatable").DataTable({
-            "paging": true,
-            "ordering": true,
-            "info": true,
-            <?php if($currentController == "orders"): ?>
+<?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings'))) { ?>
+    <script>
+        (function ($) {
+            $("#datatable").DataTable({
+                "paging": true,
+                "ordering": true,
+                "info": true,
+                <?php if($currentController == "orders"): ?>
                 "sscrollX": true,
                 "columnDefs": [
-                    { "width": "15%", "targets": 2 },
-                    { "width": "15%", "targets": 3 },
-                    { "width": "15%", "targets": 4 },
-                    { "width": "15%", "targets": 5 },
-                    { "width": "15%", "targets": 6 },
+                    {"width": "15%", "targets": 2},
+                    {"width": "15%", "targets": 3},
+                    {"width": "15%", "targets": 4},
+                    {"width": "15%", "targets": 5},
+                    {"width": "15%", "targets": 6},
 //                    { "width": "20px", "targets": 8 },
                 ]
-            <?php endif; ?>
-        });
-    })(jQuery)
-</script>
+                <?php endif; ?>
+            });
+        })(jQuery)
+    </script>
 <?php } ?>
 
 
-<?php if( $currentController == 'feedbacks') : ?>
-<script>
-    (function ($) {
-        $(".textarea").wysihtml5();
-        console.log('999');
-    })(jQuery);
-</script>
+<?php if (in_array($currentController, array('feedbacks', 'threads'))) : ?>
+    <script>
+        (function ($) {
+            $(".textarea").wysihtml5();
+        })(jQuery);
+    </script>
 <?php endif; ?>

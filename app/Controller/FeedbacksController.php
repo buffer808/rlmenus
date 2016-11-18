@@ -1,9 +1,9 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Dinners Controller
+ * Feedbacks Controller
  *
- * @property Dinner $Dinner
+ * @property Feedback $Feedback
  * @property PaginatorComponent $Paginator
  */
 class FeedbacksController extends AppController {
@@ -21,13 +21,24 @@ class FeedbacksController extends AppController {
      * @return void
      */
     public function index() {
-       /* $this->set('feedbacks', $this->Feedback->find('all', array(
-            'conditions' => array('Feedback.status' => 1)
-        )));
-        $this->loadModel('Thread');
-        $this->set('threads', $this->Thread->find('all', array(
-            'conditions' => array('Thread.status' => 1)
-        )));*/
+        $return = [];
+
+        $option = array('Feedback.status' => 1);
+
+        if($this->myRole != 'admin')
+            $option['user_id'] = $this->myID;
+
+        $qry_result = $this->Feedback->find('all', array(
+            'conditions' => $option,
+            'order' => array('Feedback.created DESC'),
+        ));
+
+        foreach($qry_result as $k => $data){
+            $qry_result[$k]['Thread'] = $this->_getThread($data['Feedback']['id']);
+        }
+
+        $this->set('feedbacks', $qry_result);
+
     }
 
     /**
@@ -38,11 +49,13 @@ class FeedbacksController extends AppController {
      * @return void
      */
     public function view($id = null) {
-        if (!$this->Dinner->exists($id)) {
+        if (!$this->Feedback->exists($id)) {
             throw new NotFoundException(__('Invalid dinner'));
         }
-        $options = array('conditions' => array('Dinner.' . $this->Dinner->primaryKey => $id));
-        $this->set('dinner', $this->Dinner->find('first', $options));
+        $options = array('conditions' => array('Feedback.' . $this->Feedback->primaryKey => $id));
+        $qry_result = $this->Feedback->find('first', $options);
+        $qry_result['Thread']= $this->_getThread($id);
+        $this->set('feedback', $qry_result);
     }
 
     /**
@@ -52,16 +65,15 @@ class FeedbacksController extends AppController {
      */
     public function add() {
         if ($this->request->is('post')) {
-            $this->Dinner->create();
-            if ($this->Dinner->save($this->request->data)) {
-                $this->Session->setFlash(__('The dinner has been saved.'), 'default', array('class' => 'alert alert-success'));
-                return $this->redirect(array('action' => 'today','controller' => 'menus'));
+            $this->Feedback->create();
+
+            if ($this->Feedback->save($this->request->data)) {
+                $this->Session->setFlash(__('The feedback has been saved.'), 'flash-success');
+                return $this->redirect(array('action' => 'index','controller' => 'feedbacks'));
             } else {
-                $this->Session->setFlash(__('The dinner could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The dinner could not be saved. Please, try again.'), 'flash-error');
             }
         }
-        $menus = $this->Dinner->Menu->find('list',array('conditions'=>array('Menu.status'=>1)));
-        $this->set(compact('menus'));
     }
 
     /**
@@ -72,39 +84,79 @@ class FeedbacksController extends AppController {
      * @return void
      */
     public function edit($id = null) {
-        if (!$this->Dinner->exists($id)) {
+        if (!$this->Feedback->exists($id)) {
             throw new NotFoundException(__('Invalid dinner'));
         }
         if ($this->request->is(array('post', 'put'))) {
-            if ($this->Dinner->save($this->request->data)) {
-                $this->Session->setFlash(__('The dinner has been saved.'), 'default', array('class' => 'alert alert-success'));
+            if ($this->Feedback->save($this->request->data)) {
+                $this->Session->setFlash(__('The dinner has been saved.'), 'flash-success', array('class' => 'alert alert-success'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The dinner could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The dinner could not be saved. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
             }
         } else {
-            $options = array('conditions' => array('Dinner.' . $this->Dinner->primaryKey => $id));
-            $this->request->data = $this->Dinner->find('first', $options);
+            $options = array('conditions' => array('Feedback.' . $this->Feedback->primaryKey => $id));
+            $this->request->data = $this->Feedback->find('first', $options);
         }
-        $menus = $this->Dinner->Menu->find('list');
-        $this->set(compact('menus'));
     }
 
 
     public function delete($id = null) {
-        if (!$this->Dinner->exists($id)) {
-            throw new NotFoundException(__('Invalid Dinner'));
+        if (!$this->Feedback->exists($id)) {
+            throw new NotFoundException(__('Invalid Feedback'));
         }
         $this->request->onlyAllow('post', 'delete');
-        $this->Dinner->id = $id;
+        $this->Feedback->id = $id;
 
 
-        if ($this->Dinner->saveField('status',0)) {
-            $this->Session->setFlash(__('The Dinner has been deleted.'), 'default', array('class' => 'alert alert-success'));
-            return $this->redirect(array('controller'=>'menus', 'action' => 'today'));
+        if ($this->Feedback->saveField('status',0)) {
+            $this->Session->setFlash(__('The Feedback has been deleted.'), 'default', array('class' => 'alert alert-success'));
+            return $this->redirect(array('action' => 'index'));
         } else {
-            $this->Session->setFlash(__('The Dinner could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+            $this->Session->setFlash(__('The Feedback could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+        }
+    }
+
+    /**
+     * @param $feedback_id
+     * @return bool | Thread object
+     */
+    public function _getThread($feedback_id){
+        if(empty($feedback_id)) return false;
+
+        $this->loadModel('Thread');
+        $threads = $this->Thread->find('all', array(
+            'conditions' => array('Thread.status' => 1, 'Thread.feedback_id' => $feedback_id),
+            'order' => array('Thread.created ASC')
+        ));
+
+        return $threads;
+    }
+
+    public function count_new(){
+        return $this->Feedback->find('count', array(
+            'fields' => 'DISTINCT Feedback.id',
+            'conditions' => array("Feedback.has_comment" => 0)
+        ));
+    }
+
+    public function count_not_solved(){
+        return $this->Feedback->find('count', array(
+            'fields' => 'DISTINCT Feedback.id',
+            'conditions' => array("Feedback.resolved" => 0)
+        ));
+    }
+
+    public function resolve($id = null){
+        if (!$this->Feedback->exists($id)) {
+            throw new NotFoundException(__('Invalid Feedback'));
         }
 
+        $this->Feedback->updateAll(
+            ['Feedback.resolved' => 1],
+            ['Feedback.id' => $id]
+        );
+
+        return $this->redirect( Router::url( $this->referer(), true ) );
     }
 }

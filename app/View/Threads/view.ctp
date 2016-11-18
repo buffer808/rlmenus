@@ -24,7 +24,7 @@
                             $img = 'icon-solved.png';
                         }
                         ?>
-                        <img class="img-circle" src="<?= $site_url ?>img/<?= $img ?>" alt="Feedback Status">
+                        <img class="img-circle" src="<?= $site_url ?>img/<?= $img ?>" alt="User Image">
                         <span class="username"><a href="#"><?= $feedback['Feedback']['title'] ?></a></span>
                         <span class="description">
                             <?= date('M. d, Y ! h:i A', strtotime($feedback['Feedback']['created'])); ?>
@@ -35,16 +35,9 @@
                     </div>
                     <!-- /.user-block -->
                     <div class="box-tools">
-                        <?php if ($feedback['User']['id'] == $myID): ?>
-                            <?php echo $this->Html->link(
-                                __('<span class="fa fa-edit"></span>&nbsp;&nbsp;Edit'),
-                                array('controller' => 'feedbacks', 'action' => 'edit', $feedback['Feedback']['id']), array('escape' => false)); ?>
-                            <span>&nbsp;&nbsp;</span>
-                            <?php echo $this->Form->postLink(
-                                __('<span class="fa fa-remove"></span>&nbsp;&nbsp;Delete'),
-                                array('controller' => 'feedbacks', 'action' => 'delete', $feedback['Feedback']['id']), array('escape' => false),
-                                __('Are you sure you want to delete # %s?', $feedback['Feedback']['id'])); ?>
-                        <?php endif; ?>
+<!--                        <button type="button" class="btn btn-box-tool" data-widget="collapse">-->
+<!--                            <i class="fa fa-minus"></i>-->
+<!--                        </button>-->
                     </div>
                     <!-- /.box-tools -->
                 </div>
@@ -54,28 +47,17 @@
                     <article class="clearfix">
                         <?= "<p>\n" . implode("\n</p>\n<p>", explode('<br />', nl2br($feedback['Feedback']['content']))) . "\n</p>" ?>
                         <p>&nbsp;</p>
-                        <div class="form-inline">
-                            <div class="form-goup clearfix">
-                                <label class="pull-left">Rating: </label>
-                                <input type="number" data-max="5" data-min="1" class="pull-left rating input-sm"
-                                       disabled="disabled" value="<?= $feedback['Feedback']['rating'] ?>">
-                            </div>
-                        </div>
                     </article>
 
                     <!-- Attachment .attachment-block -->
                     <!-- /.attachment-block -->
-                    <div>
-                        <hr/>
-                        <div class="pull-left">
-                            <?php $_resolve = ($feedback['Feedback']['resolved']) ? 'bg-green' : '' ?>
-                            <?php echo $this->Form->postButton(
-                                __('<span class="fa fa-check"></span>&nbsp;&nbsp;Solved'),
-                                array('controller' => 'feedbacks', 'action' => 'resolve', $feedback['Feedback']['id']), array('class' => 'btn btn-default btn-sm btn-flat ' . $_resolve, 'escape' => false),
-                                __('Are you sure you want to delete # %s?', $feedback['Feedback']['id'])); ?>
-                        </div>
-                        <span class="pull-right text-muted"><?= count($feedback['Thread']) ?> comments</span>
-                    </div>
+
+                    <!--                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>-->
+                    <button type="button"
+                            class="btn btn-default btn-sm btn-flat <?= ($feedback['Feedback']['resolved']) ? 'bg-green' : '' ?>">
+                        <i class="fa fa-check"></i> Solved
+                    </button>
+                    <span class="pull-right text-muted"><?= count($feedback['Thread']) ?> comments</span>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer box-comments">
@@ -88,20 +70,14 @@
                                 <div class="comment-text">
                                     <span class="username">
                                         <?= $thread['User']['text'] ?>
-                                        <span
-                                            class="<?= ($thread['User']['id'] == $myID) ? 'usr-d-post' : '' ?> text-muted pull-right">
+                                        <span class="<?= ($thread['User']['id'] == $myID) ? 'usr-d-post':'' ?> text-muted pull-right">
                                             <?= date('M. d, Y ! h:i A', strtotime($thread['Thread']['created'])); ?>
                                         </span>
-                                        <?php if ($thread['User']['id'] == $myID): ?>
+                                        <?php if($thread['User']['id'] == $myID): ?>
                                             <span class="usr-action text-muted pull-right hidden">
                                                 <?php echo $this->Html->link(
                                                     __('<span class="fa fa-edit"></span>&nbsp;&nbsp;Edit'),
-                                                    array('controller' => 'threads', 'action' => 'edit', $thread['Thread']['id']), array('escape' => false)); ?>
-                                                <span>&nbsp;&nbsp;</span>
-                                                <?php echo $this->Form->postLink(
-                                                    __('<span class="fa fa-remove"></span>&nbsp;&nbsp;Delete'),
-                                                    array('controller' => 'threads', 'action' => 'delete', $thread['Thread']['id']), array('escape' => false),
-                                                    __('Are you sure you want to delete # %s?', $thread['Thread']['id'])); ?>
+                                                    array('controller'=>'threads','action' => 'edit',$thread['Thread']['id']), array('escape' => false)); ?>
                                             </span>
                                         <?php endif; ?>
                                     </span><!-- /.username -->
@@ -112,6 +88,26 @@
                                     </div>-->
                                 </div>
                                 <!-- /.comment-text -->
+
+                                <?php /*<div class="box-comments reply">
+                                <!-- Put .box-commet here -->
+                                <div class="box-comment">
+                                    <!-- User image -->
+                                    <img class="img-circle img-sm" src="../dist/img/user5-128x128.jpg" alt="User Image">
+
+                                    <div class="comment-text">
+                                    <span class="username">
+                                        Nora Havisham
+                                        <span class="text-muted pull-right">8:03 PM Today</span>
+                                    </span><!-- /.username -->
+                                        The point of using Lorem Ipsum is that it has a more-or-less
+                                        normal distribution of letters, as opposed to using
+                                        'Content here, content here', making it look like readable English.
+                                    </div>
+                                    <!-- /.comment-text -->
+                                </div>
+                                <!-- /.box-comment -->
+                            </div><!--/.reply--> */ ?>
                             </div>
                             <!-- /.box-comment -->
                         <?php } ?>
@@ -120,14 +116,20 @@
                 <!-- /.box-footer -->
                 <div class="box-footer">
                     <?php echo $this->Form->create('Thread', array('action' => 'add', 'role' => 'form')); ?>
+                    <!--<img class="img-responsive img-circle img-sm" src="../dist/img/user4-128x128.jpg"
+                         alt="Alt Text">-->
+                    <!-- .img-push is used to add margin to elements next to floating images -->
                     <div class="img-push">
                         <div class="form-group">
+                            <!--                                    <textarea class="textarea form-control" placeholder="Add comment here"></textarea>-->
                             <?php echo $this->Form->textarea('comment', array('class' => 'textarea form-control', 'placeholder' => 'Add comment here')); ?>
                         </div>
                         <div class="form-group text-right">
+                            <!--                                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>-->
                             <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary')); ?>
                             <?php echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $myID)); ?>
                             <?php echo $this->Form->input('feedback_id', array('type' => 'hidden', 'value' => $feedback['Feedback']['id'])); ?>
+<!--                            --><?php //echo $this->Form->input('redirect', array('type' => 'hidden', 'value' => $this->webroot . 'feedbacks/view/' . $feedback['Feedback']['id'])); ?>
                         </div>
                     </div>
                     <?php echo $this->Form->end() ?>

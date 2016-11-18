@@ -1,48 +1,47 @@
-<div class="snacks form">
+<div class="feedbacks form">
 
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1><?php echo __('Edit Snack'); ?></h1>
+				<h1><?php echo __('Add Feedback'); ?></h1>
 			</div>
 		</div>
 	</div>
 
 
-
 	<div class="row">
-		<div class="col-md-3">
-			<div class="actions">
-				<div class="panel panel-default">
-					<div class="panel-heading">Actions</div>
-						<div class="panel-body">
-							<ul class="nav nav-pills nav-stacked">
 
-																<li><?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete'), array('action' => 'delete', $this->Form->value('Snack.id')), array('escape' => false), __('Are you sure you want to delete # %s?', $this->Form->value('Snack.id'))); ?></li>
-																<li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Snacks'), array('action' => 'index'), array('escape' => false)); ?></li>
-									<li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Menus'), array('controller' => 'menus', 'action' => 'index'), array('escape' => false)); ?> </li>
-		<li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Menu'), array('controller' => 'menus', 'action' => 'add'), array('escape' => false)); ?> </li>
-		<li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Orders'), array('controller' => 'orders', 'action' => 'index'), array('escape' => false)); ?> </li>
-		<li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Order'), array('controller' => 'orders', 'action' => 'add'), array('escape' => false)); ?> </li>
-							</ul>
-						</div>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="box">
+				<div class="box-body">
+					<?php echo $this->Form->create('Feedback', array('role' => 'form')); ?>
+
+					<div class="form-group">
+						<?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
 					</div>
-				</div>			
-		</div><!-- end col md 3 -->
-		<div class="col-md-9">
-			<?php echo $this->Form->create('Snack', array('role' => 'form')); ?>
 
-				<div class="form-group">
-					<?php echo $this->Form->input('id', array('class' => 'form-control', 'placeholder' => 'Id'));?>
-				</div>
-				<div class="form-group">
-					<?php echo $this->Form->input('menu_id', array('class' => 'form-control', 'placeholder' => 'Menu Id'));?>
-				</div>
-				<div class="form-group">
-					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>
-				</div>
+					<div class="form-group">
+						<?php echo $this->Form->input('employee', array('class' => 'form-control', 'placeholder' => 'Employee')); ?>
+					</div>
 
-			<?php echo $this->Form->end() ?>
+					<div class="form-group">
+						<?php echo $this->Form->textarea('content', array('class' => 'textarea form-control', 'placeholder' => 'Feedback')); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo $this->Form->input('rating', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
+					</div>
+
+					<div class="form-group text-right">
+						<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary')); ?>
+						<?php echo $this->Form->input('user_id', array('type'=>'hidden')); ?>
+						<?php echo $this->Form->input('id', array('type'=>'hidden')); ?>
+					</div>
+
+					<?php echo $this->Form->end() ?>
+				</div>
+			</div>
+
 
 		</div><!-- end col md 12 -->
 	</div><!-- end row -->

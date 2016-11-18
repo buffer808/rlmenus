@@ -31,7 +31,7 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= $site_url ?>dist/css/skins/_all-skins.min.css">
 
-    <?php if( $currentController == 'feedbacks') : ?>
+    <?php if( in_array($currentController, array('feedbacks', 'threads'))) : ?>
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <?php endif; ?>
@@ -45,7 +45,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-black <?= ($min_side==1) ? 'sidebar-collapse' : '' ?> sidebar-mini">
+<body class="hold-transition skin-black sidebar-mini">
 <div class="wrapper">
 
     <?php echo $this->Element('main-header'); ?>

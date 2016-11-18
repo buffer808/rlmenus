@@ -1,12 +1,12 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Dinners Controller
+ * Threads Controller
  *
- * @property Dinner $Dinner
+ * @property Thread $Thread
  * @property PaginatorComponent $Paginator
  */
-class FeedbacksController extends AppController {
+class ThreadsController extends AppController {
 
     /**
      * Components
@@ -21,10 +21,7 @@ class FeedbacksController extends AppController {
      * @return void
      */
     public function index() {
-        $this->set('dinners', $this->Dinner->find('all', array(
-            'conditions' => array('Dinner.status' => 1, 'Dinner.add_on' => $addon)
-        )));
-        $this->set('is_addon', $addon);
+        $this->redirect(array('controller'=>'feedbacks','action'=>'index'));
     }
 
     /**
@@ -35,11 +32,11 @@ class FeedbacksController extends AppController {
      * @return void
      */
     public function view($id = null) {
-        if (!$this->Dinner->exists($id)) {
-            throw new NotFoundException(__('Invalid dinner'));
+        if (!$this->Thread->exists($id)) {
+            throw new NotFoundException(__('Invalid Thread'));
         }
-        $options = array('conditions' => array('Dinner.' . $this->Dinner->primaryKey => $id));
-        $this->set('dinner', $this->Dinner->find('first', $options));
+        $options = array('conditions' => array('Thread.' . $this->Thread->primaryKey => $id));
+        $this->set('Thread', $this->Thread->find('first', $options));
     }
 
     /**
@@ -49,16 +46,27 @@ class FeedbacksController extends AppController {
      */
     public function add() {
         if ($this->request->is('post')) {
-            $this->Dinner->create();
-            if ($this->Dinner->save($this->request->data)) {
-                $this->Session->setFlash(__('The dinner has been saved.'), 'default', array('class' => 'alert alert-success'));
-                return $this->redirect(array('action' => 'today','controller' => 'menus'));
+            $this->Thread->create();
+
+            if(empty($this->request->data['Thread']['comment'])){
+                $this->Session->setFlash(__('Please insert your comment.'), 'flash-error');
+                return $this->redirect( Router::url( $this->referer(), true ) );
+            }
+
+            if ($this->Thread->save($this->request->data)) {
+                $this->Session->setFlash(__('The comment has been saved.'), 'flash-success');
+
+                $this->loadModel('Feedback');
+                $this->Feedback->updateAll(
+                    ['Feedback.has_comment' => 1],
+                    ['Feedback.id' => $this->request->data['Thread']['feedback_id']]
+                );
+
+                return $this->redirect( Router::url( $this->referer(), true ) );
             } else {
-                $this->Session->setFlash(__('The dinner could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The comment could not be saved. Please, try again.'), 'flash-error');
             }
         }
-        $menus = $this->Dinner->Menu->find('list',array('conditions'=>array('Menu.status'=>1)));
-        $this->set(compact('menus'));
     }
 
     /**
@@ -68,39 +76,40 @@ class FeedbacksController extends AppController {
      * @param string $id
      * @return void
      */
-    public function edit($id = null) {
-        if (!$this->Dinner->exists($id)) {
-            throw new NotFoundException(__('Invalid dinner'));
+    public function edit($id=null) {
+        if (!$this->Thread->exists($id)) {
+            throw new NotFoundException(__('Invalid Thread'));
         }
         if ($this->request->is(array('post', 'put'))) {
-            if ($this->Dinner->save($this->request->data)) {
-                $this->Session->setFlash(__('The dinner has been saved.'), 'default', array('class' => 'alert alert-success'));
-                return $this->redirect(array('action' => 'index'));
+            if ($this->Thread->save($this->request->data)) {
+                $this->Session->setFlash(__('The Thread has been saved.'), 'flash-success', array('class' => 'alert alert-success'));
+                return $this->redirect(array('controller'=>'feedbacks','action' => 'view', $this->request->data['Thread']['feedback_id']));
             } else {
-                $this->Session->setFlash(__('The dinner could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The Thread could not be saved. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
             }
         } else {
-            $options = array('conditions' => array('Dinner.' . $this->Dinner->primaryKey => $id));
-            $this->request->data = $this->Dinner->find('first', $options);
+            $options = array('conditions' => array('Thread.' . $this->Thread->primaryKey => $id));
+            $this->request->data = $this->Thread->find('first', $options);
         }
-        $menus = $this->Dinner->Menu->find('list');
-        $this->set(compact('menus'));
+//        $threads = $this->Thread->find('list');
+//        $this->set(compact('threads'));
     }
 
 
     public function delete($id = null) {
-        if (!$this->Dinner->exists($id)) {
-            throw new NotFoundException(__('Invalid Dinner'));
+        if (!$this->Thread->exists($id)) {
+            throw new NotFoundException(__('Invalid Thread'));
         }
         $this->request->onlyAllow('post', 'delete');
-        $this->Dinner->id = $id;
+        $this->Thread->id = $id;
 
 
-        if ($this->Dinner->saveField('status',0)) {
-            $this->Session->setFlash(__('The Dinner has been deleted.'), 'default', array('class' => 'alert alert-success'));
-            return $this->redirect(array('controller'=>'menus', 'action' => 'today'));
+        if ($this->Thread->saveField('status',0)) {
+            $this->Session->setFlash(__('The Thread has been deleted.'), 'flash-success', array('class' => 'alert alert-success'));
+            return $this->redirect( Router::url( $this->referer(), true ) );
+//            return $this->redirect(array('controller'=>'feedbacks', 'action' => 'veiw', ));
         } else {
-            $this->Session->setFlash(__('The Dinner could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+            $this->Session->setFlash(__('The Thread could not be deleted. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
         }
 
     }

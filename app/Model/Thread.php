@@ -8,6 +8,7 @@ App::uses('AppModel', 'Model');
  */
 class Thread extends AppModel
 {
+    public $useTable = 'threads';
     public $validate = array(
         'user_id' => array(
             'numeric' => array(
