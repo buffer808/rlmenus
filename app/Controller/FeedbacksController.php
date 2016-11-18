@@ -110,10 +110,10 @@ class FeedbacksController extends AppController {
 
 
         if ($this->Feedback->saveField('status',0)) {
-            $this->Session->setFlash(__('The Feedback has been deleted.'), 'default', array('class' => 'alert alert-success'));
+            $this->Session->setFlash(__('The Feedback has been deleted.'), 'flash-success', array('class' => 'alert alert-success'));
             return $this->redirect(array('action' => 'index'));
         } else {
-            $this->Session->setFlash(__('The Feedback could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+            $this->Session->setFlash(__('The Feedback could not be deleted. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
         }
     }
 
@@ -136,14 +136,14 @@ class FeedbacksController extends AppController {
     public function count_new(){
         return $this->Feedback->find('count', array(
             'fields' => 'DISTINCT Feedback.id',
-            'conditions' => array("Feedback.has_comment" => 0)
+            'conditions' => array("Feedback.has_comment" => 0, 'Feedback.status' => 1)
         ));
     }
 
     public function count_not_solved(){
         return $this->Feedback->find('count', array(
             'fields' => 'DISTINCT Feedback.id',
-            'conditions' => array("Feedback.resolved" => 0)
+            'conditions' => array("Feedback.resolved" => 0, 'Feedback.status' => 1)
         ));
     }
 

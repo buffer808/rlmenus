@@ -34,8 +34,8 @@
 
                     </div>
                     <!-- /.user-block -->
-                    <div class="box-tools">
-                        <?php if ($feedback['User']['id'] == $myID): ?>
+                    <?php if ($feedback['User']['id'] == $myID): ?>
+                        <div class="box-tools">
                             <?php echo $this->Html->link(
                                 __('<span class="fa fa-edit"></span>&nbsp;&nbsp;Edit'),
                                 array('controller' => 'feedbacks', 'action' => 'edit', $feedback['Feedback']['id']), array('escape' => false)); ?>
@@ -44,9 +44,9 @@
                                 __('<span class="fa fa-remove"></span>&nbsp;&nbsp;Delete'),
                                 array('controller' => 'feedbacks', 'action' => 'delete', $feedback['Feedback']['id']), array('escape' => false),
                                 __('Are you sure you want to delete # %s?', $feedback['Feedback']['id'])); ?>
-                        <?php endif; ?>
-                    </div>
-                    <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-tools -->
+                    <?php endif; ?>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

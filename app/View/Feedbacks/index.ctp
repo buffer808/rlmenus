@@ -42,15 +42,26 @@
                                 <span class="username"><a
                                         href="<?= $this->webroot . 'feedbacks/view/' . $feedback['Feedback']['id'] ?>"><?= $feedback['Feedback']['title'] ?></a></span>
                                 <span class="description">
-                                <?= date('M. d, Y ! h:i A', strtotime($feedback['Feedback']['created'])); ?>
+                                    <?= date('M. d, Y ! h:i A', strtotime($feedback['Feedback']['created'])); ?>
                                     <span>&nbsp;|&nbsp;</span>
-                                <span
-                                    class="postedBy">posted by: <?= $feedback['User']['text'] . " : " . $feedback['Feedback']['employee'] ?></span>
-                            </span>
+                                    <span class="postedBy">posted by: <?= $feedback['User']['text'] . " : " . $feedback['Feedback']['employee'] ?></span>
+                                </span>
 
                             </div>
                             <!-- /.user-block -->
-
+                            <?php if ($feedback['User']['id'] == $myID): ?>
+                                <div class="box-tools">
+                                    <?php echo $this->Html->link(
+                                        __('<span class="fa fa-edit"></span>&nbsp;&nbsp;Edit'),
+                                        array('controller' => 'feedbacks', 'action' => 'edit', $feedback['Feedback']['id']), array('escape' => false)); ?>
+                                    <span>&nbsp;&nbsp;</span>
+                                    <?php echo $this->Form->postLink(
+                                        __('<span class="fa fa-remove"></span>&nbsp;&nbsp;Delete'),
+                                        array('controller' => 'feedbacks', 'action' => 'delete', $feedback['Feedback']['id']), array('escape' => false),
+                                        __('Are you sure you want to delete # %s?', $feedback['Feedback']['id'])); ?>
+                                </div>
+                                <!-- /.box-tools -->
+                            <?php endif; ?>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -84,7 +95,7 @@
             <?php else: ?>
                 <div class="box box-widget">
                     <div class="box-body">
-                        <h3>No Feedback found</h3>
+                        <h3 style="margin: 5px;">No Feedback found</h3>
                     </div>
                     <!-- /.box-body -->
                 </div><!--/.box-->
