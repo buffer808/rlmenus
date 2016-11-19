@@ -92,6 +92,7 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
 }
 .rating-input.input-lg i, .rating-input.input-sm i{
     margin-left: 5px;
+    cursor: pointer;
 }
 .rating-input.input-md{
 

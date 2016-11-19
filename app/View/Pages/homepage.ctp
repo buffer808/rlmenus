@@ -14,12 +14,15 @@
 					} ?>
 					<div class="col-md-4">
 						<div class="item">
-							<img src="<?= $m['Menu']['image'] ? $site_url.h($m['Menu']['image']) : 'http://placehold.it/570x400?text=image'; ?>" alt="<?php echo __($m['Menu']['title']); ?>">
+							<img src="<?= $m['Menu']['image'] ? $site_url.h($m['Menu']['image']) : $site_url.'assets/img/item-placeholder.jpg'; ?>" alt="<?php echo __($m['Menu']['title']); ?>">
 							<h4 class="title"><?php echo __($m['Menu']['title']); ?></h4>
 							<button  class="btnViewMeal btn btn-warning btn-round" data-toggle="modal" data-target="#modal-order">
 								<i class="glyphicon glyphicon-shopping-cart"></i>
 								<span class="hidden _item" data-menu-id="<?= $m['Menu']['id'] ?>"></span>
                                 <span class="hidden _meal" data-meal="<?= $meal ?>"></span>
+							</button>
+							<button class="btnViewFeedback btn btn-success btn-round" data-toggle="modal" data-target="#modal-feedback">
+								<i class="glyphicon glyphicon-comment"></i>
 							</button>
 							<span class="price text-center"><?php echo __($m['Menu']['price']); ?></span>
 							<div class="overlay"></div>

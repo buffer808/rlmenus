@@ -17,6 +17,9 @@
     echo $this->fetch('script');
     ?>
 
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/font-awesome.min.css">
     <!-- Latest compiled and minified CSS -->
@@ -187,12 +190,67 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-feedback" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title strong" id="modalLabel">Feedback for [title]</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <?php echo $this->Form->create('Feedback', array('role' => 'form')); ?>
+
+                        <div class="form-group">
+                            <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <?php echo $this->Form->input('employee', array('class' => 'form-control', 'placeholder' => 'Employee')); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <?php echo $this->Form->textarea('content', array('class' => 'textarea form-control', 'placeholder' => 'Feedback')); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <?php echo $this->Form->input('rating', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary btn-lg')); ?>
+                            <?php echo $this->Form->input('user_id', array('type'=>'hidden', 'value'=> $myID)); ?>
+                        </div>
+
+                        <?php echo $this->Form->end() ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- jQuery -->
 <script src="<?= $this->webroot; ?>assets/js/jquery.min.js"></script>
 <!-- Bootstrap JavaScript -->
 <script src="<?= $this->webroot; ?>assets/js/bootstrap.js"></script>
 <!-- add to cart script -->
 <script src="<?= $this->webroot; ?>js/add-to-cart.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Bootstrap Rating -->
+<script src="<?= $site_url ?>js/bootstrap-rating-input.min.js"></script>
+<script>
+    (function ($) {
+        $(".textarea").wysihtml5();
+
+        $('.feedback.index .rating').rating({
+            'readonly': true
+        });
+    })(jQuery);
+</script>
 
 </body>
 </html>
