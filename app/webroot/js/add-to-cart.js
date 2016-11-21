@@ -11,6 +11,8 @@
 
                 var modal = $('#modal-order');
 
+                modal.find('.modal-content').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
+
                 $.get(weebroot+'menus/view/api/' + $('._item', this).attr('data-menu-id'), {}, function(data){
                     data = $.parseJSON(data);
                     modal.find('#modalLabel').text(data.Menu.title);
@@ -29,9 +31,10 @@
                     $('#add-on').empty().append(temp);
                 });
 
+                modal.find('.modal-content .overlay').remove();
             });
         }
-    }
+    };
 
     rlfd.init();
 })(jQuery);

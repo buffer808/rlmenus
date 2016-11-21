@@ -1,4 +1,4 @@
-.skin-black .main-header .logo{
+.skin-black .main-header .logo {
     background-color: rgba(21, 21, 21, 0.55);
 }
 
@@ -10,20 +10,21 @@
     background-color: #151515;
 }
 
-.skin-black .sidebar-menu>li:hover>a, .skin-black .sidebar-menu>li.active>a{
+.skin-black .sidebar-menu > li:hover > a, .skin-black .sidebar-menu > li.active > a {
     background: #252525;
     border-left-color: #333333;
 }
 
-.skin-black .sidebar a, .main-header .sidebar-toggle{
+.skin-black .sidebar a, .main-header .sidebar-toggle {
     color: #cecece;
 }
 
 .main-header .sidebar-toggle,
-.skin-black .main-header .logo{
+.skin-black .main-header .logo {
     border: 0 !important;
 }
-.skin-black .main-header .logo:hover{
+
+.skin-black .main-header .logo:hover {
     background: rgba(21, 21, 21, 0.55);;
 }
 
@@ -32,13 +33,13 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     text-align: right;
 }
 
-.dataTables_scrollHead table{
+.dataTables_scrollHead table {
     margin-bottom: 0 !important;
 }
 
 .alert {
-	-webkit-border-radius: 0;
-	border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
 }
 
 /* FEEDBACK */
@@ -47,9 +48,11 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     padding: 8px 0;
     margin: 0 0 4px;
 }
-.user-block .username, .user-block .description, .user-block .comment{
+
+.user-block .username, .user-block .description, .user-block .comment {
     margin-left: 0;
 }
+
 /* BOX COMMENTS */
 .box-comments .box-comment .box-comment {
     /*border-top: 1px solid #eee;*/
@@ -66,18 +69,19 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     margin: 8px 0 0;
 }
 
-.box-comments .comment-text{
+.box-comments .comment-text {
     margin-left: 0;
 }
 
-.resolved{
+.resolved {
     color: green;
 }
 
-.box-comment:hover .usr-d-post{
+.box-comment:hover .usr-d-post {
     display: none !important;
 }
-.box-comment:hover .usr-action{
+
+.box-comment:hover .usr-action {
     display: block !important;
 }
 
@@ -86,14 +90,17 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
     color: #ffe000;
     margin-top: -10px;
 }
+
 .rating-input.input-lg {
     font-size: 34px;
     color: #ffe000;
 }
-.rating-input.input-lg i, .rating-input.input-sm i{
+
+.rating-input.input-lg i, .rating-input.input-sm i {
     margin-left: 5px;
 }
-.rating-input.input-md{
+
+.rating-input.input-md {
 
 }
 
@@ -110,10 +117,12 @@ div#datatable_paginate.dataTables_paginate.paging_simple_numbers {
 table#datatable {
     border: none;
 }
-#datatable_wrapper > div:nth-child(2){
+
+#datatable_wrapper > div:nth-child(2) {
     margin-right: 0;
     margin-left: 0;
 }
+
 #datatable_wrapper > div:nth-child(2) > div {
     overflow-x: scroll;
     padding: 0;
