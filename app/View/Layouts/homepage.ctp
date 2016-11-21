@@ -29,6 +29,41 @@
         #meal-info ._includes p{
             white-space: pre !important;
         }
+
+        .modal-content .overlay {
+            background-attachment: scroll;
+            background-clip: border-box;
+            background-color: rgba(255, 255, 255, 0.701961);
+            background-image: none;
+            background-origin: padding-box;
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-repeat-x: ;
+            background-repeat-y: ;
+            background-size: auto;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            box-sizing: border-box;
+            color: rgb(51, 51, 51);
+            display: block;
+            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            text-size-adjust: 100%;
+            top: 0px;
+            z-index: 50;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .modal-content .overlay .fa{
+            position: absolute;
+            top: 50%;
+            font-size: 50px;
+            left: 50%;
+            margin: -15px;
+        }
     </style>
 
 </head>
