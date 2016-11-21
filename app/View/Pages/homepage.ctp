@@ -21,9 +21,6 @@
 								<span class="hidden _item" data-menu-id="<?= $m['Menu']['id'] ?>"></span>
                                 <span class="hidden _meal" data-meal="<?= $meal ?>"></span>
 							</button>
-							<button class="btnViewFeedback btn btn-success btn-round" data-toggle="modal" data-target="#modal-feedback">
-								<i class="glyphicon glyphicon-comment"></i>
-							</button>
 							<span class="price text-center"><?php echo __($m['Menu']['price']); ?></span>
 							<div class="overlay"></div>
 						</div>
