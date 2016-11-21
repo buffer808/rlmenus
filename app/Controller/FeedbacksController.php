@@ -52,6 +52,9 @@ class FeedbacksController extends AppController {
         if (!$this->Feedback->exists($id)) {
             throw new NotFoundException(__('Invalid dinner'));
         }
+
+        $this->_auth();
+
         $options = array('conditions' => array('Feedback.' . $this->Feedback->primaryKey => $id));
         $qry_result = $this->Feedback->find('first', $options);
         $qry_result['Thread']= $this->_getThread($id);
@@ -136,7 +139,7 @@ class FeedbacksController extends AppController {
     public function count_new(){
         return $this->Feedback->find('count', array(
             'fields' => 'DISTINCT Feedback.id',
-            'conditions' => array("Feedback.has_comment" => 0, 'Feedback.status' => 1)
+            'conditions' => array("Feedback.has_comment" => 0)
         ));
     }
 
@@ -153,8 +156,8 @@ class FeedbacksController extends AppController {
         }
 
         $this->Feedback->updateAll(
-            ['Feedback.resolved' => 1],
-            ['Feedback.id' => $id]
+            array('Feedback.resolved' => 1),
+            array('Feedback.id' => $id)
         );
 
         return $this->redirect( Router::url( $this->referer(), true ) );

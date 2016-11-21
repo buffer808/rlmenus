@@ -29,7 +29,15 @@
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->Form->input('rating', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
+						<?php echo $this->Form->input('rate_quantity', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo $this->Form->input('rate_quality', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo $this->Form->input('rate_variety', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
 					</div>
 
 					<div class="form-group text-right">
