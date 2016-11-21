@@ -58,9 +58,19 @@
                         <p>&nbsp;</p>
                         <div class="form-inline">
                             <div class="form-goup clearfix">
-                                <label class="pull-left">Rating: </label>
+                                <label class="pull-left">Quantity Rating: </label>
                                 <input type="number" data-max="5" data-min="1" class="pull-left rating input-sm"
-                                       disabled="disabled" value="<?= $feedback['Feedback']['rating'] ?>">
+                                       disabled="disabled" value="<?= $feedback['Feedback']['rate_quantity'] ?>">
+                            </div>
+                            <div class="form-goup clearfix">
+                                <label class="pull-left">Quality Rating: </label>
+                                <input type="number" data-max="5" data-min="1" class="pull-left rating input-sm"
+                                       disabled="disabled" value="<?= $feedback['Feedback']['rate_quality'] ?>">
+                            </div>
+                            <div class="form-goup clearfix">
+                                <label class="pull-left">Variety Rating: </label>
+                                <input type="number" data-max="5" data-min="1" class="pull-left rating input-sm"
+                                       disabled="disabled" value="<?= $feedback['Feedback']['rate_variety'] ?>">
                             </div>
                         </div>
                     </article>

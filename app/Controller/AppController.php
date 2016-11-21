@@ -27,10 +27,11 @@ App::uses('Controller', 'Controller');
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package        app.Controller
+ * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends Controller
+{
     public $components = array(
         'Session',
         'Auth' => array(
@@ -41,7 +42,7 @@ class AppController extends Controller {
             'logoutRedirect' => array(
                 'controller' => 'menus',
                 'action' => 'today'
-                
+
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -50,28 +51,29 @@ class AppController extends Controller {
             )
         )
     );
-    
+
     public $myRole = 'Guest';
     public $myUsername = null;
     public $myTitle = 'None';
     public $myID = 'None';
 
-	public function beforeFilter(){
-		parent::beforeFilter();
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
 
-        $this->set('site_url', 'http://'.$_SERVER['SERVER_NAME'].'/');
+        $this->set('site_url', 'http://' . $_SERVER['SERVER_NAME'] . '/');
 
-		$this->myRole = $this->Auth->user('role') == null? 'Guest' : $this->Auth->user('role');
-		$this->set('myRole', $this->myRole);
-		
-		$this->myUsername = $this->Auth->user('username') == null? 'Guest' : $this->Auth->user('username');
-		$this->set('myUsername', $this->myUsername);
-		
-		$this->myTitle = $this->Auth->user('text') == null? 'None' : $this->Auth->user('text');
-		$this->set('myTitle', $this->myTitle);
+        $this->myRole = $this->Auth->user('role') == null ? 'Guest' : $this->Auth->user('role');
+        $this->set('myRole', $this->myRole);
+
+        $this->myUsername = $this->Auth->user('username') == null ? 'Guest' : $this->Auth->user('username');
+        $this->set('myUsername', $this->myUsername);
+
+        $this->myTitle = $this->Auth->user('text') == null ? 'None' : $this->Auth->user('text');
+        $this->set('myTitle', $this->myTitle);
 
         $this->myID = $this->Auth->user('id') == null ? 'None' : $this->Auth->user('id');
-		$this->set('myID', $this->myID);
+        $this->set('myID', $this->myID);
 
         $this->set('counter', '0');
         if ($this->Session->read('Counter')) {
@@ -82,55 +84,56 @@ class AppController extends Controller {
          * layout
          */
 //		$this->layout = 'bootstrap';
-        if($this->myUsername!='Guest'){
+        if ($this->myUsername != 'Guest') {
             $this->layout = 'adminlte';
-        }else{
+        } else {
             $this->layout = 'homepage';
         }
 
-		$this->Auth->allow('logout','login', 'homepage', 'add', 'cart','view');
-		
-		$this->set('currentController',$this->params['controller']);
-		$this->set('currentAction',$this->params['action']);
-		
-		//Get the scheadules
-		$this->loadModel("Setting");
+        $this->Auth->allow('logout', 'login', 'homepage', 'add', 'cart', 'view');
 
-		$settings = array();
-		
-		$settingsdata = $this->Setting->find('all');
-		foreach($settingsdata as $s){
-			$settings[$s['Setting']['name']] = $s['Setting']['value'];
-		}
-	
-		$this->set('settings',$settings);
-		
-		if($this->Auth->user('username')!=='adocanteen'){
-		//	echo "Under maintenance";exit;
-		}
-		date_default_timezone_set('Asia/Manila');
+        $this->set('currentController', $this->params['controller']);
+        $this->set('currentAction', $this->params['action']);
 
-        if($this->myRole == 'admin'){
+        //Get the scheadules
+        $this->loadModel("Setting");
+
+        $settings = array();
+
+        $settingsdata = $this->Setting->find('all');
+        foreach ($settingsdata as $s) {
+            $settings[$s['Setting']['name']] = $s['Setting']['value'];
+        }
+
+        $this->set('settings', $settings);
+
+        if ($this->Auth->user('username') !== 'adocanteen') {
+            //	echo "Under maintenance";exit;
+        }
+        date_default_timezone_set('Asia/Manila');
+
+        if ($this->myRole == 'admin') {
             App::import('Controller', 'Feedbacks');
             $Feedbacks = new FeedbacksController();
             $this->set('new_feed', $Feedbacks->count_new());
             $this->set('not_solved', $Feedbacks->count_not_solved());
-        }else{
+        } else {
             $this->set('new_feed', 0);
             $this->set('not_solved', 0);
         }
-	}
+    }
 
     /**
-     * @param $img  : uploaded image
+     * @param $img : uploaded image
      * @return bool : if no image was uploaded
      */
-    public function upMealPic($img){
+    public function upMealPic($img)
+    {
         if (!empty($img['name'])) {
             $file = $img;
 
             $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
-            $arr_ext = array('jpg', 'jpeg', 'gif','png');
+            $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
 
             if (in_array($ext, $arr_ext)) {
                 move_uploaded_file($file['tmp_name'], WWW_ROOT . '/img/menus/' . $file['name']);
@@ -141,11 +144,12 @@ class AppController extends Controller {
     }
 
 
-    public function editMealPic($new_img, $old_img){
+    public function editMealPic($new_img, $old_img)
+    {
         if (!empty($new_img['name'])) {
 
-            if(!empty($old_img)){
-                unlink(WWW_ROOT.$old_img);
+            if (!empty($old_img)) {
+                unlink(WWW_ROOT . $old_img);
             }
 
             return $this->upMealPic($new_img);
@@ -154,5 +158,11 @@ class AppController extends Controller {
         return false;
     }
 
+    public function _auth()
+    {
+        if ($this->myRole == 'Guest') {
+            return $this->redirect(array('controller'=>'users', 'action'=>'login'));
+        }
+    }
 
 }
