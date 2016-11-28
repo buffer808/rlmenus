@@ -29,7 +29,7 @@
     <script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <?php endif; ?>
 
-<?php if ($currentController == array('feedbacks', 'pages') ) : ?>
+<?php if (in_array($currentController, array('feedbacks', 'pages'))) : ?>
     <!-- Bootstrap Rating -->
     <script src="<?= $site_url ?>js/bootstrap-rating-input.min.js"></script>
     <script type="text/javascript">

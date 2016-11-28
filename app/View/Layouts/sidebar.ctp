@@ -524,25 +524,7 @@
 
  <?php echo $this->element('modals'); ?>
 
-<!-- jQuery -->
-<script src="<?= $this->webroot; ?>assets/js/jquery.min.js"></script>
-<!-- Bootstrap JavaScript -->
-<script src="<?= $this->webroot; ?>assets/js/bootstrap.js"></script>
-<!-- add to cart script -->
-<script src="<?= $this->webroot; ?>js/add-to-cart.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Bootstrap Rating -->
-<script src="<?= $site_url ?>js/bootstrap-rating-input.min.js"></script>
-<script>
-    (function ($) {
-        $(".textarea").wysihtml5();
-
-        $('.feedback.index .rating').rating({
-            'readonly': true
-        });
-    })(jQuery);
-</script>
+<?php echo $this->Element('load-js'); ?>
 
 </body>
 </html>
