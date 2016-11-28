@@ -88,12 +88,24 @@ class PagesController extends AppController {
         $this->loadModel('Breakfast');
         $breakfasts = $this->Breakfast->find('all',array('conditions'=>array('Breakfast.status' => 1)));
 
+        $this->loadModel('Lunch');
+        $lunches = $this->Lunch->find('all', array('conditions'=>array('Lunch.status' => 1)));
+
         $this->loadModel('Snack');
         $snacks = $this->Snack->find('all', array('conditions'=>array('Snack.status' => 1)));
 
+        $this->loadModel('Dinner');
+        $dinners = $this->Dinner->find('all', array('conditions'=>array('Dinner.status' => 1)));
+
+        $this->loadModel('MidnightSnack');
+        $midnightsnacks = $this->MidnightSnack->find('all', array('conditions'=>array('MidnightSnack.status' => 1)));
+
         $this->set('meals',array(
             'Breakfast' => array('breakfasts' , $breakfasts),
+            'Lunch' => array('lunches',$lunches),
             'Snack' => array('snacks',$snacks),
+            'Dinner' => array('dinners',$dinners),
+            'MidnightSnack' => array('midnightsnacks',$midnightsnacks),
         ));
     }
 

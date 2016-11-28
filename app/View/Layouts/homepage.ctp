@@ -89,6 +89,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button id="hotline" href="tel:0000000" class="btn btn-link btn-sm navbar-btn text-uppercase">Call us <span class="h4 strong">000-0000</span></button>
+                </li>
                 <li id="cart">
                     <!-- <a href="#">
                         <span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>0</span>
@@ -117,12 +120,12 @@
                             <li><a href="<?= $this->webroot . (($myRole != 'customer') ? 'orders' : '#') ?>"><span
                                         class="fa fa-pencil-square-o"></span>&nbsp;&nbsp;Orders</a>
                             </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="<?= $this->webroot ?>logout">
+                                    <span class="text-danger"><i class="fa fa-sign-out"></i> Sign Out</span>
+                                </a>
+                            </li>
                         </ul>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-primary btn-sm navbar-btn text-uppercase"
-                                onclick="window.location.href='<?= $this->webroot ?>logout';">logout
-                        </button>
                     </li>
                 <?php } ?>
 

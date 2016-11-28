@@ -1,32 +1,33 @@
-<?php foreach ($meals as $meal => $menu): ?>
-	<div id="<?= strtolower($meal) ?>" class="panel panel-default borderless">
-		<div class="panel-heading">
-			<p class="panel-title pull-left meal"><b><?= $meal ?></b></p>
-			<div class="clearfix"></div>
-		</div>
+<h2 class="strong text-center">Select Menu</h2>
+<div class="spacer"></div>
 
-		<div class="panel-body no-pad">
-			<div class="row no-gutters">
-				<?php foreach ($menu[1] as $m): ?>
-					<?php if ($m['Menu']['id'] == null) {
-						$_addon[] = (isset($m['AddOn'])) ? $m['AddOn'] : array();
-						continue;
-					} ?>
-					<div class="col-md-4">
-						<div class="item">
-							<img src="<?= $m['Menu']['image'] ? $site_url.h($m['Menu']['image']) : $site_url.'assets/img/item-placeholder.jpg'; ?>" alt="<?php echo __($m['Menu']['title']); ?>">
-							<h4 class="title"><?php echo __($m['Menu']['title']); ?></h4>
-							<button  class="btnViewMeal btn btn-warning btn-round" data-toggle="modal" data-target="#modal-order">
-								<i class="glyphicon glyphicon-shopping-cart"></i>
-								<span class="hidden _item" data-menu-id="<?= $m['Menu']['id'] ?>"></span>
-                                <span class="hidden _meal" data-meal="<?= $meal ?>"></span>
-							</button>
-							<span class="price text-center"><?php echo __($m['Menu']['price']); ?></span>
-							<div class="overlay"></div>
-						</div>
+<div class="row text-center">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+		<div class="row">
+			
+			<?php
+			$col = 0;
+			$offset = '';
+			?>
+			
+			<?php foreach ($meals as $meal => $menu): $col++; ?>
+			
+			<?php
+				if ( $col == 4 ) : $offset = 'col-sm-offset-2';
+				else : $offset = '';
+				endif;
+			?>
+
+			<div class="col-xs-12 col-sm-4 <?php echo $offset; ?>">
+				<a href="#">
+					<div class="well meal">
+						<img class="icon" src="<?= $site_url; ?>assets/img/icon-<?= $meal ?>.svg" alt="icon: <?= $meal ?>">
+						<h3 class="title"><?= $meal ?></h3>
 					</div>
-				<?php endforeach; ?>
+				</a>
 			</div>
-		</div>
-	</div><!-- #breakfast -->
-<?php endforeach; ?>
+			<?php endforeach; ?>
+
+		</div><!-- /.row -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
