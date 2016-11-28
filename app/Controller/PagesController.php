@@ -109,6 +109,10 @@ class PagesController extends AppController {
         ));
     }
 
+  public function meal() {
+  	$this->layout = 'sidebar';
+  }
+
 
 	public function cart() {
 		$this->layout = 'homepage';
