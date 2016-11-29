@@ -22,6 +22,11 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/font-awesome.min.css">
+
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="<?= $site_url ?>dist/css/skins/_all-skins.min.css">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/app.css">
 
@@ -216,15 +221,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="FeedbackRateQuantity">Quantity</label>
-                                                <div class="rating-input input-sm">
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="1"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="2"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="3"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="4"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="5"></i>
-                                                </div>
-                                                <input name="data[Feedback][rate_quantity]" class="input-lg rating hidden" placeholder="Rating" id="FeedbackRateQuantity" type="hidden">
+                                                <?php echo $this->Form->input('rate_quantity', array('class' => 'input-sm rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
                                             </div>
                                         </div>
 
@@ -238,15 +235,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="FeedbackRateQuality">Quality</label>
-                                                <div class="rating-input input-sm">
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="1"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="2"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="3"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="4"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="5"></i>
-                                                </div>
-                                                <input name="data[Feedback][rate_quality]" class="input-lg rating hidden" placeholder="Rating" id="FeedbackRateQuality" type="hidden">
+                                                <?php echo $this->Form->input('rate_quality', array('class' => 'input-sm rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
                                             </div>
                                         </div>
 
@@ -260,15 +249,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="FeedbackRateVariety">Variety</label>
-                                                <div class="rating-input input-sm">
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="1"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="2"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="3"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="4"></i>
-                                                    <i class="glyphicon glyphicon-star-empty" data-value="5"></i>
-                                                </div>
-                                                <input name="data[Feedback][rate_variety]" class="input-lg rating hidden" placeholder="Rating" id="FeedbackRateVariety" type="hidden">
+                                                <?php echo $this->Form->input('rate_variety', array('class' => 'input-sm rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
                                             </div>
                                         </div>
 
