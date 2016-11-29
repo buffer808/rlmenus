@@ -25,47 +25,6 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/app.css">
 
-    <style type="text/css">
-        #meal-info ._includes p{
-            white-space: pre !important;
-        }
-
-        .modal-content .overlay {
-            background-attachment: scroll;
-            background-clip: border-box;
-            background-color: rgba(255, 255, 255, 0.701961);
-            background-image: none;
-            background-origin: padding-box;
-            background-position-x: 0%;
-            background-position-y: 0%;
-            background-repeat-x: ;
-            background-repeat-y: ;
-            background-size: auto;
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            box-sizing: border-box;
-            color: rgb(51, 51, 51);
-            display: block;
-            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            text-size-adjust: 100%;
-            top: 0px;
-            z-index: 50;
-            -webkit-font-smoothing: antialiased;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        }
-        .modal-content .overlay .fa{
-            position: absolute;
-            top: 50%;
-            font-size: 50px;
-            left: 50%;
-            margin: -15px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -131,7 +90,7 @@
 
             </ul>
         </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    </div><!-- /.container -->
 </nav>
 
 
@@ -145,150 +104,11 @@
 </div><!-- .container -->
 
 <div id="webroot" data-value="<?= $site_url; ?>"></div>
-<!-- Modal -->
-<div class="modal fade" id="modal-order" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title strong" id="modalLabel">[title]</h4>
-            </div>
-            <div class="modal-body no-pad">
-                <div class="row no-gutters">
-                    <div class="col-sm-5">
-                        <div class="item">
-                            <img id="img" src="assets/img/item-1.jpg" alt="item 1">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-7">
-                        <div id="meal-info">
-
-                            <form id="frm-add-to-cart" action="">
-
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <p class="small text-uppercase">includes</p>
-                                                <ul class="_includes list-unstyled h3">
-                                                    <li><p>[includes]</p></li>
-                                                </ul>
-
-                                                <div class="h2">
-                                                    <p class="small text-uppercase">price</p>
-                                                    <p id="_price">[price]</p>
-                                                </div>
-
-                                                <div class="h2 mt-0 form-group">
-                                                    <label class="small text-uppercase control-label" for="qty_order">Order
-                                                        Quantity</label>
-                                                    <input type="number" name="qty_order" id="qty_order"
-                                                           class="form-control input-lg" value="1" min="1" step="1"
-                                                           required="required">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6">
-
-                                                <div class="h2 mt-0 mb-0 form-group">
-                                                    <label class="small text-uppercase control-label" for="add-on">Add-On</label>
-                                                    <select id="add-on" class="form-control input-lg"
-                                                            required="required" name="add_on">
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="h2 mt-0 form-group">
-                                                    <label class="small text-uppercase control-label" for="qty_addon">Add-On
-                                                        Quantity</label>
-                                                    <input type="number" name="qty_addon" id="qty_addon"
-                                                           class="form-control input-lg" value="1" min="1" step="1"
-                                                           required="required">
-                                                </div>
-
-                                                <button type="submit"
-                                                        class="btn btn-warning btn-block btn-lg text-uppercase add-to-cart strong">
-                                                    <i class="glyphicon glyphicon-shopping-cart"></i> add to cart
-                                                </button>
-
-                                            </div>
-                                        </div><!-- /.row -->
-                                    </div><!-- /.panel-body -->
-                                </div><!-- /.panel -->
-
-                            </form>
-
-                        </div><!-- /#meal-info -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modal-feedback" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title strong" id="modalLabel">Feedback for [title]</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <?php echo $this->Form->create('Feedback', array('role' => 'form')); ?>
-
-                        <div class="form-group">
-                            <?php echo $this->Form->input('title', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?php echo $this->Form->input('employee', array('class' => 'form-control', 'placeholder' => 'Employee')); ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?php echo $this->Form->textarea('content', array('class' => 'textarea form-control', 'placeholder' => 'Feedback')); ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?php echo $this->Form->input('rating', array('class' => 'input-lg rating', 'type'=>'number', 'placeholder' => 'Rating')); ?>
-                        </div>
-
-                        <div class="form-group text-right">
-                            <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary btn-lg')); ?>
-                            <?php echo $this->Form->input('user_id', array('type'=>'hidden', 'value'=> $myID)); ?>
-                        </div>
-
-                        <?php echo $this->Form->end() ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- jQuery -->
 <script src="<?= $this->webroot; ?>assets/js/jquery.min.js"></script>
 <!-- Bootstrap JavaScript -->
 <script src="<?= $this->webroot; ?>assets/js/bootstrap.js"></script>
-<!-- add to cart script -->
-<script src="<?= $this->webroot; ?>js/add-to-cart.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Bootstrap Rating -->
-<script src="<?= $site_url ?>js/bootstrap-rating-input.min.js"></script>
-<script>
-    (function ($) {
-        $(".textarea").wysihtml5();
-
-        $('.feedback.index .rating').rating({
-            'readonly': true
-        });
-    })(jQuery);
-</script>
 
 </body>
 </html>
