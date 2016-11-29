@@ -113,6 +113,10 @@ class PagesController extends AppController {
   	$this->layout = 'sidebar';
   }
 
+  public function confirmation() {
+  	$this->layout = 'homepage';
+  }
+
 
 	public function cart() {
 		$this->layout = 'homepage';
