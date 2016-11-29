@@ -52,22 +52,23 @@
 <?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings'))) { ?>
     <script>
         (function ($) {
-            $("#datatable").DataTable({
-                "paging": true,
-                "ordering": true,
-                "info": true,
-                <?php if($currentController == "orders"): ?>
-                "sscrollX": true,
-                "columnDefs": [
-                    {"width": "15%", "targets": 2},
-                    {"width": "15%", "targets": 3},
-                    {"width": "15%", "targets": 4},
-                    {"width": "15%", "targets": 5},
-                    {"width": "15%", "targets": 6},
-//                    { "width": "20px", "targets": 8 },
-                ]
-                <?php endif; ?>
-            });
+//             $("#datatable").DataTable({
+//                 "paging": true,
+//                 "ordering": true,
+//                 "info": true,
+//                 <?php if($currentController == "orders"): ?>
+//                 "sscrollX": true,
+//                 "columnDefs": [
+//                     {"width": "15%", "targets": 2},
+//                     {"width": "15%", "targets": 3},
+//                     {"width": "15%", "targets": 4},
+//                     {"width": "15%", "targets": 5},
+//                     {"width": "15%", "targets": 6},
+// //                    { "width": "20px", "targets": 8 },
+//                 ]
+//                 <?php endif; ?>
+//             });
+                $("#datatable").DataTable();
         })(jQuery)
     </script>
 <?php } ?>

@@ -48,6 +48,7 @@
                     <table id="datatable" cellpadding="0" cellspacing="0" class="table nowrap table-bordered table-hover" style="width: 1024px;">
                         <thead>
                         <tr>
+                            <th>Status</th>
                             <th>Company</th>
                             <th>Employee</th>
                             <th>Breakfast</th>
@@ -65,7 +66,12 @@
                             ?>
 
 
-                            <tr>
+                            <tr>   
+                                <td class="text-center">
+                                    <!-- <i class="fa fa-minus-circle" title="Hold"></i> -->
+                                    <!-- <i class="fa fa-refresh" title="Processing"></i> -->
+                                    <i class="fa fa-check" title="Delivered"></i>
+                                </td>
                                 <td>
                                     <?= $order['User']['text'] ?>
                                 </td>
