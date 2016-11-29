@@ -133,3 +133,60 @@ table#datatable {
 div#datatable_wrapper {
     overflow: hidden;
 }
+
+
+/*  DASHBOARD */
+.info-box-number.lg {
+    font-size: 32px;
+    margin-top: 10px;
+    line-height: 1.2;
+}
+
+.no-txt-transform {
+    text-transform: none;
+}
+
+.small-box.bg-black .icon {
+    color: rgba(255,255,255,0.4);
+}
+
+.small-box .small-box-footer {
+    padding: 8px;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    display: block;
+    position: relative;
+    z-index: 99;
+}
+
+.small-box .small-box-footer:hover {
+    background: rgba(0,0,0,0.15);
+ }
+
+.small-box .small-box-footer .fa,
+.small-box .small-box-footer .ion {
+    margin-left: 5px;
+}
+
+.small-box > .inner {
+    padding: 12px 15px;
+}
+
+.small-box {
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.small-box:hover {
+    color: inherit;
+}
+
+.small-box .icon {
+    right: 15px;
+    font-size: 80px;
+}
+
+.small-box:hover .icon {
+    font-size: 86px;
+}
