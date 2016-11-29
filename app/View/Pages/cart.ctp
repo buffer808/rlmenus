@@ -7,20 +7,21 @@
 
             <div class="panel panel-default borderless module">
                 <div class="panel-heading h3">
-                    Cart
-                </div>
+                    Your Order
+                </div><!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped mb-0">
+                        <table class="table mb-0">
                             <thead>
-                            <tr class="strong text-uppercase">
-                                <th width="40%" class="text-left">Orders</th>
-                                <th width="20%" class="text-center">Order Qty</th>
-                                <th width="20%" class="text-center">Action</th>
-                                <th width="20%" class="text-center">Price</th>
-                            </tr>
+                                <tr class="strong text-uppercase">
+                                    <th width="40%" class="text-left">Orders</th>
+                                    <th width="20%" class="text-center">Quantity</th>
+                                    <th width="20%" class="text-center">Price</th>
+                                    <th width="20%" class="text-center">Action</th>
+                                </tr>
                             </thead>
                             <tbody>
+
                             <tr class="text-center">
                                 <td class="text-left">
                                     <p>Smoked Garlic Longganisa</p>
@@ -29,31 +30,40 @@
                                     <p>10</p>
                                 </td>
                                 <td>
-                                    <button type="button" class="close fl-n"><span aria-hidden="true">&times;</span></button>
-                                </td>
-                                <td>
                                     <p>40.00</p>
                                 </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-round fa fa-trash"></button>
+                                    <button type="button" class="btn btn-default btn-round fa fa-pencil"></button>
+                                </td>
                             </tr>
+
                             <tr class="text-center">
                                 <td class="text-left" colspan="4">
-                                    <span class="text-muted small text-uppercase">Add-On:</span>
+                                    <span class="text-muted small text-uppercase">Add-Ons:</span>
                                 </td>
                             </tr>
+
                             <tr class="text-center">
                                 <td class="text-left">
-                                    <p>Rice</p>
+                                    <p>Extra Rice</p>
                                 </td>
                                 <td>1</td>
-                                <td>
-                                    <button type="button" class="close fl-n"><span aria-hidden="true">&times;</span></button>
-                                </td>
                                 <td>10.00</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-round fa fa-trash"></button>
+                                    <button type="button" class="btn btn-default btn-round fa fa-pencil"></button>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
+                    </div><!-- /.table-responsive -->
+                    <div class="alert alert-warning small no-margin visible-xs text-center" role="alert">
+                        <p>
+                            Tap and drag to right to view the other details.
+                        </p>
+                    </div><!-- /.alert -->
+                </div><!-- /.panel-body -->
             </div><!-- /.panel -->
 
 
@@ -63,110 +73,143 @@
                 </div>
                 <div class="panel-body">
                     <div class="row form-horizontal">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="fname" class="col-sm-4 control-label strong">First Name</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="fname" placeholder="First Name">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="fname" class="col-sm-5 control-label strong">First Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="fname" placeholder="Your First Name">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="lname" class="col-sm-4 control-label strong">Last Name</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                                <div class="form-group">
+                                    <label for="lname" class="col-sm-5 control-label strong">Last Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="lname" placeholder="Your Last Name">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="email" class="col-sm-4 control-label strong">E-mail</label>
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="email" placeholder="E-mail">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-5 control-label strong">E-mail</label>
+                                    <div class="col-sm-7">
+                                        <input type="email" class="form-control" id="email" placeholder="Your E-mail">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="contact-number" class="col-sm-4 control-label strong">Contact number</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="contact-number" placeholder="Contact number">
+                                <div class="form-group">
+                                    <label for="contact-number" class="col-sm-5 control-label strong">Contact number</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="contact-number" placeholder="Your Contact number">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="gender" class="col-sm-4 control-label strong">Create account?</label>
-                                <div class="col-sm-8">
-                                    <div class="radio row no-gutters">
-                                        <div class="spacer spacer-5"></div>
-                                        <div class="col-sm-5">
-                                            <input name="register" id="register_yes" value="change_yes" type="radio">
-                                            <label for="register_yes">Yes</label>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <input name="register" id="register_no" value="change_no" type="radio">
-                                            <label for="register_no">No</label>
+                                <div class="form-group">
+                                    <label for="gender" class="col-sm-5 control-label strong">Create account?</label>
+                                    <div class="col-sm-7">
+                                        <div class="radio row no-gutters">
+                                            <div class="spacer spacer-5"></div>
+                                            <div class="col-sm-5">
+                                                <input name="register" id="register_yes" value="change_yes" type="radio">
+                                                <label for="register_yes">Yes</label>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <input name="register" id="register_no" value="change_no" type="radio">
+                                                <label for="register_no">No</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="contact-number" class="col-sm-4 control-label strong">Password</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="password" placeholder="Password" disabled>
-                                </div>
-                            </div>
-
-
-                        </div><!-- /.col -->
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="gender" class="col-sm-4 control-label strong">Do you need change?</label>
-                                <div class="col-sm-8">
-                                    <div class="radio row no-gutters">
-                                        <div class="spacer spacer-5"></div>
-                                        <div class="col-sm-5">
-                                            <input name="change" id="change_yes" value="change_yes" type="radio">
-                                            <label for="change_yes">Yes</label>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <input name="change" id="change_no" value="change_no" type="radio">
-                                            <label for="change_no">No</label>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="contact-number" class="col-sm-5 control-label strong">Password</label>
+                                    <div class="col-sm-7">
+                                        <input type="password" class="form-control" id="password" placeholder="Your Password" disabled>
                                     </div>
-                                    <div class="spacer"></div>
-                                    <p class="no-margin"><span class="help-block small no-margin">Note: If NO, please prepare the exact amount of your bill.</span></p>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="amount" class="col-sm-4 control-label strong">Cash in hand</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="amount" placeholder="Amount">
+                                <div class="form-group">
+                                    <label for="delivery_add" class="col-sm-5 control-label strong">Delivery Address</label>
+                                    <div class="col-sm-7">
+                                        <textarea rows="5" class="form-control" id="delivery_add" placeholder="Delivery Address"></textarea>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="delivery_add" class="col-sm-4 control-label strong">Delivery Address</label>
-                                <div class="col-sm-8">
-                                    <textarea rows="5" class="form-control" id="delivery_add" placeholder="Delivery Address"></textarea>
+
+                            </div><!-- /.col -->
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="gender" class="col-sm-5 control-label strong">Are you paying the exact amount?</label>
+                                    <div class="col-sm-7">
+                                        <div class="radio row no-gutters">
+                                            <div class="spacer spacer-5"></div>
+                                            <div class="col-sm-5">
+                                                <input name="change" id="change_yes" value="change_yes" type="radio">
+                                                <label for="change_yes">Yes</label>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <input name="change" id="change_no" value="change_no" type="radio">
+                                                <label for="change_no">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="spacer"></div>
+                                        <p class="no-margin"><span class="help-block small no-margin">Note: If YES, please prepare the exact amount of your order. The deliveryman will not carry money upon the delivery.</span></p>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div><!-- /.col -->
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-5 control-label strong">Cash in hand</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="amount" placeholder="Amount">
+                                    </div>
+                                </div>
+
+                                <div class="spacer"></div>
+
+                                <div id="summary-total" class="panel panel-warning module">
+                                    <div class="panel-heading no-margin strong h4">
+                                        Summary
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <label class="col-sm-5 text-right strong">Sub Total</label>
+                                            <div class="col-sm-7">
+                                                <p><small class="text-muted">Php</small> 100.00</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-sm-5 text-right strong">Delivery Charge</label>
+                                            <div class="col-sm-7">
+                                                <p><small class="text-muted">Php</small> 100.00</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row strong">
+                                            <label class="col-sm-5 text-right strong">Grand Total</label>
+                                            <div class="col-sm-7">
+                                                <p><small class="text-muted">Php</small> 100.00</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-right">
+                                    <div class="col-sm-12">
+                                        <!-- <button type="submit" class="btn btn-warning btn-lg text-uppercase strong action">Submit Order</button> -->
+                                        <a href="#" class="btn btn-warning btn-lg text-uppercase strong action">Submit Order</a>
+                                    </div>
+                                </div>
+
+                            </div><!-- /.col -->
                     </div><!-- /.row -->
 
-                    <div class="form-group text-right">
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-success btn-lg text-uppercase strong action">Submit Order</button>
-                        </div>
-                    </div>
+                    
 
 
                 </div><!-- /.panel-body -->
             </div><!-- /.panel -->
-
-
 
         </form>
 
