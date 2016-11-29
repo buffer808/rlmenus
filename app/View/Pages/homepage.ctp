@@ -31,3 +31,20 @@
 		</div><!-- /.row -->
 	</div><!-- /.col -->
 </div><!-- /.row -->
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<h2 class="strong">Customer Feedback</h2>
+		<div class="spacer"></div>
+		
+		<?php echo $this->element('home-feedback'); ?>
+	</div>
+
+	<div class="col-sm-6">
+		<h2 class="strong">Send A Message</h2>
+		<div class="spacer"></div>
+
+		<?php echo $this->element('home-contact-form'); ?>
+	</div>
+</div>
