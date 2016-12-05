@@ -18,9 +18,13 @@
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
                             <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New User'), array('action' => 'add'), array('escape' => false)); ?></li>
-                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View All'), array('action' => 'index'), array('escape' => false)); ?></li>
-                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Admins Only'), array('action' => 'index',1), array('escape' => false)); ?></li>
-                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Customers Only'), array('action' => 'index',2), array('escape' => false)); ?></li>
+
+                            <?php if ($myRole == "admin"): ?>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View All'), array('action' => 'index'), array('escape' => false)); ?></li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Admins Only'), array('action' => 'index', 1), array('escape' => false)); ?></li>
+                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Customers Only'), array('action' => 'index', 2), array('escape' => false)); ?></li>
+                            <?php endif; ?>
+
                         </ul>
                     </div><!-- end body -->
                 </div><!-- end panel -->
@@ -46,7 +50,7 @@
                             <th class="actions"></th> */ ?>
                             <th width="20%">Username</th>
                             <th width="20%">Role</th>
-                            <th width="20%">Title</th>
+                            <th width="20%">Display Name</th>
 
                             <th width="15%">Created</th>
                             <th width="15%">Modified</th>
@@ -58,7 +62,7 @@
                             <tr <?= ($user['User']['role'] == 'customer' && !isset($c_only)) ? 'class="warning"' : '' ?>>
                                 <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['role']); ?>&nbsp;</td>
-                                <td><?php echo h($user['User']['text']); ?>&nbsp;</td>
+                                <td><?php echo h($user['User']['display_name']); ?>&nbsp;</td>
 
                                 <td><?php echo h($user['User']['created']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['modified']); ?>&nbsp;</td>

@@ -24,10 +24,20 @@
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/font-awesome.min.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/app.css">
-
+    <style>
+        #contact-msg {
+            min-height: 157px !important;
+        }
+        body.pages.cart a.fa.fa-trash, body.pages.cart a.fa.fa-pencil {
+            padding-top: 5px;
+        }
+        .meal-h{
+            background: #eee;
+        }
+    </style>
 </head>
 
-<body>
+<body class="<?= $currentController .' '.$currentAction?>">
 
 <nav class="navbar navbar-inverse">
     <div class="container">
@@ -103,12 +113,19 @@
     <div class="spacer spacer-30"></div>
 </div><!-- .container -->
 
-<div id="webroot" data-value="<?= $site_url; ?>"></div>
+<div id="webroot" class="hidden" data-value="<?= $site_url; ?>"></div>
+<div id="user_id" class="hidden" data-value="<?= $myID; ?>"></div>
+
+<?php if(in_array($currentController, array('pages')) && in_array($currentAction, array('cart'))):
+     echo $this->element('modals');
+endif; ?>
 
 <!-- jQuery -->
 <script src="<?= $this->webroot; ?>assets/js/jquery.min.js"></script>
 <!-- Bootstrap JavaScript -->
 <script src="<?= $this->webroot; ?>assets/js/bootstrap.js"></script>
+<!-- add to cart -->
+<script src="<?= $this->webroot; ?>js/add-to-cart.js"></script>
 
 </body>
 </html>

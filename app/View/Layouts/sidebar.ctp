@@ -30,6 +30,16 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/app.css">
 
+    <style>
+        .meal .info p, #modal-cart #_description {
+            white-space: pre !important;
+            text-align: left;
+        }
+        .radio.addon label[for*="addon"] {
+            padding-left: 10px;
+        }
+    </style>
+
 </head>
 
 <body>

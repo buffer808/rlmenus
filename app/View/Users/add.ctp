@@ -33,11 +33,14 @@
                     <div class="form-group">
                         <?php echo $this->Form->input('password', array('class' => 'form-control', 'placeholder' => 'Password')); ?>
                     </div>
+                    <div class="form-group <?= (in_array($myRole, array('companyadmin', 'canteenadmin'))) ? 'hidden' : '' ?>">
+                        <?php echo $this->Form->input('company_id', array('class' => 'form-control', 'placeholder' => 'Company', 'options' => $company )); ?>
+                    </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'options' => $roles)); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('text', array('class' => 'form-control', 'placeholder' => 'Title', 'label' => 'Display Name')); ?>
+                        <?php echo $this->Form->input('display_name', array('class' => 'form-control', 'placeholder' => 'Title', 'label' => 'Display Name')); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary')); ?>

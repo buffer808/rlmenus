@@ -28,7 +28,8 @@ class DashboardsController extends AppController {
     public $components = array();
 
     public function index() {
-
+//        $this->loadModel('User');
+//        $this->set('usermeta', $this->User->find('all', array('conditions' => array('User.id' => $this->myID))));
     }
 
     public function view() {

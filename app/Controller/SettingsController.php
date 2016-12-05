@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Controller', 'Options');
 /**
  * Settings Controller
  *
@@ -69,11 +70,15 @@ class SettingsController extends AppController {
 			throw new NotFoundException(__('Invalid setting'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Setting->save($this->request->data)) {
-				$this->Session->setFlash(__('The setting has been saved.'), 'default', array('class' => 'alert alert-success'));
+            if ($this->Setting->save($this->request->data)) {
+                if($this->request->data['Setting']['name'] == "Next Date"){
+                    $option = new OptionsController;
+                    $option->create_option('order_set', strtotime($this->request->data['Setting']['value']));
+                }
+                $this->Session->setFlash(__('The setting has been saved.'), 'flash-success', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The setting could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+				$this->Session->setFlash(__('The setting could not be saved. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
 			}
 		} else {
 			$options = array('conditions' => array('Setting.' . $this->Setting->primaryKey => $id));

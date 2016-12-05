@@ -10,7 +10,9 @@
 
 
         <div class="row">
-
+            <div class="col-md-12">
+<!--                <pre>--><?//= print_r($usermeta, true) ?><!--</pre>-->
+            </div>
         </div><!-- end row -->
 
     </div>

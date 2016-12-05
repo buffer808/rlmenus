@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller
 {
     public $components = array(
-        'Session',
+        'Session','Cookie',
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'menus',
@@ -69,16 +69,16 @@ class AppController extends Controller
         $this->myUsername = $this->Auth->user('username') == null ? 'Guest' : $this->Auth->user('username');
         $this->set('myUsername', $this->myUsername);
 
-        $this->myTitle = $this->Auth->user('text') == null ? 'None' : $this->Auth->user('text');
+        $this->myTitle = $this->Auth->user('display_name') == null ? 'None' : $this->Auth->user('display_name');
         $this->set('myTitle', $this->myTitle);
 
         $this->myID = $this->Auth->user('id') == null ? 'None' : $this->Auth->user('id');
         $this->set('myID', $this->myID);
 
-        $this->set('counter', '0');
-        if ($this->Session->read('Counter')) {
-            $counter = $this->Session->read('Counter');
-        }
+        $this->companyID = $this->Auth->user('company_id') == null ? 'None' : $this->Auth->user('company_id');
+        $this->set('companyID', $this->companyID);
+
+        $this->set('counter', $this->countMyOrder());
 
         /**
          * layout
@@ -90,7 +90,7 @@ class AppController extends Controller
             $this->layout = 'homepage';
         }
 
-        $this->Auth->allow('logout', 'login', 'homepage', 'add', 'cart', 'view');
+        $this->Auth->allow('logout', 'login', 'homepage', 'add', 'cart', 'view', 'meal');
 
         $this->set('currentController', $this->params['controller']);
         $this->set('currentAction', $this->params['action']);
@@ -164,5 +164,28 @@ class AppController extends Controller
             return $this->redirect(array('controller'=>'users', 'action'=>'login'));
         }
     }
+
+    public function countMyOrder(){
+        $counter = 0;
+        $myOrder = 0;
+
+        if ($this->Session->check('myOrder')) {
+            $myOrder = $this->Session->read('myOrder');
+
+            if (!$myOrder) return 0;
+
+            foreach ($myOrder as $o) {
+                $counter += count($o);
+                foreach ($o as $a) {
+                    if (isset($a['addons']) && is_array($a['addons'])) {
+                        $counter += ($a['addons']) ? count($a['addons']) : 0;
+                    }
+                }
+            }
+        }
+
+        return $counter;
+    }
+
 
 }

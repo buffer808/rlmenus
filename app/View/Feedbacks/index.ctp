@@ -46,7 +46,7 @@
                                     <span>&nbsp;|&nbsp;</span>
                                     <span class="postedBy">posted by: <?= $feedback['Feedback']['employee'] ?></span>
                                     <span>&nbsp;|&nbsp;</span>
-                                    <span class="postedBy"><?= $feedback['User']['text'] ?></span>
+                                    <span class="postedBy"><?= $feedback['User']['display_name'] ?></span>
                                 </span>
 
                             </div>

@@ -19,19 +19,20 @@
             <!--            <li class="header">MAIN NAVIGATION</li>-->
             <li>&nbsp;</li>
 
-            <li <?= $currentController == "dashboards" ? "class='active'" : "" ?>>
-                <?= $this->Html->link(__('<i class="fa fa-dashboard"></i> <span>Dashboard</span>'), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false)) ?>
-            </li>
 
             <?php if ($myRole != 'customer') { ?>
 
-                <?php if ($myRole == 'admin'): ?>
+                <li <?= $currentController == "dashboards" ? "class='active'" : "" ?>>
+                    <?= $this->Html->link(__('<i class="fa fa-dashboard"></i> <span>Dashboard</span>'), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false)) ?>
+                </li>
+
+                <?php if (in_array($myRole, array('admin','canteenadmin', 'companyadmin'))) : ?>
                     <li <?= $currentController == "users" ? "class='active'" : "" ?>>
                         <?= $this->Html->link(__('<i class="fa fa-users"></i> <span>Users</span>'), array('controller' => 'users', 'action' => 'index'), array('escape' => false)) ?>
                     </li>
                 <?php endif; ?>
 
-                <?php if ($myRole != 'companyadmin'): ?>
+                <?php if (!in_array($myRole, array('companyadmin', 'employee'))): ?>
                     <li <?= $currentController == "menus" && $currentAction != 'today' ? "class='active'" : "" ?>>
                         <?= $this->Html->link(__('<i class="fa fa-list-ul"></i> <span>Menus</span>'), array('controller' => 'menus', 'action' => 'index'), array('escape' => false)) ?></a>
                     </li>
@@ -49,7 +50,7 @@
                     <?= $this->Html->link(__('<i class="fa fa-pencil-square-o"></i> <span>Orders</span>'), array('controller' => 'orders', 'action' => 'index'), array('escape' => false)) ?>
                 </li>
 
-                <?php if ($myRole != 'companyadmin'): ?>
+                <?php if (!in_array($myRole, array('companyadmin', 'employee'))): ?>
                     <li <?= $currentController == "settings" ? "class='active'" : "" ?>>
                         <?= $this->Html->link(__('<i class="fa fa-gear"></i> <span>Settings</span>'), array('controller' => 'settings', 'action' => 'index'), array('escape' => false)); ?>
                     </li>

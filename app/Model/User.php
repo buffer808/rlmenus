@@ -17,4 +17,30 @@ class User extends AppModel {
 	    }
 	    return true;
 	}
+
+    public $belongsTo = array(
+        'Company' => array(
+            'className' => 'Company',
+            'foreignKey' => 'company_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
+
+    public $hasMany = array(
+        'Usermeta' => array(
+            'className' => 'Usermeta',
+            'foreignKey' => 'user_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
+    );
 }

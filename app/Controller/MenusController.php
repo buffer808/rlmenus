@@ -83,13 +83,12 @@ class MenusController extends AppController {
         $options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
         $qry = $this->Menu->find('first', $options);
 
-        $this->set('menu', $qry);
-
         if($api == 'api'){
             echo json_encode($qry);
             exit;
+        }else{
+            $this->set('menu', $qry);
         }
-
     }
 
 /**

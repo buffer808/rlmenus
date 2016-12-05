@@ -2,31 +2,28 @@
 <div class="spacer"></div>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-4">
-        <div class="well meal text-center">
-            <img class="img-responsive" src="assets/img/item-1.jpg" alt="item">
-            <ul class="list-unstyled info">
-                <li class="h4 strong">Smoked Longanisa</li>
-                <li><p>with Plain Rice and Soup</p></li>
-                <li class="text-center">
-                    <a data-toggle="modal" href="#modal-cart" class="btn btn-primary text-uppercase cart-add">Add to Cart</a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="col-xs-12 col-sm-4">
-        <div class="well meal text-center">
-            <img class="img-responsive" src="assets/img/item-2.jpg" alt="item">
-            <ul class="list-unstyled info">
-                <li class="h4 strong">Tortang Talong</li>
-                <li><p>with Plain Rice and Side dish</p></li>
-                <li class="text-center">
-                    <a data-toggle="modal" href="#modal-cart" class="btn btn-primary text-uppercase cart-add">Add to Cart</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <?php if($menus) : ?>
+        <?php foreach($menus as $menu){ if($menu[$cur_page]['add_on']) continue; ?>
+            <div class="col-xs-12 col-sm-4">
+                <div class="well meal text-center">
+                    <img class="img-responsive" src="<?= ($menu['Menu']['image']) ? $menu['Menu']['image'] : 'http://placehold.it/255x200?text=image' ?>" alt="<?= $menu['Menu']['title'] ?>">
+                    <ul class="list-unstyled info">
+                        <li class="h4 strong"><?= $menu['Menu']['title'] ?></li>
+                        <li><p><?= $menu['Menu']['description'] ?></p></li>
+                        <li class="text-center">
+                            <a data-toggle="modal" data-menu-id="<?= $menu['Menu']['id'] ?>" data-meal="<?= $cur_page ?>" href="#modal-cart"
+                               class="btn btn-primary text-uppercase cart-add"><?= ($myRole!='Guest') ? 'Add Order' : 'Add to Cart'?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <?php } ?>
+    <?php else : ?>
+        <h2>No menu for today.</h2>
+    <?php endif; ?>
+
+
 </div>
 
 <div class="spacer"></div>
@@ -44,7 +41,7 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="img-responsive" src="assets/img/item-1.jpg" alt="item">
+                        <img class="img-responsive" src="<?= $site_url ?>assets/img/item-1.jpg" alt="item">
                         <ul class="list-unstyled info">
                             <li class="h4 strong">Smoked Longanisa</li>
                             <li><p>with Plain Rice and Soup</p></li>
@@ -142,7 +139,7 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="img-responsive" src="assets/img/item-1.jpg" alt="item">
+                        <img class="img-responsive" src="<?= $site_url ?>assets/img/item-1.jpg" alt="item">
                         <ul class="list-unstyled info">
                             <li class="h4 strong">Smoked Longanisa</li>
                             <li><p>with Plain Rice and Soup</p></li>
@@ -230,7 +227,7 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="img-responsive" src="assets/img/item-2.jpg" alt="item">
+                        <img class="img-responsive" src="<?= $site_url ?>assets/img/item-2.jpg" alt="item">
                         <ul class="list-unstyled info">
                             <li class="h4 strong">Tortang Talong</li>
                             <li><p>with Plain Rice and Soup</p></li>

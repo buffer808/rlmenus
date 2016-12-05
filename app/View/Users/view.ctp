@@ -50,7 +50,7 @@
                         <tr>
                             <th><?php echo __('Display Name'); ?></th>
                             <td>
-                                <?php echo h($user['User']['text']); ?>
+                                <?php echo h($user['User']['display_name']); ?>
                                 &nbsp;
                             </td>
                         </tr>

@@ -24,22 +24,34 @@ class UsersController extends AppController
      */
     public function index($view = 0)
     {
-        if ($this->Auth->user('role') != 'admin') {
+        /*if ($this->Auth->user('role') != 'admin') {*/
+        if (!in_array($this->Auth->user('role'), array('admin','canteenadmin','companyadmin'))) {
             $this->redirect('/');
         }
 //		$this->User->recursive = 0;
 //        $arg = $this->Paginator->paginate();
-        if($view == 0){
-		    $this->set('users', $this->User->find('all'));
-        } elseif($view == 2) {
-            $this->set('users', $this->User->find('all', array('conditions' => array(
-                'User.role' => 'customer'))));
-            $this->set('c_only', true);
-        } elseif($view == 1) {
-            $this->set('users', $this->User->find('all', array('conditions' => array(
-                'User.role' => array(
-                    'admin', 'canteenadmin', 'companyadmin'
-                )))));
+        switch ($view){
+            case 1:
+                $this->set('users', $this->User->find('all', array('conditions' => array(
+                    'User.role' => array(
+                        'admin', 'canteenadmin', 'companyadmin'
+                    )))));
+                break;
+
+            case 2:
+                $this->set('users', $this->User->find('all', array('conditions' => array(
+                    'User.role' => 'customer'))));
+                $this->set('c_only', true);
+                break;
+
+            default:
+                if(in_array($this->Auth->user('role'), array('canteenadmin','companyadmin')) &&
+                    !in_array($this->Auth->user('role'), array('customer', 'employee'))) {
+                    $this->set('users', $this->User->find('all', array('conditions' => array(
+                        'User.company_id' => $this->Auth->user('company_id')))));
+                }else {
+                    $this->set('users', $this->User->find('all'));
+                }
         }
 
     }
@@ -74,7 +86,8 @@ class UsersController extends AppController
     public function add()
     {
         if ($this->request->is('post')) {
-            if ($this->request->data['User']['role'] == 'admin') {
+            /*if ($this->request->data['User']['role'] == 'admin') {*/
+            if (in_array($this->request->data['User']['role'], array('admin','canteenadmin','companyadmin'))) {
                 if ($this->Auth->user('role') != 'admin') {
                     echo "You cannot do that";
                     exit;
@@ -92,15 +105,32 @@ class UsersController extends AppController
 
         $roles = array();
         if ($this->Auth->user('role') == 'admin')
-            $roles = array('admin' => 'Super Admin', 'canteenadmin' => 'Canteen Admin', 'companyadmin' => 'Company Admin');
+            $roles = array('admin' => 'Super Admin', 'canteenadmin' => 'Canteen Admin', 'companyadmin' => 'Company Admin', 'employee' => "Employee", 'customer' => 'Customer');
         elseif ($this->Auth->user('role') == 'canteenadmin')
             $roles = array('canteenadmin' => 'Canteen Admin');
         elseif ($this->Auth->user('role') == 'companyadmin')
-            $roles = array('companyadmin' => 'Company Admin');
+            $roles = array('companyadmin' => 'Company Admin', 'employee' => "Employee");
         else
             $roles = array('customer' => 'Customer');
 
         $this->set('roles', $roles);
+
+        $opt = array();
+        if ($this->Auth->user('role') == 'admin'){
+            $opt = array(
+                "field" => array('Company.id', 'Company.name')
+            );
+        } elseif(in_array($this->Auth->user('role'), array('companyadmin', 'canteenadmin'))) {
+            $opt = array(
+                "conditions" => array('Company.id' => $this->Auth->user('company_id')),
+//                "field" => array('Company.id', )
+            );
+        }
+
+        $this->loadModel('Company');
+        $company = $this->Company->find('list', $opt);
+
+        $this->set('company', $company);
     }
 
     /**

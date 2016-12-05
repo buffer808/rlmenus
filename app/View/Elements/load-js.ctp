@@ -8,6 +8,11 @@
 <script src="<?= $site_url ?>dist/js/app.min.js"></script>
 <!-- Sparkline -->
 <script src="<?= $site_url ?>plugins/sparkline/jquery.sparkline.min.js"></script>
+
+<!-- add to cart -->
+<script src="<?= $site_url ?>js/add-to-cart.js"></script>
+
+
 <?php /*
 <!-- jvectormap -->
 <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -24,7 +29,7 @@
 <script src="<?= $site_url ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
 
-<?php if (in_array($currentController, array('feedbacks', 'threads'))) : ?>
+<?php if (in_array($currentController, array('feedbacks', 'threads', 'pages'))) : ?>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <?php endif; ?>

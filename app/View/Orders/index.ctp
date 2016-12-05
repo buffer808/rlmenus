@@ -67,7 +67,7 @@
 
                             <tr>
                                 <td>
-                                    <?= $order['User']['text'] ?>
+                                    <?= $order['User']['display_name'] ?>
                                 </td>
                                 <td>
                                     <?= $order['Order']['employee'] ?>

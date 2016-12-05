@@ -29,7 +29,7 @@
                         <span class="description">
                             <?= date('M. d, Y ! h:i A', strtotime($feedback['Feedback']['created'])); ?>
                             <span>&nbsp;|&nbsp;</span>
-                            <span class="postedBy">posted by: <?= $feedback['User']['text'] ?></span>
+                            <span class="postedBy">posted by: <?= $feedback['User']['display_name'] ?></span>
                         </span>
 
                     </div>
@@ -69,7 +69,7 @@
 
                                 <div class="comment-text">
                                     <span class="username">
-                                        <?= $thread['User']['text'] ?>
+                                        <?= $thread['User']['display_name'] ?>
                                         <span class="<?= ($thread['User']['id'] == $myID) ? 'usr-d-post':'' ?> text-muted pull-right">
                                             <?= date('M. d, Y ! h:i A', strtotime($thread['Thread']['created'])); ?>
                                         </span>
