@@ -534,7 +534,7 @@ class OrdersController extends AppController
                     break;
 
                 /**
-                 * delete specific
+                 * delete specific item on cart
                  */
                 case 'del':
                     if ($this->request->is('post')) {
@@ -563,11 +563,17 @@ class OrdersController extends AppController
                     }
                     break;
 
+                /**
+                 * reset cart data
+                 */
                 case 'reset':
                     $json = ($this->Session->delete('myOrder')) ? array('msg' => 'success') : array();
                     break;
 
                 //AddOn
+                /**
+                 * add addon meal
+                 */
                 case 'add-addon':
                     if ($this->request->is('post')) {
                         $meal = $this->request->data['meal'];
@@ -589,6 +595,9 @@ class OrdersController extends AppController
                     }
                     break;
 
+                /**
+                 * get specific addon with all its detail
+                 */
                 case 'view-addon':
                     if ($this->request->is('post')) {
                         $result = array();
@@ -600,6 +609,10 @@ class OrdersController extends AppController
                         $json = $result;
                     }
                     break;
+
+                /**
+                 * update ordered addon
+                 */
                 case 'update-addon':
                     if ($this->request->is('post')) {
                         $data = $this->request->data;
@@ -624,7 +637,7 @@ class OrdersController extends AppController
 
 
                 /**
-                 * api call
+                 * submit the cart function
                  */
                 case 'submit-order':
                     if ($this->request->is('post')) {
@@ -654,6 +667,8 @@ class OrdersController extends AppController
                             if ($json) {
                                 $this->Session->delete('myOrder');
                                 $json = array('msg' => 'success');
+                            }else{
+                                $json = array('msg' => 'something went wrong.');
                             }
                         }
 

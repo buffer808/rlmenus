@@ -45,12 +45,12 @@
         <div class="col-md-9 col-md-pull-3">
             <div class="box">
                 <div class="box-body">
-                    <table id="datatable" cellpadding="0" cellspacing="0" class="table nowrap table-bordered table-hover" style="width: 1024px;">
+                    <table id="datatable" cellpadding="0" cellspacing="0"
+                           class="table nowrap table-bordered table-hover" style="width: 1024px;">
                         <thead>
                         <tr>
-                            <th>Status</th>
-                            <th>Company</th>
                             <th>Employee</th>
+                            <th>Company</th>
                             <th>Breakfast</th>
                             <th>Lunch</th>
                             <th>Snack</th>
@@ -61,61 +61,42 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($orders as $order):
-                            $addons = unserialize($order["Order"]["addon_id"]);
-                            ?>
+                        <?php foreach ($usersOrder as $k => $order): ?>
+                            <tr>
+                                <td><?= $order['User']['display_name'] ?></td>
+                                <td><?= $order['Company']['name'] ?></td>
 
-
-                            <tr>   
-                                <td class="text-center">
-                                    <!-- <i class="fa fa-minus-circle" title="Hold"></i> -->
-                                    <!-- <i class="fa fa-refresh" title="Processing"></i> -->
-                                    <i class="fa fa-check" title="Delivered"></i>
-                                </td>
-                                <td>
-                                    <?= $order['User']['display_name'] ?>
-                                </td>
-                                <td>
-                                    <?= $order['Order']['employee'] ?>
-                                </td>
-                                <td>
-                                    <?= $order['Breakfast']['id'] == 0 ? "N/A" : $breakfasts[$order['Breakfast']['id']]; ?>
-                                    <?php if (isset($addons['breakfast'])):
-                                        _getAddOn($addons['breakfast']);
-                                    endif; ?>
-                                </td>
-                                <td>
-                                    <?= $order['Lunch']['id'] == 0 ? "N/A" : $lunches[$order['Lunch']['id']]; ?>
-                                    <?php if (isset($addons['lunch'])):
-                                        _getAddOn($addons['lunch']);
-                                    endif; ?>
-                                </td>
-                                <td>
-                                    <?= $order['Snack']['id'] == 0 ? "N/A" : $snacks[$order['Snack']['id']]; ?>
-                                    <?php if (isset($addons['snack'])):
-                                        _getAddOn($addons['snack']);
-                                    endif; ?>
-                                </td>
-                                <td>
-                                    <?= $order['Dinner']['id'] == 0 ? "N/A" : $dinners[$order['Dinner']['id']]; ?>
-                                    <?php if (isset($addons['dinner'])):
-                                        _getAddOn($addons['dinner']);
-                                    endif; ?>
-                                </td>
-                                <td>
-                                    <?= $order['MidnightSnack']['id'] == 0 ? "N/A" : $midnightsnacks[$order['MidnightSnack']['id']]; ?>
-                                    <?php if (isset($addons['msnack'])):
-                                        _getAddOn($addons['msnack']);
-                                    endif; ?>
-                                </td>
-
-                                <td><?php echo h($order['Order']['created']); ?>&nbsp;</td>
-
-                                <td class="actions">
-                                    <?php if ($myRole != 'canteenadmin'): ?>
-                                        <?php echo $this->Form->postLink('<span class="glyphicon glyphicon-remove"></span>', array('action' => 'delete', $order['Order']['id']), array('escape' => false), __('Are you sure you want to delete # %s?', $order['Order']['id'])); ?>
-                                    <?php endif ?>
-                                </td>
+                                <?php
+                                foreach (array('breakfast', 'lunch', 'snack', 'dinner', 'midnightsnack') as $m) {
+                                    if (!$order["UserOrder"][$m]) {
+                                        echo "<td>N/A</td>";
+                                        continue;
+                                    }
+                                    $meal_ordered = $order["UserOrder"][$m];
+                                    if ($meal_ordered): ?>
+                                        <td>
+                                            <ul>
+                                                <?php foreach ($meal_ordered as $key => $val):
+                                                if (!$val) continue; ?>
+                                                <li>
+                                                    <script>console.log(<?=json_encode($val)?>);</script>
+                                                    <span><?= $val['Menu']['title'] ?></span>
+                                                    <ul>
+                                                        <?php foreach ($val['AddOn'] as $k => $addon): ?>
+                                                            <li>
+                                                                <span class="pull-left"><?= $addon['title'] ?></span> <span class="pull-right">= &nbsp;&nbsp;&nbsp;&nbsp; <?=$addon['numOrder']?></span>
+                                                                <span class="clearfix"></span>
+                                                            </li>
+                                                        <?php endforeach; ?>
+                                                    </ul>
+                                                </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </td>
+                                    <?php endif;
+                                } ?>
+                                <td><?= $order['UserOrder']['created'] ?></td>
+                                <td></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -130,14 +111,15 @@
 </div><!-- end containing of content -->
 
 <?php
-function _getAddOn($args){ ?>
+function _getAddOn($args)
+{ ?>
 
     <hr/><strong>Extra order:</strong>
     <ul style='padding: 5px; list-style: none'>
-    <?php foreach ($args as $k => $a) {
-        echo "<li>{$a}</li>";
-    } ?>
+        <?php foreach ($args as $k => $a) {
+            echo "<li>{$a}</li>";
+        } ?>
     </ul>
-<?php
+    <?php
 
 }

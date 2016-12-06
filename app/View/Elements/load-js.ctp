@@ -19,7 +19,7 @@
 <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 */ ?>
 
-<?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings'))) { ?>
+<?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings', 'user_orders'))) { ?>
     <!-- DataTables -->
     <script src="<?= $site_url ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= $site_url ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
@@ -54,7 +54,7 @@
 <!-- AdminLTE for demo purposes -->
 <!--<script src="--><?php //echo $this->webroot; ?><!--/dist/js/demo.js"></script>-->
  */ ?>
-<?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings'))) { ?>
+<?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings','user_orders'))) { ?>
     <script>
         (function ($) {
 //             $("#datatable").DataTable({

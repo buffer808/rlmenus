@@ -1,5 +1,9 @@
 <?php
 App::uses('AppModel', 'Model');
+App::import('Model', 'User');
+App::import('Model', 'Menu');
+App::import('Model', 'AddOn');
+
 /**
  * Order Model
  *
