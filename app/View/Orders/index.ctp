@@ -1,51 +1,38 @@
 <div id="orders" class="orders index">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-4">
                 <h1><?php echo __('Orders'); ?></h1>
+            </div>
+
+            <div class="col-md-8 text-right">
+                <br>
+                <?php if ($myRole !== 'companyadmin'): ?>
+                    <!--<li><?php /*echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp;Delete All'), array('controller' => 'orders', 'action' => 'deleteAll'), array('escape' => false)); */ ?> </li>-->
+                    <?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp;Delete All'), array('controller' => 'orders', 'action' => 'deleteAll'), array('class' => 'btn btn-default', 'escape' => false), __('Are you sure you want to delete all on this list?')); ?>
+
+                <?php endif; ?>
+                
+                <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;Export By Date'), array('action' => 'exportbydate'), array('class' => 'btn btn-default', 'escape' => false)); ?>
+
+                <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;Export By Date Range'), array('action' => 'exportbydaterange'), array('class' => 'btn btn-default', 'escape' => false)); ?>
+
+               
+                <?php if ($myRole != 'canteenadmin'): ?>
+                    <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Order'), array('action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+                <?php endif; ?>
             </div>
         </div><!-- end col md 12 -->
     </div><!-- end row -->
 
+
     <div class="row">
-        <div class="col-md-3 col-md-push-9">
-            <?php if ($myRole != 'canteenadmin'): ?>
-                <div class="actions">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Actions</div>
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Order'), array('action' => 'add'), array('escape' => false)); ?></li>
-                            </ul>
-                        </div><!-- end body -->
-                    </div><!-- end panel -->
-                </div><!-- end actions -->
-            <?php endif; ?>
-            <div class="actions">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Actions</div>
-                    <div class="panel-body">
-                        <ul class="nav nav-pills nav-stacked">
-
-                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;Export By Date'), array('action' => 'exportbydate'), array('escape' => false)); ?></li>
-                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;Export By Date Range'), array('action' => 'exportbydaterange'), array('escape' => false)); ?></li>
-                            <?php if ($myRole !== 'companyadmin'): ?>
-                                <!--<li><?php /*echo $this->Html->link(__('<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp;Delete All'), array('controller' => 'orders', 'action' => 'deleteAll'), array('escape' => false)); */ ?> </li>-->
-                                <li><?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp;Delete All'), array('controller' => 'orders', 'action' => 'deleteAll'), array('escape' => false), __('Are you sure you want to delete all on this list?')); ?> </li>
-
-                            <?php endif; ?>
-                        </ul>
-                    </div><!-- end body -->
-                </div><!-- end panel -->
-            </div><!-- end actions -->
-        </div><!-- end col md 3 -->
-
-
-        <div class="col-md-9 col-md-pull-3">
+        
+        <div class="col-md-12">
             <div class="box">
                 <div class="box-body">
-                    <table id="datatable" cellpadding="0" cellspacing="0" class="table nowrap table-bordered table-hover" style="width: 1024px;">
+                    <table id="datatable" cellpadding="0" cellspacing="0" class="table nowrap table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>Status</th>
