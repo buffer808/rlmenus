@@ -96,10 +96,10 @@ class UsersController extends AppController
 
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved.'), 'default', array('class' => 'alert alert-success'));
+                $this->Session->setFlash(__('The user has been saved.'),'flash-success', array('class' => 'alert alert-success'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'),'flash-error', array('class' => 'alert alert-danger'));
             }
         }
 
@@ -153,10 +153,10 @@ class UsersController extends AppController
                 }
             }
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved.'), 'default', array('class' => 'alert alert-success'));
+                $this->Session->setFlash(__('The user has been saved.'),'flash-success', array('class' => 'alert alert-success'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'),'flash-error', array('class' => 'alert alert-danger'));
             }
         } else {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -182,9 +182,9 @@ class UsersController extends AppController
         }
         $this->request->onlyAllow('post', 'delete');
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('The user has been deleted.'), 'default', array('class' => 'alert alert-success'));
+            $this->Session->setFlash(__('The user has been deleted.'),'flash-success', array('class' => 'alert alert-success'));
         } else {
-            $this->Session->setFlash(__('The user could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+            $this->Session->setFlash(__('The user could not be deleted. Please, try again.'),'flash-error', array('class' => 'alert alert-danger'));
         }
         return $this->redirect(array('action' => 'index'));
     }
@@ -228,10 +228,10 @@ class UsersController extends AppController
             $this->User->id = $this->Auth->user('id');
 
             if ($this->User->saveField('password', $this->request->data['User']['password'])) {
-                $this->Session->setFlash(__('The user has been saved.'), 'default', array('class' => 'alert alert-success'));
+                $this->Session->setFlash(__('The user has been saved.'),'flash-success', array('class' => 'alert alert-success'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'),'flash-error', array('class' => 'alert alert-danger'));
             }
         }
     }

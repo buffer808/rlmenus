@@ -295,7 +295,7 @@ class OrdersController extends AppController
             'conditions' => array(
                 'User.role' => 'companyadmin'
             ),
-            'fields' => array('text')
+            'fields' => array('display_name')
         ));
         $companies[0] = 'All';
         $companies = array_reverse($companies, true);
@@ -643,7 +643,9 @@ class OrdersController extends AppController
                     if ($this->request->is('post')) {
                         if ($this->Session->check('myOrder')) {
                             $data = array();
+
                             $myOrder = $this->Session->read('myOrder');
+
                             foreach(array('Breakfast','Lunch','Snack','Dinner','MidnightSnack') as $meal){
                                 if(isset($myOrder[$meal])){
                                     $data['UserOrder'][strtolower($meal)] = serialize($this->Session->read('myOrder.'.$meal));
@@ -656,6 +658,7 @@ class OrdersController extends AppController
 
                             $this->loadModel('UserOrder');
                             $data['UserOrder']['user_id'] = $this->myID;
+                            $data['UserOrder']['company_id'] = $this->myCompanyID;
                             $data['UserOrder']['order_set'] = $userOrders->get_order_set();
                             if (!$userOrders->is_order_submitted($this->myID)) {
                                 $this->UserOrder->create();
@@ -668,7 +671,7 @@ class OrdersController extends AppController
                                 $this->Session->delete('myOrder');
                                 $json = array('msg' => 'success');
                             }else{
-                                $json = array('msg' => 'something went wrong.');
+                                $json = array('msg' => 'something went wrong');
                             }
                         }
 

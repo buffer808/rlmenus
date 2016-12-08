@@ -190,3 +190,12 @@ div#datatable_wrapper {
 .small-box:hover .icon {
     font-size: 86px;
 }
+table#datatable ul{
+    padding-left: 0;
+}
+table#datatable ul ul{
+    padding-left: 15px;
+}
+table#datatable li {
+    list-style: none;
+}

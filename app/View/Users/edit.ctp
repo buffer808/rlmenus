@@ -11,14 +11,15 @@
 
     <div class="row">
         <div class="col-md-3 col-md-push-9">
-            <?php if ($myRole != 'customer') { ?>
+            <?php if (!in_array($myRole, array('customer','employee'))) { ?>
                 <div class="actions">
                     <div class="panel panel-default">
                         <div class="panel-heading">Actions</div>
                         <div class="panel-body">
+
                             <ul class="nav nav-pills nav-stacked">
-                                <li><?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete'), array('action' => 'delete', $this->Form->value('User.id')), array('escape' => false), __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Users'), array('action' => 'index'), array('escape' => false)); ?></li>
+                                    <li><?php echo $this->Form->postLink(__('<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete'), array('action' => 'delete', $this->Form->value('User.id')), array('escape' => false), __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
+                                    <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;List Users'), array('action' => 'index'), array('escape' => false)); ?></li>
                             </ul>
                         </div>
                     </div>

@@ -1,44 +1,29 @@
 <div class="users index">
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
             <div class="page-header">
                 <h1><?php echo __('Users'); ?></h1>
             </div>
         </div><!-- end col md 12 -->
+        <div class="col-md-8 text-right"><br/>
+            <?php if ($myRole == "admin"): ?>
+                <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View All'), array('action' => 'index'), array('class' => 'btn btn-default', 'escape' => false)); ?>
+                <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Admins Only'), array('action' => 'index', 1), array('class' => 'btn btn-default', 'escape' => false)); ?>
+                <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Customers Only'), array('action' => 'index', 2), array('class' => 'btn btn-default', 'escape' => false)); ?>
+            <?php endif; ?>
+            <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New User'), array('action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+        </div>
     </div><!-- end row -->
 
 
     <div class="row">
 
-        <div class="col-md-3 col-md-push-9">
-            <div class="actions">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Actions</div>
-                    <div class="panel-body">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New User'), array('action' => 'add'), array('escape' => false)); ?></li>
-
-                            <?php if ($myRole == "admin"): ?>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View All'), array('action' => 'index'), array('escape' => false)); ?></li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Admins Only'), array('action' => 'index', 1), array('escape' => false)); ?></li>
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;View Customers Only'), array('action' => 'index', 2), array('escape' => false)); ?></li>
-                            <?php endif; ?>
-
-                        </ul>
-                    </div><!-- end body -->
-                </div><!-- end panel -->
-            </div><!-- end actions -->
-        </div><!-- end col md 3 -->
-
-        <div class="col-md-9 col-md-pull-3">
+        <div class="col-md-12">
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">System Users</h3>
-                </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
+                    <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover" style="">
                         <thead>
                         <tr>
                             <?php /* <th><?php echo $this->Paginator->sort('username'); ?></th>
@@ -48,13 +33,14 @@
                             <th><?php echo $this->Paginator->sort('created'); ?></th>
                             <th><?php echo $this->Paginator->sort('modified'); ?></th>
                             <th class="actions"></th> */ ?>
-                            <th width="20%">Username</th>
-                            <th width="20%">Role</th>
-                            <th width="20%">Display Name</th>
+                            <th>Username</th> <!--width="20%"-->
+                            <th>Role</th> <!--width="20%"-->
+                            <th>Display Name</th> <!--width="20%"-->
+                            <th>Company</th> <!--width="20%"-->
 
-                            <th width="15%">Created</th>
-                            <th width="15%">Modified</th>
-                            <th width="10%" class="actions"></th>
+                            <th>Created</th> <!--width="15%"-->
+                            <th>Modified</th> <!--width="15%"-->
+                            <th class="actions"></th> <!--width="10%" -->
                         </tr>
                         </thead>
                         <tbody>
@@ -63,7 +49,7 @@
                                 <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['role']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['display_name']); ?>&nbsp;</td>
-
+                                <td><?php echo h($user['Company']['name']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['created']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
                                 <td class="actions">

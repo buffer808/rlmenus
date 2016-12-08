@@ -67,11 +67,9 @@
                     <button id="hotline" href="tel:0000000" class="btn btn-link btn-sm navbar-btn text-uppercase">Call us <span class="h4 strong">000-0000</span></button>
                 </li>
                 <li id="cart">
-                    <!-- <a href="#">
-                        <span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>0</span>
-                    </a> -->
-
-                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>' . $counter . '</span>', array('action' => 'cart'), array('escape' => false)); ?>
+                    <?php echo $this->Html->link(
+                        '<span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>' . $counter . '</span>',
+                        array('controller'=>'pages', 'action' => 'cart'), array('escape' => false)); ?>
                 </li>
 
                 <?php if ($myRole == "Guest") { ?>
@@ -85,10 +83,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"><?= $myTitle ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <?php if ($myRole != "customer"): ?>
+                            <?php if (!in_array($myRole, array('customer','employee'))): ?>
                                 <li><a href="<?= $this->webroot ?>dashboard"><span class="fa fa-dashboard"></span>&nbsp;&nbsp;Dashboard</a>
                                 </li>
                             <?php endif; ?>
+
                             <li><a href="<?= $this->webroot ?>users/view/<?= $myID ?>"><span class="fa fa-user"></span>&nbsp;&nbsp;&nbsp;Profile</a>
                             </li>
                             <li><a href="<?= $this->webroot . (($myRole != 'customer') ? 'orders' : '#') ?>"><span

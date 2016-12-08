@@ -14,11 +14,11 @@
         <div class="col-md-9">
             <div class="box">
                 <div class="box-body">
-                    <?php echo $this->Form->create('Order', array('role' => 'form')); ?>
+                    <?php echo $this->Form->create('UserOrder', array('role' => 'form')); ?>
 
                         <?php if ($myRole != 'companyadmin'): ?>
                             <div class="form-date">
-                                <?php echo $this->Form->input('company', array('type' => 'select', 'class' => 'form-control')); ?>
+                                <?php echo $this->Form->input('company_id', array('type' => 'select', 'class' => 'form-control')); ?>
                             </div>
                             <br/>
                         <?php endif; ?>

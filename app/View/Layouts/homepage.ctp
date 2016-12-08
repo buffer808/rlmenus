@@ -34,6 +34,28 @@
         .meal-h{
             background: #eee;
         }
+
+        #datatable_wrapper, table#datatable{
+            background: #ffffff;
+            padding: 15px;
+        }
+        #datatable_filter, #datatable_paginate{
+            text-align: right;
+        }
+
+        table#datatable ul{
+            padding-left: 0;
+        }
+        table#datatable ul ul{
+            padding-left: 15px;
+        }
+        table#datatable li {
+            list-style: none;
+        }
+        .box{
+            background: #ffffff;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 
@@ -62,11 +84,9 @@
                     <button id="hotline" href="tel:0000000" class="btn btn-link btn-sm navbar-btn text-uppercase">Call us <span class="h4 strong">000-0000</span></button>
                 </li>
                 <li id="cart">
-                    <!-- <a href="#">
-                        <span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>0</span>
-                    </a> -->
-
-                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>' . $counter . '</span>', array('action' => 'cart'), array('escape' => false)); ?>
+                    <?php echo $this->Html->link(
+                        '<span class="glyphicon glyphicon-shopping-cart text-primary"></span> <span>' . $counter . '</span>',
+                        array('controller'=>'pages', 'action' => 'cart'), array('escape' => false)); ?>
                 </li>
 
                 <?php if ($myRole == "Guest") { ?>
@@ -80,7 +100,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"><?= $myTitle ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <?php if ($myRole != "customer"): ?>
+                            <?php if (!in_array($myRole, array('customer','employee'))): ?>
                                 <li><a href="<?= $this->webroot ?>dashboard"><span class="fa fa-dashboard"></span>&nbsp;&nbsp;Dashboard</a>
                                 </li>
                             <?php endif; ?>
@@ -127,5 +147,17 @@ endif; ?>
 <!-- add to cart -->
 <script src="<?= $this->webroot; ?>js/add-to-cart.js"></script>
 
+<?php if (in_array($currentController, array('user_orders'))) { ?>
+    <!-- DataTables -->
+    <script src="<?= $site_url ?>plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= $site_url ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+<?php } ?>
+<?php if (in_array($currentController, array('user_orders'))) { ?>
+    <script>
+        (function ($) {
+            $("#datatable").DataTable();
+        })(jQuery)
+    </script>
+<?php } ?>
 </body>
 </html>

@@ -36,13 +36,12 @@ class AppController extends Controller
         'Session','Cookie',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => 'menus',
-                'action' => 'today'
+                'controller' => 'pages',
+                'action' => 'homepage'
             ),
             'logoutRedirect' => array(
-                'controller' => 'menus',
-                'action' => 'today'
-
+                'controller' => 'pages',
+                'action' => 'homepage'
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -56,6 +55,7 @@ class AppController extends Controller
     public $myUsername = null;
     public $myTitle = 'None';
     public $myID = 'None';
+    public $myCompanyID = 'None';
 
     public function beforeFilter()
     {
@@ -75,8 +75,8 @@ class AppController extends Controller
         $this->myID = $this->Auth->user('id') == null ? 'None' : $this->Auth->user('id');
         $this->set('myID', $this->myID);
 
-        $this->companyID = $this->Auth->user('company_id') == null ? 'None' : $this->Auth->user('company_id');
-        $this->set('companyID', $this->companyID);
+        $this->myCompanyID = $this->Auth->user('company_id') == null ? 'None' : $this->Auth->user('company_id');
+        $this->set('companyID', $this->myCompanyID);
 
         $this->set('counter', $this->countMyOrder());
 

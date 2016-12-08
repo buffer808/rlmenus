@@ -54,6 +54,9 @@
                     <li <?= $currentController == "settings" ? "class='active'" : "" ?>>
                         <?= $this->Html->link(__('<i class="fa fa-gear"></i> <span>Settings</span>'), array('controller' => 'settings', 'action' => 'index'), array('escape' => false)); ?>
                     </li>
+                    <li <?= $currentController == "companies" ? "class='active'" : "" ?>>
+                        <?= $this->Html->link(__('<i class="fa fa-link"></i> <span>Companies</span>'), array('controller' => 'companies', 'action' => 'index'), array('escape' => false)); ?>
+                    </li>
                 <?php endif; ?>
 
             <?php } ?>

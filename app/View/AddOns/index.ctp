@@ -1,45 +1,34 @@
 <div class="menus index row">
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
                 <div class="page-header">
                     <h1><?php echo __('Add-on Menu'); ?></h1>
                 </div>
             </div><!-- end col md 12 -->
+            <div class="col-md-8 text-right"><br/>
+                <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Add-on'), array('action' => 'add'), array('class'=>'btn btn-primary','escape' => false)); ?>
+            </div>
         </div><!-- end row -->
 
 
         <div class="row">
 
-            <div class="col-md-3 col-md-push-9">
-                <div class="actions">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Actions</div>
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Add-on'), array('action' => 'add'), array('escape' => false)); ?></li>
-
-                            </ul>
-                        </div><!-- end body -->
-                    </div><!-- end panel -->
-                </div><!-- end actions -->
-            </div><!-- end col md 3 -->
-
-            <div class="col-md-9 col-md-pull-3">
+            <div class="col-md-12">
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="datatable" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th width="15%"></th>
+                                <th width="10%"></th>
                                 <th width="15%">Title</th>
                                 <th width="15%">Description</th>
                                 <th width="10%">Price</th>
 
                                 <th width="15%">Created</th>
                                 <th width="15%">Modified</th>
-                                <th width="15%" class="actions"></th>
+                                <th width="3%" class="actions"></th>
                             </tr>
                             </thead>
                             <tbody>

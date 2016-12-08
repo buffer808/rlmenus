@@ -32,6 +32,10 @@
 	Router::connect('/cart', array('controller' => 'pages', 'action' => 'cart'));
 	Router::connect('/meal/*', array('controller' => 'pages', 'action' => 'meal'));
 	Router::connect('/confirmation', array('controller' => 'pages', 'action' => 'confirmation'));
+
+	Router::connect('/orders', array('controller' => 'user_orders', 'action' => 'index'));
+	Router::connect('/exportbydate', array('controller' => 'user_orders', 'action' => 'exportbydate'));
+	Router::connect('/exportbydaterange', array('controller' => 'user_orders', 'action' => 'exportbydaterange'));
 	Router::connect('/orders/api/*', array('controller' => 'orders', 'action' => 'api'));
 
 //	Router::connect('/meal_view/{$id}', array('controller' => 'pages', 'action' => 'meal_view'));

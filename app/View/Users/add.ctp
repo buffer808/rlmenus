@@ -40,7 +40,7 @@
                         <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'options' => $roles)); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('display_name', array('class' => 'form-control', 'placeholder' => 'Title', 'label' => 'Display Name')); ?>
+                        <?php echo $this->Form->input('display_name', array('class' => 'form-control', 'placeholder' => 'Display Name', 'label' => 'Display Name')); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-primary')); ?>
