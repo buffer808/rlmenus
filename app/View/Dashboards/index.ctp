@@ -7,6 +7,27 @@
 
 
         <div class="row">
+
+            <div class="col-md-6">
+                <!-- AREA CHART -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Feedbacks chart</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="areaChart" style="height:320px"></canvas>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+
+            <div class="clearfix"></div>
             
             <!-- ORDERS -->
             <div class="col-sm-3">

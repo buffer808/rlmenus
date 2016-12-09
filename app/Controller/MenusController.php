@@ -33,7 +33,7 @@ class MenusController extends AppController {
 			
 			$this->$model->deleteAll(array('1 = 1'));
 		}
-		$this->Session->setFlash("Deleted all menus");
+		$this->Session->setFlash(__("Deleted all menus"), 'flash-success', array('class' => 'alert alert-success'));
 		$this->redirect(array('action' => 'today'));
 		
 	}
@@ -103,10 +103,10 @@ class MenusController extends AppController {
             // check meal image
             $this->request->data['Menu']['image'] = $this->upMealPic($this->request->data['Menu']['image']);
 			if ($this->Menu->save($this->request->data)) {
-				$this->Session->setFlash(__('The menu has been saved.'), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('The menu has been saved.'), 'flash-success', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The menu could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+				$this->Session->setFlash(__('The menu could not be saved. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
 			}
 		}
 	}

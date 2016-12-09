@@ -57,27 +57,43 @@
                     <li <?= $currentController == "companies" ? "class='active'" : "" ?>>
                         <?= $this->Html->link(__('<i class="fa fa-link"></i> <span>Companies</span>'), array('controller' => 'companies', 'action' => 'index'), array('escape' => false)); ?>
                     </li>
+                    <li class="treeview <?= in_array($currentController, array("feedbacks","user_feedbacks")) ? "active" : "" ?>">
+                        <a href="#">
+                            <i class="fa fa-flag"></i>
+                            <span>Feedbacks</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <?php $flag_new_feed = ($new_feed) ? '<small class="label pull-right bg-yellow">' . $new_feed . '</small>' : '';
+                        $flag_not_solved = ($not_solved) ? '<small class="label pull-right bg-red">' . $not_solved . '</small>' : ''; ?>
+                        <ul class="treeview-menu">
+                            <li <?= $currentController == "feedbacks" ? "class=\"active\"" : "" ?>>
+                                <?= $this->Html->link(
+                                __('<i class="fa fa-circle-o"></i> <span>Feedbacks</span> <span class="pull-right-container">' . $flag_new_feed . $flag_not_solved .'</span>'),
+                                array('controller' => 'feedbacks', 'action' => 'index'),
+                                array('escape' => false)); ?>
+                            </li>
+                            <li <?= $currentController == "user_feedbacks" ? "class=\"active\"" : "" ?>>
+                                <?= $this->Html->link(
+                                __('<i class="fa fa-circle-o"></i> <span>Users Feedback</span> <span class="pull-right-container"></span>'),
+                                array('controller' => 'user_feedbacks', 'action' => 'index'),
+                                array('escape' => false)); ?>
+                            </li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
 
             <?php } ?>
 
             <?php if ($myUsername != 'Guest'): ?>
-                <li>
-                    <?php $flag_new_feed = ($new_feed) ? '<small class="label pull-right bg-yellow">' . $new_feed . '</small>' : '';
-                    $flag_not_solved = ($not_solved) ? '<small class="label pull-right bg-red">' . $not_solved . '</small>' : ''; ?>
 
-                    <?= $this->Html->link(
-                        __('<i class="fa fa-flag"></i> <span>Feedbacks</span> <span class="pull-right-container">' . $flag_new_feed . $flag_not_solved .'</span>'),
-                        array('controller' => 'feedbacks', 'action' => 'index'),
-                        array('escape' => false)); ?>
-
-                </li>
                 <li>
                     <?= $this->Html->link(
                         __('<i class="fa fa-asterisk"></i> <span>Edit Password</span>
-                    <span class="pull-right-container">
-                        <small class="label pull-right bg-red hidden">0</small>
-                    </span>'),
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-red hidden">0</small>
+                            </span>'),
                         array('controller' => 'users', 'action' => 'editpassword'),
                         array('escape' => false)); ?>
                 </li>

@@ -51,10 +51,10 @@ class SnacksController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Snack->create();
 			if ($this->Snack->save($this->request->data)) {
-				$this->Session->setFlash(__('The snack has been saved.'), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('The snack has been saved.'), 'flash-success', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'today','controller' =>'menus'));
 			} else {
-				$this->Session->setFlash(__('The snack could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+				$this->Session->setFlash(__('The snack could not be saved. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
 			}
 		}
 		$menus = $this->Snack->Menu->find('list',array('conditions'=>array('Menu.status'=>1)));

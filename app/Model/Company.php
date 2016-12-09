@@ -8,4 +8,19 @@ App::uses('AppModel', 'Model');
 class Company extends AppModel {
     public $useTable = 'company';
     //
+    public $hasMany = array(
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'company_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
+    );
 }

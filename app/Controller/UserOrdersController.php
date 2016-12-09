@@ -72,9 +72,10 @@ class UserOrdersController extends AppController
     }
 
 
-    private function _get_menu_orders($orders)
+    public function _get_menu_orders($orders)
     {
-        $Menu = new Menu();
+        $this->loadModel('Menu');
+//        $Menu = new Menu();
         $_menu = array();
         foreach ($orders as $k => $order) {
             $_a = array();
@@ -82,13 +83,13 @@ class UserOrdersController extends AppController
                 $_a = $this->_get_addon_orders($order['addons']);
             }
             $_menu[] = array(
-                'Menu' => $Menu->findById($order['menu_id'])['Menu'],
+                'Menu' => $this->Menu->findById($order['menu_id'])['Menu'],
                 'AddOn' => $_a);
         }
         return $_menu;
     }
 
-    private function _get_addon_orders($addons)
+    public function _get_addon_orders($addons)
     {
         $AddOn = new AddOn();
         $_addon = array();

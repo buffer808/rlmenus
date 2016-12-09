@@ -21,8 +21,11 @@
     <h4 class="strong text-uppercase">Our Contacts</h4>
     <ul class="nav nav-pills nav-stacked strong">
         <li>
-            <a href="tel:00000000">
-                <span class="glyphicon glyphicon-earphone"></span> 000-0000
+            <a href="tel:639328800189">
+                <span class="glyphicon glyphicon-earphone"></span> +63 932 880 0189
+            </a>
+            <a href="tel:639175399852">
+                <span class="glyphicon glyphicon-earphone"></span> +63 917 539 9852
             </a>
         </li>
         <li>

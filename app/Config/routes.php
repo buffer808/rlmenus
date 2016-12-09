@@ -38,6 +38,8 @@
 	Router::connect('/exportbydaterange', array('controller' => 'user_orders', 'action' => 'exportbydaterange'));
 	Router::connect('/orders/api/*', array('controller' => 'orders', 'action' => 'api'));
 
+	Router::connect('/send_inquiry', array('controller' => 'pages', 'action' => 'send_inquiry'));
+
 //	Router::connect('/meal_view/{$id}', array('controller' => 'pages', 'action' => 'meal_view'));
 //	Router::connect('/addons', array('controller' => 'AddOns', 'action' => 'index'));
 /**

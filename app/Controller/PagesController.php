@@ -19,6 +19,8 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
+App::import('Controller', 'UserOrders');
 
 /**
  * Static content controller
@@ -37,6 +39,8 @@ class PagesController extends AppController
      * @var array
      */
     public $uses = array();
+
+    public $components = array('Paginator');
 
     /**
      * Displays a view
@@ -97,12 +101,8 @@ class PagesController extends AppController
 
     private function _homepage()
     {
-//      if($this->myRole!='Guest'){
         $this->set('myUsername', $this->myUsername);
         $this->layout = 'homepage';
-//          $this->redirect(array('controller'=>'menus','action' => 'today'));
-//      }else{
-//      }
 
         $this->loadModel('Breakfast');
         $breakfasts = $this->Breakfast->find('all', array('conditions' => array('Breakfast.status' => 1)));
@@ -128,6 +128,66 @@ class PagesController extends AppController
         ));
     }
 
+    public function _loadMyPrevMeal($cur_page = null){
+        if(!$cur_page) return false;
+
+        $this->loadModel('UserFeedback');
+
+        $this->Paginator->settings = array(
+            'conditions'    => array(
+                'UserFeedback.user_id'  => $this->myID,
+                'UserFeedback.meal'     => $cur_page,
+                'UserFeedback.status'   => 1),
+            'order'         => array('UserFeedback.created' => 'DESC'),
+            'limit' => 3,
+        );
+        $qry = $this->Paginator->paginate('UserFeedback');
+
+        return $qry;
+
+    }
+
+    public function _loadMyCurMeal($cur_page = null){
+        if(!$cur_page) return false;
+
+        $this->loadModel('UserOrder');
+
+        $dayNow = ( (int) date('d', strtotime('now')) ) - 1;
+        $monthNow = (int) date('m', strtotime('now'));
+        $yaarNow = (int) date('Y', strtotime('now'));
+
+        $qry = $this->UserOrder->find('first', array(
+            'conditions' => array(
+                'UserOrder.created >=' => $yaarNow . '-' . $monthNow . '-' . $dayNow . ' 00:00:00',
+                'UserOrder.created <=' => $yaarNow . '-' . $monthNow . '-' . $dayNow . ' 23:59:59',
+                'UserOrder.status' => 1,
+                'UserOrder.user_id' => $this->myID,
+            ),
+            'fields' => array('UserOrder.id', 'UserOrder.'.strtolower($cur_page))
+        ));
+
+        $curMeal = array();
+
+        if(isset($qry['UserOrder'])){
+            $orders = unserialize($qry['UserOrder'][strtolower($cur_page)]);
+
+            $UserOrders = new UserOrdersController();
+
+            $curMeal['UserOrder'] = array('id'=>$qry['UserOrder']['id']);
+            $curMeal['Orders'] = $UserOrders->_get_menu_orders($orders);
+
+            return (isset($curMeal)) ?  $curMeal : $curMeal;
+        }
+
+        return $curMeal;
+    }
+
+    public function _checkFeed(){
+        $this->loadModel('UserFeedbackk');
+
+
+    }
+
     public function meal($cur_meal = 'Breakfast')
     {
 
@@ -142,8 +202,20 @@ class PagesController extends AppController
                         $cur_meal.'.status' => 1
                     )));
             $this->set(compact('menus'));
-//            echo json_encode($menus); exit;
         }
+
+
+
+        $curMeal = (!in_array($this->myRole, array('Guest', 'customer')))
+            ? $this->_loadMyCurMeal($cur_meal)
+            : '';
+
+        $this->set(compact('curMeal'));
+
+        $prevMeal = (!in_array($this->myRole, array('Guest', 'customer')))
+            ? $this->_loadMyPrevMeal($cur_meal)
+            : '';
+        $this->set(compact('prevMeal'));
     }
 
     public function confirmation()
@@ -181,9 +253,19 @@ class PagesController extends AppController
             }
 
         }
-//        echo json_encode($cart); exit;
         $this->set(compact('cart'));
 
     }
 
+    public function send_inquiry(){
+
+        if ($this->request->is('post')) {
+
+            CakeEmail::deliver('you@example.com', 'Subject', 'Message', array('from' => 'me@example.com'));
+
+        }
+
+        exit;
+
+    }
 }

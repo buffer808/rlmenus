@@ -34,12 +34,14 @@
     <script src="<?= $site_url ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <?php endif; ?>
 
-<?php if (in_array($currentController, array('feedbacks', 'pages'))) : ?>
+<?php if (in_array($currentController, array('feedbacks', 'pages', 'user_feedbacks'))) : ?>
     <!-- Bootstrap Rating -->
     <script src="<?= $site_url ?>js/bootstrap-rating-input.min.js"></script>
     <script type="text/javascript">
         (function ($) {
-            $('.feedback.index .rating').rating({
+            $('.feedback.index .rating, ' +
+                '#prev-feedback input[disabled="disabled"], ' +
+                '.user-feedbacks input[disabled="disabled"]').rating({
                 'readonly': true
             });
         })(jQuery);
@@ -85,4 +87,14 @@
             $(".textarea").wysihtml5();
         })(jQuery);
     </script>
+<?php endif; ?>
+
+<?php if (in_array($currentController, array('pages'))) : ?>
+    <script src="<?= $site_url ?>js/scripts.js"></script>
+<?php endif; ?>
+
+<?php if (in_array($currentController, array('dashboards'))) : ?>
+    <!-- ChartJS 1.0.1 -->
+    <script src="<?= $site_url ?>plugins/chartjs/Chart.min.js"></script>
+    <script src="<?= $site_url ?>js/dashboard.js"></script>
 <?php endif; ?>

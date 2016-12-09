@@ -38,6 +38,9 @@
         .radio.addon label[for*="addon"] {
             padding-left: 10px;
         }
+        a#hotline {
+            padding: 6px;
+        }
     </style>
 
 </head>
@@ -64,7 +67,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button id="hotline" href="tel:0000000" class="btn btn-link btn-sm navbar-btn text-uppercase">Call us <span class="h4 strong">000-0000</span></button>
+                    <button id="hotline" href="tel:00000" class="btn btn-link btn-sm navbar-btn text-uppercase">Call us<span class="h4 strong">&nbsp;</span></button>
+                </li>
+                <li>
+                    <a id="hotline" href="tel:639328800189" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 932 880 0189</span></a>
+                </li>
+                <li>
+                    <a id="hotline" href="tel:639175399852" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 917 539 9852</span></a>
                 </li>
                 <li id="cart">
                     <?php echo $this->Html->link(

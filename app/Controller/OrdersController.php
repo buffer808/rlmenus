@@ -673,6 +673,7 @@ class OrdersController extends AppController
                             }else{
                                 $json = array('msg' => 'something went wrong');
                             }
+                            $this->jsonTest($json);
                         }
 
                     }

@@ -7,42 +7,50 @@
                 <h4 class="modal-title strong">Send A Message</h4>
             </div><!-- /.modal-header -->
 
-            <div class="modal-body">
+            <form id="send_message" action="#">
+                <div class="modal-body">
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="contact_fname" id="contact-fname"
-                                   placeholder="First Name">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="contact_fname" id="contact-fname"
+                                       placeholder="First Name">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="contact_lname" id="contact-lname"
+                                       placeholder="Last Name">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="contact_number" id="contact-number"
+                                       placeholder="Contact number">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="contact_email" id="contact-email"
+                                       placeholder="Email Address (optional)">
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="contact_lname" id="contact-lname"
-                                   placeholder="Last Name">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="contact_number" id="contact-number"
-                                   placeholder="Contact number">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
+                        <div class="col-sm-6">
+                            <div class="form-group">
                             <textarea class="form-control" name="contact_msg" id="contact-msg" rows="5"
                                       placeholder="Your message"></textarea>
+                            </div>
                         </div>
-                    </div>
-                </div><!-- /.row -->
-            </div><!-- /.modal-body -->
+                    </div><!-- /.row -->
+                </div><!-- /.modal-body -->
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default cart-add text-uppercase" data-dismiss="modal">Cancel
-                </button>
-                <button type="button" class="btn btn-primary cart-add text-uppercase strong" data-toggle="modal"
-                        data-target="#modal-contact-send" data-dismiss="modal">Send Message
-                </button>
-            </div><!-- /.modal-footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default cart-add text-uppercase" data-dismiss="modal">Cancel
+                    </button>
+                    <button type="button" class="btn btn-primary cart-add text-uppercase strong" data-toggle="modal"
+                            data-target="#modal-contact-send" data-dismiss="modal">Send Message
+                    </button>
+                </div><!-- /.modal-footer -->
+            </form>
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

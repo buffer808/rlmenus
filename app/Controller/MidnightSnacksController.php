@@ -56,10 +56,10 @@ class MidnightSnacksController extends AppController
         if ($this->request->is('post')) {
             $this->MidnightSnack->create();
             if ($this->MidnightSnack->save($this->request->data)) {
-                $this->Session->setFlash(__('The midnight snack has been saved.'), 'default', array('class' => 'alert alert-success'));
+                $this->Session->setFlash(__('The midnight snack has been saved.'), 'flash-success', array('class' => 'alert alert-success'));
                 return $this->redirect(array('controller' => 'menus', 'action' => 'today'));
             } else {
-                $this->Session->setFlash(__('The midnight snack could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+                $this->Session->setFlash(__('The midnight snack could not be saved. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
             }
         }
         $menus = $this->MidnightSnack->Menu->find('list', array('conditions' => array('Menu.status' => 1)));

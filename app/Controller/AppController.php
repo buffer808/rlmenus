@@ -187,5 +187,7 @@ class AppController extends Controller
         return $counter;
     }
 
-
+    public function jsonTest($arr){
+        echo json_encode($arr); exit;
+    }
 }
