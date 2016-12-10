@@ -152,14 +152,21 @@ class PagesController extends AppController
 
         $this->loadModel('UserOrder');
 
-        $dayNow = ( (int) date('d', strtotime('now')) ) - 1;
+        $day = ( (int) date('d', strtotime('now')) ) - 1;
         $monthNow = (int) date('m', strtotime('now'));
         $yaarNow = (int) date('Y', strtotime('now'));
 
+        $ld = date('l', strtotime(date('Y-m-d', strtotime($yaarNow.'/'.$monthNow.'/'.$day)) ) );
+
+        if($ld == 'Sunday'){
+            $day = ( (int) date('d', strtotime('now')) ) - 2;
+        }
+
+
         $qry = $this->UserOrder->find('first', array(
             'conditions' => array(
-                'UserOrder.created >=' => $yaarNow . '-' . $monthNow . '-' . $dayNow . ' 00:00:00',
-                'UserOrder.created <=' => $yaarNow . '-' . $monthNow . '-' . $dayNow . ' 23:59:59',
+                'UserOrder.created >=' => $yaarNow . '-' . $monthNow . '-' . $day . ' 00:00:00',
+                'UserOrder.created <=' => $yaarNow . '-' . $monthNow . '-' . $day . ' 23:59:59',
                 'UserOrder.status' => 1,
                 'UserOrder.user_id' => $this->myID,
             ),
@@ -216,6 +223,10 @@ class PagesController extends AppController
             ? $this->_loadMyPrevMeal($cur_meal)
             : '';
         $this->set(compact('prevMeal'));
+
+        if($this->Session->check('msg_sent')){
+            $this->set('msg_sent', $this->Session->read('msg_sent'));
+        }
     }
 
     public function confirmation()
@@ -261,11 +272,46 @@ class PagesController extends AppController
 
         if ($this->request->is('post')) {
 
-            CakeEmail::deliver('you@example.com', 'Subject', 'Message', array('from' => 'me@example.com'));
+            $Email = new CakeEmail();
+
+            /*$Email->from(array('no-reply@rlfooddelivery.com' => 'RLFoodDelivery'))
+                  ->to('anex.mellen@gmail.com')
+                  ->subject('RLFoodDelivery message')
+                  ->send("Hi Team,\n".
+                    "Please see new inquiry details below.\n".
+                    "First Name: <strong>" . $this->request->data['contact_fname']  . "</strong>\n".
+                    "Last Name <strong>: " . $this->request->data['contact_lname']  . "</strong>\n".
+                    "Contact number <strong>: " . $this->request->data['contact_number']  . "</strong>\n".
+                    "Email  Address <strong>: " . $this->request->data['contact_email']  . "</strong>\n".
+                    "Message:  <strong>" . $this->request->data['contact_msg']  . "</strong>\n");*/
+
+            $_email = $Email->template('default', 'default')
+                ->emailFormat('html')
+                ->to('anex.mellen@gmail.com')
+                ->from(array('no-reply@rlfooddelivery.com' => 'RLFoodDelivery'))
+                ->subject('RLFoodDelivery message')
+                ->viewVars(array('content' =>
+                    "Hi Team,\n".
+                    "Please see new inquiry below.\n".
+                    "First Name: <strong>" . $this->request->data['contact_fname']  . "</strong>\n".
+                    "Last Name <strong>: " . $this->request->data['contact_lname']  . "</strong>\n".
+                    "Contact number <strong>: " . $this->request->data['contact_number']  . "</strong>\n".
+                    "Email  Address <strong>: " . $this->request->data['contact_email']  . "</strong>\n".
+                    "Message:  <strong>" . $this->request->data['contact_msg']  . "</strong>\n"
+                ))
+                ->send();
+
+            $this->Session->write('msg_sent', true);
+
+            return $this->redirect( Router::url( $this->referer(), true ) );
 
         }
 
-        exit;
+    }
 
+    public function afterFilter(){
+        if($this->Session->check('msg_sent')){
+            $this->Session->delete('msg_sent');
+        }
     }
 }

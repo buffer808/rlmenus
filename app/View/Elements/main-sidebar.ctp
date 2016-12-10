@@ -22,9 +22,12 @@
 
             <?php if ($myRole != 'customer') { ?>
 
-                <li <?= $currentController == "dashboards" ? "class='active'" : "" ?>>
-                    <?= $this->Html->link(__('<i class="fa fa-dashboard"></i> <span>Dashboard</span>'), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false)) ?>
-                </li>
+                <?php /*if ($myRole): */?>
+                    <li <?= $currentController == "dashboards" ? "class='active'" : "" ?>>
+                        <?= $this->Html->link(__('<i class="fa fa-dashboard"></i> <span>Dashboard</span>'), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false)) ?>
+                    </li>
+                <?php /*endif */?>
+
 
                 <?php if (in_array($myRole, array('admin','canteenadmin', 'companyadmin'))) : ?>
                     <li <?= $currentController == "users" ? "class='active'" : "" ?>>

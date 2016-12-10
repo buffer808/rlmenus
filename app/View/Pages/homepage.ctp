@@ -14,7 +14,7 @@
                 <div class="col-xs-12 col-sm-4 <?php echo $offset; ?>">
                     <a href="<?= $site_url . "meal/" . $meal ?>">
                         <div class="well meal">
-                            <img class="icon" src="<?= $site_url; ?>assets/img/icon-<?= $meal ?>.svg"
+                            <img class="icon" src="<?= $site_url; ?>assets/img/icon-<?= strtolower($meal) ?>.svg"
                                  alt="icon: <?= $meal ?>">
                             <h3 class="title"><?= $meal ?></h3>
                         </div>

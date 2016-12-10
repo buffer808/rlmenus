@@ -160,8 +160,13 @@ class AppController extends Controller
 
     public function _auth()
     {
-        if ($this->myRole == 'Guest') {
-            return $this->redirect(array('controller'=>'users', 'action'=>'login'));
+        switch($this->myRole){
+            case 'Guest':
+                return $this->redirect(array('controller'=>'users', 'action'=>'login'));
+                break;
+            case 'customer':case 'employee':
+                return $this->redirect('/');
+                break;
         }
     }
 
@@ -187,6 +192,10 @@ class AppController extends Controller
         return $counter;
     }
 
+    /**
+     * you must remove where you call in
+     * @param $arr
+     */
     public function jsonTest($arr){
         echo json_encode($arr); exit;
     }

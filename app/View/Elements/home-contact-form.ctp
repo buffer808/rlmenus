@@ -1,36 +1,36 @@
-<form action="">
-	
-	<div class="panel">
-		<div class="panel-body">
+<div class="panel">
+    <div class="panel-body">
+        <?php echo $this->Form->create(false, array('url' => array('controller' => 'pages', 'action' => 'send_inquiry'))); ?>
 
-			<div class="form-group">
-				<input type="text" class="form-control" name="contact_fname" id="contact-fname" placeholder="First Name">
-			</div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="contact_fname" id="contact-fname" required="true" placeholder="First Name">
+        </div>
 
-			<div class="form-group">
-				<input type="text" class="form-control" name="contact_lname" id="contact-lname" placeholder="Last Name">
-			</div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="contact_lname" id="contact-lname" required="true" placeholder="Last Name">
+        </div>
 
-			<div class="form-group">
-				<input type="text" class="form-control" name="contact_number" id="contact-number" placeholder="Contact Number">
-			</div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="contact_number" id="contact-number" required="true" placeholder="Contact Number">
+        </div>
 
-			<div class="form-group">
-				<textarea class="form-control" name="contact_msg" id="contact-msg" placeholder="Your Message"></textarea> 
-			</div>
+        <div class="form-group">
+            <input type="email" class="form-control" name="contact_email" id="contact-email" placeholder="Email Address (optional)">
+        </div>
 
+        <div class="form-group">
+            <textarea class="form-control" name="contact_msg" id="contact-msg" placeholder="Your Message"></textarea>
+        </div>
 
-			<div class="form-group text-right">
-				<button type="reset" class="btn btn-default">Cancel</button>
-				<button type="submit" class="btn btn-primary">Send Message&nbsp;&nbsp;<i class="glyphicon glyphicon-send"></i></button>
-			</div>
+        <div class="form-group text-right">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary">Send Message&nbsp;&nbsp;<i
+                    class="glyphicon glyphicon-send"></i></button>
+        </div>
 
-		</div>
-	</div>
-	
-
-</form>
-
+        <?php echo $this->Form->end() ?>
+    </div>
+</div>
 
 
 <!-- <div class="contact panel panel-success">

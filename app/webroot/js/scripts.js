@@ -21,19 +21,14 @@
             })
         },
         send_message:   function(){
-            $('form#send_message button[type="button"]').on('click', function(e){
+            $('div#modal-contact form button[type="submit"]').on('click', function(e){
                 e.preventDefault();
 
-                var form = $('form#send_message');
-                var formData = form.serialize();
-                var data_target = $(this).attr('data-target');
+                var modal = $('#modal-contact .modal-content');
 
-                $(this).removeAttr('data-target');
+                modal.append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
 
-                $.post(weebroot + 'send_inquiry', formData, function (result) {
-                    console.log(result);
-                });
-                // console.log(formData);
+                $('div#modal-contact form').submit();
 
             });
         }

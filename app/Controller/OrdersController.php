@@ -660,6 +660,7 @@ class OrdersController extends AppController
                             $data['UserOrder']['user_id'] = $this->myID;
                             $data['UserOrder']['company_id'] = $this->myCompanyID;
                             $data['UserOrder']['order_set'] = $userOrders->get_order_set();
+
                             if (!$userOrders->is_order_submitted($this->myID)) {
                                 $this->UserOrder->create();
                                 $json = $this->UserOrder->save($data);
@@ -667,13 +668,13 @@ class OrdersController extends AppController
                                 $data['UserOrder']['id'] = $userOrders->get_last_order_id($this->myID);
                                 $json = $this->UserOrder->save($data);
                             }
+
                             if ($json) {
                                 $this->Session->delete('myOrder');
                                 $json = array('msg' => 'success');
                             }else{
                                 $json = array('msg' => 'something went wrong');
                             }
-                            $this->jsonTest($json);
                         }
 
                     }

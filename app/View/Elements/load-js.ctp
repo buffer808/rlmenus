@@ -91,6 +91,11 @@
 
 <?php if (in_array($currentController, array('pages'))) : ?>
     <script src="<?= $site_url ?>js/scripts.js"></script>
+    <?php if(isset($msg_sent) && $msg_sent==true): ?>
+        <script>
+            $('#modal-contact-send').modal('show');
+        </script>
+    <?php endif; ?>
 <?php endif; ?>
 
 <?php if (in_array($currentController, array('dashboards'))) : ?>

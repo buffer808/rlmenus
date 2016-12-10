@@ -7,24 +7,24 @@
                 <h4 class="modal-title strong">Send A Message</h4>
             </div><!-- /.modal-header -->
 
-            <form id="send_message" action="#">
+            <?php echo $this->Form->create(false, array('url' => array('controller' => 'pages', 'action' => 'send_inquiry'))); ?>
                 <div class="modal-body">
 
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="contact_fname" id="contact-fname"
-                                       placeholder="First Name">
+                                       required="true" placeholder="First Name">
                             </div>
 
                             <div class="form-group">
                                 <input type="text" class="form-control" name="contact_lname" id="contact-lname"
-                                       placeholder="Last Name">
+                                       required="true" placeholder="Last Name">
                             </div>
 
                             <div class="form-group">
                                 <input type="text" class="form-control" name="contact_number" id="contact-number"
-                                       placeholder="Contact number">
+                                       required="true" placeholder="Contact number">
                             </div>
 
                             <div class="form-group">
@@ -45,11 +45,10 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default cart-add text-uppercase" data-dismiss="modal">Cancel
                     </button>
-                    <button type="button" class="btn btn-primary cart-add text-uppercase strong" data-toggle="modal"
-                            data-target="#modal-contact-send" data-dismiss="modal">Send Message
-                    </button>
+                    <button type="submit" class="btn btn-primary cart-add text-uppercase strong" >Send Message</button>
+                    <!-- data-toggle="modal" data-target="#modal-contact-send" data-dismiss="modal"-->
                 </div><!-- /.modal-footer -->
-            </form>
+            <?php echo $this->Form->end() ?>
 
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

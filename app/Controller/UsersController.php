@@ -85,13 +85,20 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $this->_auth();
+
         if ($this->request->is('post')) {
             /*if ($this->request->data['User']['role'] == 'admin') {*/
             if (in_array($this->request->data['User']['role'], array('admin','canteenadmin','companyadmin'))) {
-                if ($this->Auth->user('role') != 'admin') {
+                if ( !in_array($this->myRole, array('admin', 'companyadmin') )) {
                     echo "You cannot do that";
                     exit;
                 }
+            }
+
+            if($this->User->find('first', array('conditions' => array('User.username'=>$this->request->data['User']['username'])))){
+                $this->Session->setFlash(__('Username already exist. Please try a new one.'),'flash-error', array('class' => 'alert alert-danger'));
+                return $this->redirect( Router::url( $this->referer(), true ) );
             }
 
             $this->User->create();

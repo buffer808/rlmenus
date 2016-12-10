@@ -124,9 +124,13 @@ class MenusController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
             // check meal image
-            $old_img = $this->Menu->find('first', array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id)));
-            $this->request->data['Menu']['image'] = $this->editMealPic($this->request->data['Menu']['image'], $old_img['Menu']['image']);
-			if ($this->Menu->save($this->request->data)) {
+            if($this->request->data['Menu']['image']['size'] != 0){
+                $old_img = $this->Menu->find('first', array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id)));
+                $this->request->data['Menu']['image'] = $this->editMealPic($this->request->data['Menu']['image'], $old_img['Menu']['image']);
+            }else{
+                $this->request->data['Menu']['image'] = $this->request->data['Menu']['_img'];
+            }
+            if ($this->Menu->save($this->request->data)) {
 				$this->Session->setFlash(__('The menu has been saved.'), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {

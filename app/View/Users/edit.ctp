@@ -41,7 +41,7 @@
                         <?php echo $this->Form->input('password', array('class' => 'form-control', 'placeholder' => 'Password')); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'disabled' => 'disabled')); ?>
+                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'readonly' => 'true')); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('display_name', array('class' => 'form-control', 'placeholder' => 'Name', 'label' => 'Display Name')); ?>

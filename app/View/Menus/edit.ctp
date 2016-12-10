@@ -49,6 +49,7 @@
                             alt="meal">
                         </div>
                         <?php echo $this->Form->input('image', array('class' => 'form-control', 'type' => 'file')); ?>
+                        <?php echo $this->Form->input('_img', array('class' => 'form-control', 'type' => 'hidden', 'value'=>(($meal_img) ? $meal_img :''))); ?>
                     </div>
 
                     <div class="form-group">
