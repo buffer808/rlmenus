@@ -120,11 +120,9 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <div class="h4">Menu for <span class="strong"><?php echo $settings['Next Date']; ?></span></div>
+            <div class="h4 panel panel-default panel-body">Menu for <span class="strong"><?php echo $settings['Next Date']; ?></span></div>
         </div>
     </div>
-
-    <div class="spacer"></div>
 
     <div class="row">
         <div class="col-xs-12 col-sm-9 col-sm-push-3">
