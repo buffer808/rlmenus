@@ -117,21 +117,29 @@
 </nav>
 
 
-<div class="spacer"></div>
-
 <div class="container">
-    <div class="col-xs-12 col-sm-9 col-sm-push-3">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="h4">Menu for <span class="strong"><?php echo $settings['Next Date']; ?></span></div>
+        </div>
+    </div>
 
-        <?php echo $this->Session->flash(); ?>
-        <?php echo $this->fetch('content'); ?>
-        
-    </div><!-- /.col -->
+    <div class="spacer"></div>
 
-    <div class="col-xs-12 col-sm-3 col-sm-pull-9">
-        <?php echo $this->element('sidebar'); ?>
-    </div><!-- /.col -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-sm-push-3">
 
-    <div class="spacer spacer-30"></div>
+            <?php echo $this->Session->flash(); ?>
+            <?php echo $this->fetch('content'); ?>
+            
+        </div><!-- /.col -->
+
+        <div class="col-xs-12 col-sm-3 col-sm-pull-9">
+            <?php echo $this->element('sidebar'); ?>
+        </div><!-- /.col -->
+
+        <div class="spacer spacer-30"></div>
+    </div>
 </div><!-- .container -->
 
 <div id="webroot" data-value="<?= $site_url; ?>"></div>
