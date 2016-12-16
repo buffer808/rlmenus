@@ -15,7 +15,7 @@ class UserFeedbacksController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Export.Export');
 
 /**
  * index method
@@ -23,8 +23,6 @@ class UserFeedbacksController extends AppController {
  * @return void
  */
 	public function index() {
-
-        $this->loadModel('UserFeedback');
 
         $this->Paginator->settings = array(
             'conditions'    => array('UserFeedback.status'   => 1),
@@ -166,6 +164,94 @@ class UserFeedbacksController extends AppController {
             $this->Session->setFlash(__('The UserFeedback could not be deleted. Please, try again.'), 'flash-error', array('class' => 'alert alert-danger'));
         }
 
+    }
+
+    public function _prepareExportData($data){
+        function countRating($rateCat, $rate, $totals){
+            if(isset($totals[$rateCat][$rate])){
+                $totals[$rateCat][$rate] += 1;
+            }else{
+                $totals[$rateCat][$rate] = 1;
+            }
+            return $totals;
+        }
+
+        $print = [];
+        $totalrate = [];
+
+        foreach($data as $key => $val){
+            extract($val);
+
+            $print[] = [
+                "Name"                      => $User['display_name'],
+                "Meal"                      => $UserFeedback['meal'],
+                "Menu"                      => $Menu['title'],
+                "Company"                   => $Company['name'],
+                "Rate for Quantity"         => $Rating['rate_quantity'],
+                "Rate Message for Quantity" => $Rating['msg_rate_quantity'],
+                "Rate for Quality"          => $Rating['rate_quality'],
+                "Rate Message for Quality"  => $Rating['msg_rate_quality'],
+                "Rate for Variety"          => $Rating['rate_variety'],
+                "Rate Message for Variety"  => $Rating['msg_rate_variety'],
+                "Date Created"              => $UserFeedback['created']
+            ];
+
+            $totalrate = countRating("Quantity",$Rating['rate_quantity'],$totalrate);
+            $totalrate = countRating("Quality",$Rating['rate_quality'],$totalrate);
+            $totalrate = countRating("Variety",$Rating['rate_variety'],$totalrate);
+
+        }
+
+        $print[] = [];
+        $print[] = ["Name"  =>  'Total Ratings'];
+
+        foreach($totalrate as $key => $val){
+            $t1 = 0; $t2 = 0;
+            foreach($val as $k => $v){
+                $t1 += $v * $k;
+                $t2 += $v;
+            }
+
+            $avg = round($t1 / $t2, 2);
+
+            $print[] = [
+                "Name"  =>  $key . " :",    // cell column Name
+                "Meal"  =>  $avg,           // cel column Meal
+            ];
+        }
+        return $print;
+    }
+
+    public function exportbydaterange(){
+        if ($this->request->is('post')) {
+
+            $from = $this->request->data['UserFeedback']['from'];
+            $to = $this->request->data['UserFeedback']['to'];
+
+            $time_from = $this->request->data['UserFeedback']['time_from'];
+            $time_to = $this->request->data['UserFeedback']['time_to'];
+
+            $fromstr = date('Y-m-d H:i:s', strtotime($from['year'] . '-' . $from['month'] . '-' . $from['day'].
+                ' ' . $time_from['hour'] . ':' . $time_from['min'] . ' ' . $time_from['meridian']));
+            $tostr = date('Y-m-d H:i:s', strtotime($to['year'] . '-' . $to['month'] . '-' . $to['day'].
+                ' ' . $time_to['hour'] . ':' . $time_to['min'] . ' ' . $time_to['meridian']));
+
+            $cond = array(
+                'conditions' => array(
+                    'UserFeedback.created <=' => $tostr,
+                    'UserFeedback.created >=' => $fromstr,
+                    'UserFeedback.status' => 1
+                ),
+                'order' => array('UserFeedback.created ASC'),
+            );
+
+            if($toCsvData = $this->_prepareExportData($this->UserFeedback->find('all', $cond))){
+                $this->Export->exportCsv($toCsvData);
+            }else{
+                $this->Session->setFlash(__('No data to export.'), 'default', array('class' => 'alert alert-danger'));
+                $this->redirect(Router::url($this->referer()));
+            }
+        }
     }
 }
  
