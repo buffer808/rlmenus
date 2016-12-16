@@ -296,28 +296,41 @@ class UserOrdersController extends AppController
             $from = $this->request->data['UserOrder']['from'];
             $to = $this->request->data['UserOrder']['to'];
 
-            $fromstr = $from['year'] . '-' . $from['month'] . '-' . $from['day'];
-            $tostr = $to['year'] . '-' . $to['month'] . '-' . $to['day'];
+            $time_from = $this->request->data['UserOrder']['time_from'];
+            $time_to = $this->request->data['UserOrder']['time_to'];
+
+            $fromstr = date('Y-m-d H:i:s', strtotime($from['year'] . '-' . $from['month'] . '-' . $from['day'].
+                        ' ' . $time_from['hour'] . ':' . $time_from['min'] . ' ' . $time_from['meridian']));
+            $tostr = date('Y-m-d H:i:s', strtotime($to['year'] . '-' . $to['month'] . '-' . $to['day'].
+                        ' ' . $time_to['hour'] . ':' . $time_to['min'] . ' ' . $time_to['meridian']));
 
             $cond = array(
                 'conditions' => array(
-                    'UserOrder.created <=' => $tostr . ' 23:59:59',
-                    'UserOrder.created >=' => $fromstr . ' 00:00:00',
-                    'UserOrder.status' => 1
-                )
+                    'UserOrder.created <=' => $tostr, //. ' 23:59:59',
+                    'UserOrder.created >=' => $fromstr, //. ' 00:00:00',
+//                    'UserOrder.status' => 1
+                ),
+                'order' => array('UserOrder.company_id', 'UserOrder.created ASC'),
             );
 
 
-            if ($this->Auth->user('role') == 'companyadmin') {
+            /*if ($this->Auth->user('role') == 'companyadmin') {
                 $cond['conditions']['UserOrder.company_id'] = $this->myCompanyID;
-            } elseif ($this->request->data['UserOrder']['company_id'] != 0) {
+            } else*/
+            if ($this->request->data['UserOrder']['company_id'] != 0) {
                 $cond['conditions']['UserOrder.company_id'] = $this->request->data['UserOrder']['company_id'];
             }
 
             $data = $this->_displayOrders($this->UserOrder->find('all', $cond));
-            $toCsvData = $this->_exportData($data);
 
-            $this->Export->exportCsv($toCsvData);
+            if($data){
+                $toCsvData = $this->_exportData($data);
+                $this->Export->exportCsv($toCsvData);
+            }else{
+                $this->Session->setFlash(__('No data to export.'), 'default', array('class' => 'alert alert-danger'));
+                $this->redirect(Router::url($this->referer()));
+            }
+
         }
         $this->loadModel('Company');
         $companies = array_merge(
@@ -333,29 +346,46 @@ class UserOrdersController extends AppController
         if ($this->request->is('post')) {
 
             $date = $this->request->data['UserOrder']['date'];
+            $time = $this->request->data['UserOrder']['time_interval'];
 
-            $datestr = $date['year'] . '-' . $date['month'] . '-' . $date['day'];
+            $datestrfrom = $date['year'] . '-' . $date['month'] . '-' . $date['day']
+                . ' ' . date('H:i:s', strtotime($time['hour'] . ":" . $time['min'] . " " . $time['meridian']));
+
+            $_h = ((int) $time['hour']) - 1;
+            $hourto = ($_h == 0) ? 12 : $_h;
+
+            $_i = ((int) $time['min']) - 1;
+            $minto = ($_i == -1) ? 59 : $_h;
+
+            $datestrto  = $date['year'] . '-' . $date['month'] . '-' . (((int) $date['day'])+1) . ' ' .
+                        date('H:i:s', strtotime( $hourto . ":" . $minto . " " . $time['meridian']));
 
             $cond = array(
                 'conditions' => array(
-                    'UserOrder.created >=' => $datestr . ' 00:00:00',
-                    'UserOrder.created <=' => $datestr . ' 23:59:59',
-                    'UserOrder.status' => 1
+                    'UserOrder.created >=' => $datestrfrom,
+                    'UserOrder.created <=' => $datestrto,
+//                    'UserOrder.status' => 1
                 ),
-                'order' => array('UserOrder.company_id' => 'ASC'),
+                'order' => array('UserOrder.company_id', 'UserOrder.modified ASC'),
             );
 
-            if ($this->Auth->user('role') == 'companyadmin') {
+            /*if ($this->Auth->user('role') == 'companyadmin') {
                 $cond['conditions']['UserOrder.company_id'] = $this->myCompanyID;
-            } elseif ($this->request->data['UserOrder']['company_id'] != 0) {
+            } else*/
+            if ($this->request->data['UserOrder']['company_id'] != 0) {
                 $cond['conditions']['UserOrder.company_id'] = $this->request->data['UserOrder']['company_id'];
             }
 
             $data = $this->_displayOrders($this->UserOrder->find('all', $cond));
-            $toCsvData = $this->_exportData($data);
 
+            if($data){
+                $toCsvData = $this->_exportData($data);
+                $this->Export->exportCsv($toCsvData);
+            }else{
+                $this->Session->setFlash(__('No data to export.'), 'default', array('class' => 'alert alert-danger'));
+                $this->redirect(Router::url($this->referer()));
+            }
 //            echo json_encode($toCsvData); exit;
-            $this->Export->exportCsv($toCsvData);
 
         }
 
@@ -376,7 +406,7 @@ class UserOrdersController extends AppController
     {
         $arg = array(
             'conditions' => array('UserOrder.status' => 1),
-            'order' => array('UserOrder.created' => 'desc'),
+            'order' => array('UserOrder.created' => 'ASC'),
         );
 
         if (in_array($this->Auth->user('role'), array('companyadmin', 'employee'))) {

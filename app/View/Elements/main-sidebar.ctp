@@ -100,7 +100,7 @@
                         array('controller' => 'users', 'action' => 'editpassword'),
                         array('escape' => false)); ?>
                 </li>
-                <li> <?= $this->Html->link(__("<i class='fa fa-sign-out'></i> <span>Logout {$myTitle}</span>"), array('controller' => 'users', 'action' => 'logout'), array('escape' => false)); ?></li>
+                <li> <?= $this->Html->link(__("<i class='fa fa-sign-out'></i> <span style='white-space: pre-line;'>Logout {$myTitle}</span>"), array('controller' => 'users', 'action' => 'logout'), array('escape' => false)); ?></li>
             <?php endif ?>
 
         </ul>

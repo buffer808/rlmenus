@@ -9,7 +9,7 @@
             <div class="col-xs-12 col-sm-4">
                 <div class="well meal text-center">
                     <img class="img-responsive"
-                         src="<?= ($menu['Menu']['image']) ? $menu['Menu']['image'] : 'http://placehold.it/255x200?text=image' ?>"
+                         src="<?= ($menu['Menu']['image']) ? $menu['Menu']['image'] : 'http://placehold.it/265x200?text=image' ?>"
                          alt="<?= $menu['Menu']['title'] ?>">
                     <ul class="list-unstyled info">
                         <li class="h4 strong"><?= $menu['Menu']['title'] ?></li>
@@ -71,7 +71,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <?php echo $this->Form->input('rate_quantity', array('class' => 'rate_quantity input-sm rating', 'type' => 'number',
-                                                'data-rate-msg'=>'msg_rate_quantity', 'placeholder' => 'Rating')); ?>
+                                                'data-rate-msg'=>'msg_rate_quantity', 'required'=>'required', 'placeholder' => 'Rating')); ?>
                                         </div>
                                     </div>
 
@@ -87,7 +87,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <?php echo $this->Form->input('rate_quality', array('class' => 'input-sm rating', 'type' => 'number',
-                                                'data-rate-msg'=>'msg_rate_quality', 'placeholder' => 'Rating')); ?>
+                                                'data-rate-msg'=>'msg_rate_quality', 'required'=>'required', 'placeholder' => 'Rating')); ?>
                                         </div>
                                     </div>
 
@@ -103,7 +103,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <?php echo $this->Form->input('rate_variety', array('class' => 'input-sm rating', 'type' => 'number',
-                                                'data-rate-msg' => 'msg_rate_variety', 'placeholder' => 'Rating')); ?>
+                                                'data-rate-msg' => 'msg_rate_variety', 'required'=>'required', 'placeholder' => 'Rating')); ?>
                                         </div>
                                     </div>
 
@@ -187,7 +187,9 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Feedback for Quantity</label>
-                                                    <div class="feed-msg"><p><?= $rating['msg_rate_quantity'] ?></p></div>
+                                                    <div class="feed-msg"><p><?php
+                                                            echo ($rating['rate_quantity'] == 5 && empty($rating['msg_rate_quantity']))
+                                                                ? 'Excellent' : $rating['msg_rate_quantity'] ?></p></div>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
@@ -205,7 +207,9 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Feedback for Quanlity</label>
-                                                    <div class="feed-msg"><p><?= $rating['msg_rate_quality'] ?></p></div>
+                                                    <div class="feed-msg"><p><?php
+                                                            echo ($rating['rate_quality'] == 5 && empty($rating['msg_rate_quality']))
+                                                                ? 'Excellent' : $rating['msg_rate_quality'] ?></p></div>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
@@ -223,7 +227,9 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Feedback for Variety</label>
-                                                    <div class="feed-msg"><p><?= $rating['msg_rate_variety'] ?></p></div>
+                                                    <div class="feed-msg"><p><?php
+                                                            echo ($rating['rate_variety'] == 5 && empty($rating['msg_rate_variety']))
+                                                                ? 'Excellent' : $rating['msg_rate_variety'] ?></p></div>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="<?= $this->webroot; ?>assets/css/app.css">
     <style>
         #contact-msg {
-            min-height: 157px !important;
+            min-height: 105px !important;
         }
         body.pages.cart a.fa.fa-trash, body.pages.cart a.fa.fa-pencil {
             padding-top: 5px;
@@ -93,7 +93,7 @@
                     <a id="hotline" href="tel:639328800189" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 932 880 0189</span></a>
                 </li>
                 <li>
-                    <a id="hotline" href="tel:639175399852" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 917 539 9852</span></a>
+                    <a id="hotline" href="tel:639175839852" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 917 583 9852</span></a>
                 </li>
                 <li id="cart">
                     <?php echo $this->Html->link(
@@ -171,5 +171,30 @@ endif; ?>
         })(jQuery)
     </script>
 <?php } ?>
+
+<?php if (in_array($currentController, array('feedbacks', 'pages', 'user_feedbacks'))) : ?>
+    <!-- Bootstrap Rating -->
+    <script src="<?= $site_url ?>js/bootstrap-rating-input.min.js"></script>
+    <!--<script type="text/javascript">
+        (function ($) {
+            $('.feedback.index .rating, ' +
+                '#prev-feedback input[disabled="disabled"], ' +
+                '.user-feedbacks input[disabled="disabled"]').rating({
+                'readonly': true
+            });
+        })(jQuery);
+    </script>-->
+<?php endif; ?>
+
+<?php echo $this->element('modals'); ?>
+
+<?php if (in_array($currentController, array('pages'))) : ?>
+    <script src="<?= $site_url ?>js/scripts.js"></script>
+    <?php if(isset($msg_sent) && $msg_sent==true): ?>
+        <script>
+            $('#modal-contact-send').modal('show');
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
 </body>
 </html>

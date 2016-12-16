@@ -59,6 +59,14 @@ class UserFeedbacksController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
 
+
+            if(empty($this->request->data['UserFeedback']['rate_quantity']) ||
+               empty($this->request->data['UserFeedback']['rate_quality']) ||
+               empty($this->request->data['UserFeedback']['rate_variety'])){
+                $this->Session->setFlash(__('Please feel out all fields of the form.'), 'flash-error');
+                return $this->redirect( Router::url( $this->referer() ) );
+            }
+
             $this->loadModel('Rating');
 
             $this->Rating->create();

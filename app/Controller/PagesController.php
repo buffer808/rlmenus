@@ -97,6 +97,10 @@ class PagesController extends AppController
         }
 
         $this->set('meals', $meals);
+
+        if($this->Session->check('msg_sent')){
+            $this->set('msg_sent', $this->Session->read('msg_sent'));
+        }
     }
 
     private function _homepage()
@@ -167,7 +171,6 @@ class PagesController extends AppController
             'conditions' => array(
                 'UserOrder.created >=' => $yaarNow . '-' . $monthNow . '-' . $day . ' 00:00:00',
                 'UserOrder.created <=' => $yaarNow . '-' . $monthNow . '-' . $day . ' 23:59:59',
-                'UserOrder.status' => 1,
                 'UserOrder.user_id' => $this->myID,
             ),
             'fields' => array('UserOrder.id', 'UserOrder.'.strtolower($cur_page))
@@ -197,6 +200,10 @@ class PagesController extends AppController
 
     public function meal($cur_meal = 'Breakfast')
     {
+
+        if($this->myRole == 'Guest' && !in_array($cur_meal, array('Breakfast','Snack'))){
+            $this->_auth();
+        }
 
         $this->layout = 'sidebar';
 
@@ -287,7 +294,7 @@ class PagesController extends AppController
 
             $_email = $Email->template('default', 'default')
                 ->emailFormat('html')
-                ->to('anex.mellen@gmail.com')
+                ->to('info@rlfooddelivery.com')
                 ->from(array('no-reply@rlfooddelivery.com' => 'RLFoodDelivery'))
                 ->subject('RLFoodDelivery message')
                 ->viewVars(array('content' =>

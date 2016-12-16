@@ -18,9 +18,9 @@
 
                 <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;Export By Date Range'), array('action' => 'exportbydaterange'), array('class' => 'btn btn-default', 'escape' => false)); ?>
 
-                <?php if ($myRole != 'canteenadmin'): ?>
-                    <?php echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Order'), array('action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
-                <?php endif; ?>
+                <?php /*if ($myRole != 'canteenadmin'): */?>
+                <!--    --><?php /*echo $this->Html->link(__('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Order'), array('action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); */?>
+                <?php /*endif; */?>
             <?php endif; ?>
 
         </div>
@@ -67,7 +67,6 @@
                                                 <?php foreach ($meal_ordered as $key => $val):
                                                     if (!$val) continue; ?>
                                                     <li>
-                                                        <script>console.log(<?=json_encode($val)?>);</script>
                                                         <span><strong><?= $val['Menu']['title'] ?></strong></span>
                                                         <ul>
                                                             <?php foreach ($val['AddOn'] as $k => $addon): ?>

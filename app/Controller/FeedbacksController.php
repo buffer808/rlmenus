@@ -70,12 +70,33 @@ class FeedbacksController extends AppController {
         if ($this->request->is('post')) {
             $this->Feedback->create();
 
+            if(
+                empty($this->request->data['Feedback']['customer']) ||
+                empty($this->request->data['Feedback']['rate_quantity']) ||
+                empty($this->request->data['Feedback']['rate_quality']) ||
+                empty($this->request->data['Feedback']['rate_variety'])
+            ){
+                $this->Session->setFlash(__('Please feel out all fields of the form first'), 'flash-error');
+                return $this->redirect( Router::url( $this->referer() ) );
+            }
+
+            if($this->myRole == 'Guest'){
+                $this->request->data['Feedback']['user_id'] = 55;
+                $this->request->data['Feedback']['employee'] = $this->request->data['Feedback']['customer'];
+                $this->request->data['Feedback']['title'] = 'Feedback from ' . $this->request->data['Feedback']['customer'];
+                $this->request->data['Feedback']['content'] = serialize(array(
+                    'rate_quantity' => $this->request->data['Feedback']['msg_rate_quantity'],
+                    'rate_quality'  => $this->request->data['Feedback']['msg_rate_quality'],
+                    'rate_variety'  => $this->request->data['Feedback']['msg_rate_variety'],
+                ));
+            }
+
             if ($this->Feedback->save($this->request->data)) {
                 $this->Session->setFlash(__('The feedback has been saved.'), 'flash-success');
-                return $this->redirect(array('action' => 'index','controller' => 'feedbacks'));
             } else {
-                $this->Session->setFlash(__('The dinner could not be saved. Please, try again.'), 'flash-error');
+                $this->Session->setFlash(__('The feedback could not be saved. Please, try again.'), 'flash-error');
             }
+            return $this->redirect( Router::url( $this->referer() ) );
         }
     }
 
@@ -139,7 +160,7 @@ class FeedbacksController extends AppController {
     public function count_new(){
         return $this->Feedback->find('count', array(
             'fields' => 'DISTINCT Feedback.id',
-            'conditions' => array("Feedback.has_comment" => 0)
+            'conditions' => array("Feedback.has_comment" => 0, 'Feedback.status' => 1)
         ));
     }
 

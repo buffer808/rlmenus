@@ -39,9 +39,11 @@
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('password', array('class' => 'form-control', 'placeholder' => 'Password')); ?>
+                        <small><em>Leave empty if not changing the current password.</em></small>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'readonly' => 'true')); ?>
+                        <?php $r = ($myRole != 'admin') ? true : false; ?>
+                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'placeholder' => 'Role', 'readonly' => $r)); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('display_name', array('class' => 'form-control', 'placeholder' => 'Name', 'label' => 'Display Name')); ?>

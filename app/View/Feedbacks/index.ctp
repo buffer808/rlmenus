@@ -51,7 +51,8 @@
 
                             </div>
                             <!-- /.user-block -->
-                            <?php if ($feedback['User']['id'] == $myID): ?>
+                            <?php /*if ($feedback['User']['id'] == $myID): */?>
+                            <?php if ($myRole=='admin'): ?>
                                 <div class="box-tools">
                                     <?php echo $this->Html->link(
                                         __('<span class="fa fa-edit"></span>&nbsp;&nbsp;Edit'),
@@ -69,7 +70,15 @@
                         <div class="box-body">
 
                             <article class="clearfix">
-                                <?= "<p>\n" . implode("\n</p>\n<p>", explode('<br />', nl2br(substr($feedback['Feedback']['content'], 0, 320) . ((strlen($feedback['Feedback']['content']) > 320) ? ' [...]' : '')))) . "\n</p>" ?>
+                                <?php if( @unserialize($feedback['Feedback']['content']) ) : ?>
+                                <?php
+                                    foreach(unserialize($feedback['Feedback']['content']) as $k => $v ){
+                                        echo "<p><strong>". ucwords(implode(' ',explode('_', $k))) . ":</strong> ". $v ."</p>";
+                                    }
+                                ?>
+                                <?php else: ?>
+                                    <?= "<p>\n" . implode("\n</p>\n<p>", explode('<br />', nl2br(substr($feedback['Feedback']['content'], 0, 320) . ((strlen($feedback['Feedback']['content']) > 320) ? ' [...]' : '')))) . "\n</p>" ?>
+                                <?php endif; ?>
                                 <p>&nbsp;</p>
                                 <div class="form-inline">
                                     <div class="form-goup clearfix">

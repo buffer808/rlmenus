@@ -54,8 +54,10 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Feedback for Quantity</label>
-                                                    <div class="feed-msg">
-                                                        <p><?= $rating['msg_rate_quantity'] ?></p></div>
+                                                    <div class="feed-msg"><p><?php
+                                                            echo ($rating['rate_quantity'] == 5 && empty($rating['msg_rate_quantity']))
+                                                                ? 'Excellent' : $rating['msg_rate_quantity'] ?></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
@@ -75,8 +77,9 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Feedback for Quanlity</label>
-                                                    <div class="feed-msg">
-                                                        <p><?= $rating['msg_rate_quality'] ?></p></div>
+                                                    <div class="feed-msg"><p><?php
+                                                            echo ($rating['rate_quality'] == 5 && empty($rating['msg_rate_quality']))
+                                                                ? 'Excellent' : $rating['msg_rate_quality'] ?></p></div>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
@@ -96,8 +99,9 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Feedback for Variety</label>
-                                                    <div class="feed-msg">
-                                                        <p><?= $rating['msg_rate_variety'] ?></p></div>
+                                                    <div class="feed-msg"><p><?php
+                                                            echo ($rating['rate_variety'] == 5 && empty($rating['msg_rate_variety']))
+                                                                ? 'Excellent' : $rating['msg_rate_variety'] ?></p></div>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->

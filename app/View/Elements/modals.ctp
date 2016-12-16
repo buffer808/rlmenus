@@ -211,11 +211,19 @@
                 </div><!-- /.modal-header -->
 
                 <div class="modal-body">
+                    <div id="addon-error" class="row hidden">
+                        <div class="col-xs-12">
+                            <div class="alert alert-warning small no-margin" role="alert">
+                                <p>Please select an add-on.</p>
+                            </div>
+                        </div>
+                    </div><!-- /.row -->
                     <div class="row">
                         <div id="addons" class="col-sm-<?=(isset($menus)) ? '6' : '12' ;?>">
                             <ul class="list-unstyled h5">
                                 <li class="text-muted text-uppercase small"><p>Select Add-On</p></li>
-                                <?php if (isset($menus)) : ?>
+                                <?php $ctr = 0; ?>
+                                <?php if (isset($menus)) :  ?>
                                     <?php foreach ($menus as $menu) {
                                         if (!$menu[$cur_page]['add_on']) continue; ?>
                                         <li>
@@ -227,13 +235,16 @@
                                                 </div>
                                             </div>
                                         </li>
-                                    <?php }  ?>
+                                    <?php $ctr+=1; }
+                                    if($ctr==0){ ?>
+                                        <li><h2>No add-on for this meal.</h2></li>
+                                    <?php } ?>
                                 <?php else : ?>
                                         <li><h2>No add-on for this meal.</h2></li>
                                 <?php endif; ?>
                             </ul>
                         </div>
-                        <?php if (isset($menus)) : ?>
+                        <?php if (isset($menus) && $ctr > 0) : ?>
                         <div id="num-order" class="col-sm-6">
                             <ul class="list-unstyled h5">
                                 <li class="text-muted text-uppercase small"><p>No. of Add-Ons</p></li>
@@ -260,10 +271,14 @@
                 </div><!-- /.modal-body -->
 
                 <div class="modal-footer">
+                    <?php if($ctr>0): ?>
                     <button type="reset" class="btn btn-default text-uppercase cart-add">Reset</button>
-                    <a href="<?= $site_url; ?>cart" id="submit-addon" <?= (isset($cur_page)) ? 'data-meal="'.$cur_page.'"' : '' ?>
+                    <a href="#" data-href="<?= $site_url; ?>meal" id="submit-addon" <?= (isset($cur_page)) ? 'data-meal="'.$cur_page.'"' : '' ?>
                        class="btn btn-warning strong text-uppercase cart-add"><?= ($myRole != 'Guest') ? 'Add Order' : 'Add to Cart' ?>
                         &nbsp;&nbsp;<i class="glyphicon glyphicon-shopping-cart"></i></a>
+                    <?php else: ?>
+                        <button type="button" class="btn btn-primary text-uppercase cart-add" data-dismiss="modal">Ok</button>
+                    <?php endif; ?>
                 </div><!-- /.modal-footer -->
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

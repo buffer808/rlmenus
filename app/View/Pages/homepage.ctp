@@ -28,14 +28,17 @@
 
 
 <div class="row">
-    <div class="col-sm-6">
-        <h2 class="strong">Customer Feedback</h2>
-        <div class="spacer"></div>
 
-        <?php echo $this->element('home-feedback'); ?>
-    </div>
+    <?php if($myRole == "Guest"): ?>
+        <div class="col-sm-6">
+            <h2 class="strong">Customer Feedback</h2>
+            <div class="spacer"></div>
 
-    <div class="col-sm-6">
+            <?php echo $this->element('home-feedback'); ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="col-sm-6 <?= ($myRole != "Guest") ? 'col-md-offset-3' : '' ?>">
         <h2 class="strong">Send A Message</h2>
         <div class="spacer"></div>
 

@@ -59,23 +59,11 @@
 <?php if (in_array($currentController, array('users', 'menus', 'orders', 'settings','user_orders', 'companies'))) { ?>
     <script>
         (function ($) {
-//             $("#datatable").DataTable({
-//                 "paging": true,
-//                 "ordering": true,
-//                 "info": true,
-//                 <?php if($currentController == "orders"): ?>
-//                 "sscrollX": true,
-//                 "columnDefs": [
-//                     {"width": "15%", "targets": 2},
-//                     {"width": "15%", "targets": 3},
-//                     {"width": "15%", "targets": 4},
-//                     {"width": "15%", "targets": 5},
-//                     {"width": "15%", "targets": 6},
-// //                    { "width": "20px", "targets": 8 },
-//                 ]
-//                 <?php endif; ?>
-//             });
-                $("#datatable").DataTable();
+            $("#datatable").DataTable({<?php
+                if($currentController == "user_orders"): ?>
+                    "order": [[ <?= ($myRole=='admin') ? '8' : '7' ?>, "asc" ]],
+               <?php endif; ?>
+            });
         })(jQuery)
     </script>
 <?php } ?>

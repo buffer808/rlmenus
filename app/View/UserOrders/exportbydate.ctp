@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="box">
                 <div class="box-body">
                     <?php echo $this->Form->create('UserOrder', array('role' => 'form')); ?>
@@ -22,8 +22,16 @@
                             </div>
                             <br/>
                         <?php endif; ?>
-                        <div class="form-date">
-                            <?php echo $this->Form->input('date', array('type' => 'date', 'class' => 'form-control', 'separator' => '<span class="sep">-</span>')); ?>
+                        <div class="form-group form-inline">
+                            <label>Date:&nbsp;&nbsp;&nbsp;</label>
+                            <?php echo $this->Form->input('date', array(
+                                'type' => 'date', 'class' => 'form-control', 'label' => false,
+                                'separator' => '<span class="sep">&nbsp;-&nbsp;</span>')); ?>
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Time interval:&nbsp;&nbsp;</label>
+                            <?php echo $this->Form->input('time_interval', array(
+                                'type' => 'time', 'class' => 'form-control', 'label' => false)); ?>
                         </div>
                         <br/>
                         <div class="form-group">

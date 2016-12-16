@@ -94,6 +94,11 @@
             $('#modal-addon a#submit-addon').on('click', function (e) {
                 e.preventDefault();
 
+                if($('input[name*="addon"]:checked').length == 0){
+                    $('#addon-error').removeClass('hidden');
+                    return true;
+                }
+
                 var modal = $('#modal-addon');
                 var meal = $(this).attr('data-meal');
                 var menu_id = $(this).attr('data-menu-id');
@@ -104,7 +109,10 @@
                     }
                 };
 
+                var data_href = $(this).attr('data-href');
+
                 var addons = $('input[name*="addon"]').serializeArray();
+                console.log(addons);
                 $d = [];
                 $.each(addons, function (k, v) {
                     $d.push({
@@ -116,10 +124,12 @@
                 $data.data.addons = $d;
 
                 $.post(weebroot + 'orders/api/add-addon/', $data, function (result) {
-                    // console.log(result);
+                    result = $.parseJSON(result);
+                    if(result.msg == 'success')
+                        window.location = data_href;
                 });
 
-                window.location = $(this).attr('href');
+
             });
         },
         edit_addon: function () {

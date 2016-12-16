@@ -70,6 +70,10 @@ class SettingsController extends AppController {
 			throw new NotFoundException(__('Invalid setting'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+            if($this->request->data['Setting']['name'] == "Next Date"){
+                $date = $this->request->data['Setting']['value'];
+                $this->request->data['Setting']['value'] = date('l, d F Y', strtotime($date['year'] . '-' . $date['month'] . '-' . $date['day']));
+            }
             if ($this->Setting->save($this->request->data)) {
                 if($this->request->data['Setting']['name'] == "Next Date"){
                     $option = new OptionsController;
@@ -83,6 +87,7 @@ class SettingsController extends AppController {
 		} else {
 			$options = array('conditions' => array('Setting.' . $this->Setting->primaryKey => $id));
 			$this->request->data = $this->Setting->find('first', $options);
+            $this->set('id', $id);
 		}
 	}
 
@@ -106,4 +111,17 @@ class SettingsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+	public function getSetting($id = ''){
+        if (!$this->Setting->exists($id)) {
+            throw new NotFoundException(__('Invalid setting'));
+        }
+
+        $options = array('conditions' => array('Setting.' . $this->Setting->primaryKey => $id));
+        $data = $this->Setting->find('first', $options);
+
+        return $data['Setting'];
+
+    }
 }

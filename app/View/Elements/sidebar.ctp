@@ -5,7 +5,7 @@
         <li <?= ($cur_page == 'Breakfast') ? "class=\"active\"" : "" ?>><a href="<?= $site_url ?>meal/Breakfast">Breakfasts</a>
         </li>
         <?php if ($myRole != 'Guest'): ?>
-            <li <?= ($cur_page == 'Lunch') ? "class=\"active\"" : "" ?>><a href="<?= $site_url ?>meal/Lunch">Lunchs</a>
+            <li <?= ($cur_page == 'Lunch') ? "class=\"active\"" : "" ?>><a href="<?= $site_url ?>meal/Lunch">Lunches</a>
             </li>
         <?php endif; ?>
         <li <?= ($cur_page == 'Snack') ? "class=\"active\"" : "" ?>><a href="<?= $site_url ?>meal/Snack">Snacks</a></li>
@@ -24,8 +24,8 @@
             <a href="tel:639328800189">
                 <span class="glyphicon glyphicon-earphone"></span> +63 932 880 0189
             </a>
-            <a href="tel:639175399852">
-                <span class="glyphicon glyphicon-earphone"></span> +63 917 539 9852
+            <a href="tel:639175839852">
+                <span class="glyphicon glyphicon-earphone"></span> +63 917 583 9852
             </a>
         </li>
         <li>

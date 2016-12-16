@@ -159,6 +159,11 @@ class UsersController extends AppController
                     $this->redirect(array('controller' => 'users'));
                 }
             }
+
+            if($this->request->data['User']['password'] == ''){
+                unset($this->request->data['User']['password']);
+            }
+
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved.'),'flash-success', array('class' => 'alert alert-success'));
                 return $this->redirect(array('action' => 'index'));
@@ -168,6 +173,7 @@ class UsersController extends AppController
         } else {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
+            $this->request->data['User']['password'] = '';
         }
         if (!in_array($this->myRole, array('admin', 'companyadmin', 'canteenadmin'))) {
             $this->layout = 'homepage';
@@ -217,6 +223,7 @@ class UsersController extends AppController
 
     public function logout()
     {
+        $this->Session->delete('myOrder');
         return $this->redirect($this->Auth->logout());
     }
 

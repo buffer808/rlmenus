@@ -32,7 +32,7 @@
 
     <style>
         .meal .info p, #modal-cart #_description {
-            white-space: pre !important;
+            white-space: pre-wrap !important;
             text-align: left;
         }
         .radio.addon label[for*="addon"] {
@@ -73,7 +73,7 @@
                     <a id="hotline" href="tel:639328800189" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 932 880 0189</span></a>
                 </li>
                 <li>
-                    <a id="hotline" href="tel:639175399852" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 917 539 9852</span></a>
+                    <a id="hotline" href="tel:639175839852" class="btn btn-link btn-sm navbar-btn text-uppercase"><span class="h4 strong">+63 917 583 9852</span></a>
                 </li>
                 <li id="cart">
                     <?php echo $this->Html->link(
@@ -117,21 +117,30 @@
 </nav>
 
 
-<div class="spacer"></div>
-
 <div class="container">
-    <div class="col-xs-12 col-sm-9 col-sm-push-3">
 
-        <?php echo $this->Session->flash(); ?>
-        <?php echo $this->fetch('content'); ?>
-        
-    </div><!-- /.col -->
+    <?php if(!in_array($myRole,array('Guest','customer'))): ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="h4 panel panel-default panel-body">Menu for <span class="strong"><?php echo $settings['Next Date']; ?></span></div>
+        </div>
+    </div>
+    <?php endif; ?>
 
-    <div class="col-xs-12 col-sm-3 col-sm-pull-9">
-        <?php echo $this->element('sidebar'); ?>
-    </div><!-- /.col -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-sm-push-3">
 
-    <div class="spacer spacer-30"></div>
+            <?php echo $this->Session->flash(); ?>
+            <?php echo $this->fetch('content'); ?>
+
+        </div><!-- /.col -->
+
+        <div class="col-xs-12 col-sm-3 col-sm-pull-9">
+            <?php echo $this->element('sidebar'); ?>
+        </div><!-- /.col -->
+
+        <div class="spacer spacer-30"></div>
+    </div>
 </div><!-- .container -->
 
 <div id="webroot" data-value="<?= $site_url; ?>"></div>

@@ -90,7 +90,7 @@ class AppController extends Controller
             $this->layout = 'homepage';
         }
 
-        $this->Auth->allow('logout', 'login', 'homepage', 'add', 'cart', 'view', 'meal');
+        $this->Auth->allow('logout', 'login', 'homepage', 'add', 'cart', 'view', 'meal', 'send_inquiry');
 
         $this->set('currentController', $this->params['controller']);
         $this->set('currentAction', $this->params['action']);
